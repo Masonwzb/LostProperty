@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lost.mapper.TbLostMapper" >
+  <resultMap id="BaseResultMap" type="com.lost.pojo.TbLost" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="lost_place" property="lostPlace" jdbcType="VARCHAR" />
+    <result column="lost_time" property="lostTime" jdbcType="TIMESTAMP" />
+    <result column="infoTitle" property="infotitle" jdbcType="VARCHAR" />
+    <result column="rewards" property="rewards" jdbcType="VARCHAR" />
+    <result column="images" property="images" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="QQ" property="qq" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lost.pojo.TbLost" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, category_id, user_id, lost_place, lost_time, infoTitle, rewards, images, contacts, 
+    number, QQ, email, address, created, updated
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.lost.pojo.TbLostExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_lost
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lost.pojo.TbLostExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_lost
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_lost
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_lost
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lost.pojo.TbLostExample" >
+    delete from tb_lost
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lost.pojo.TbLost" >
+    insert into tb_lost (id, category_id, user_id, 
+      lost_place, lost_time, infoTitle, 
+      rewards, images, contacts, 
+      number, QQ, email, 
+      address, created, updated, 
+      description)
+    values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{lostPlace,jdbcType=VARCHAR}, #{lostTime,jdbcType=TIMESTAMP}, #{infotitle,jdbcType=VARCHAR}, 
+      #{rewards,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
+      #{number,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lost.pojo.TbLost" >
+    insert into tb_lost
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="lostPlace != null" >
+        lost_place,
+      </if>
+      <if test="lostTime != null" >
+        lost_time,
+      </if>
+      <if test="infotitle != null" >
+        infoTitle,
+      </if>
+      <if test="rewards != null" >
+        rewards,
+      </if>
+      <if test="images != null" >
+        images,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="qq != null" >
+        QQ,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="lostPlace != null" >
+        #{lostPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="lostTime != null" >
+        #{lostTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infotitle != null" >
+        #{infotitle,jdbcType=VARCHAR},
+      </if>
+      <if test="rewards != null" >
+        #{rewards,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lost.pojo.TbLostExample" resultType="java.lang.Integer" >
+    select count(*) from tb_lost
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_lost
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.categoryId != null" >
+        category_id = #{record.categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lostPlace != null" >
+        lost_place = #{record.lostPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostTime != null" >
+        lost_time = #{record.lostTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.infotitle != null" >
+        infoTitle = #{record.infotitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rewards != null" >
+        rewards = #{record.rewards,jdbcType=VARCHAR},
+      </if>
+      <if test="record.images != null" >
+        images = #{record.images,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contacts != null" >
+        contacts = #{record.contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null" >
+        QQ = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.created != null" >
+        created = #{record.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updated != null" >
+        updated = #{record.updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_lost
+    set id = #{record.id,jdbcType=BIGINT},
+      category_id = #{record.categoryId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      lost_place = #{record.lostPlace,jdbcType=VARCHAR},
+      lost_time = #{record.lostTime,jdbcType=TIMESTAMP},
+      infoTitle = #{record.infotitle,jdbcType=VARCHAR},
+      rewards = #{record.rewards,jdbcType=VARCHAR},
+      images = #{record.images,jdbcType=VARCHAR},
+      contacts = #{record.contacts,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=VARCHAR},
+      QQ = #{record.qq,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      created = #{record.created,jdbcType=TIMESTAMP},
+      updated = #{record.updated,jdbcType=TIMESTAMP},
+      description = #{record.description,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_lost
+    set id = #{record.id,jdbcType=BIGINT},
+      category_id = #{record.categoryId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      lost_place = #{record.lostPlace,jdbcType=VARCHAR},
+      lost_time = #{record.lostTime,jdbcType=TIMESTAMP},
+      infoTitle = #{record.infotitle,jdbcType=VARCHAR},
+      rewards = #{record.rewards,jdbcType=VARCHAR},
+      images = #{record.images,jdbcType=VARCHAR},
+      contacts = #{record.contacts,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=VARCHAR},
+      QQ = #{record.qq,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      created = #{record.created,jdbcType=TIMESTAMP},
+      updated = #{record.updated,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lost.pojo.TbLost" >
+    update tb_lost
+    <set >
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="lostPlace != null" >
+        lost_place = #{lostPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="lostTime != null" >
+        lost_time = #{lostTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infotitle != null" >
+        infoTitle = #{infotitle,jdbcType=VARCHAR},
+      </if>
+      <if test="rewards != null" >
+        rewards = #{rewards,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lost.pojo.TbLost" >
+    update tb_lost
+    set category_id = #{categoryId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      lost_place = #{lostPlace,jdbcType=VARCHAR},
+      lost_time = #{lostTime,jdbcType=TIMESTAMP},
+      infoTitle = #{infotitle,jdbcType=VARCHAR},
+      rewards = #{rewards,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lost.pojo.TbLost" >
+    update tb_lost
+    set category_id = #{categoryId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      lost_place = #{lostPlace,jdbcType=VARCHAR},
+      lost_time = #{lostTime,jdbcType=TIMESTAMP},
+      infoTitle = #{infotitle,jdbcType=VARCHAR},
+      rewards = #{rewards,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
