@@ -1,0 +1,144 @@
+ <!DOCTYPE html>
+<html lang="en" ng-app="lostProperty">
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>失物管理</title>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <!-- 分页组件开始 -->
+	<script src="../plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+	<!-- 分页组件结束 -->
+	<script type="text/javascript" src="../js/base_pageUibs.js"></script>
+	<script type="text/javascript" src="../js/service/lostService.js"></script>
+	<script type="text/javascript" src="../js/controller/baseController.js"></script>
+	<script type="text/javascript" src="../js/controller/lostController.js"></script>
+	<script type="text/javascript" src="../js/directive/dateDirective.js"></script>
+	<!-- 弹窗开始 -->
+	<script type="text/javascript" src="../layer/layer.js"></script>
+	<!-- 弹窗结束 -->
+	<!-- 时间控件开始 -->
+    <script src="../js/dateControl/ui-bootstrap-tpls.js"></script>
+    <script src="../js/dateControl/angular-locale_zh-cn.js"></script>
+	<!-- 时间控件结束 -->
+</head>
+
+<body class="hold-transition skin-red sidebar-mini" ng-controller="lostController">
+  <!-- .box-body -->
+                
+                    <div class="box-header with-border">
+                        <h3 class="box-title">失物管理</h3>
+                    </div>
+
+                    <div class="box-body">
+
+                        <!-- 数据表格 -->
+                        <div class="table-box">
+
+                            <!--工具栏-->
+                            <div class="pull-left">
+                                <div class="form-group form-inline">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn bg-red btn-default" ng-click="del()" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-tools pull-right">
+                           	  <form role="form" class="form-inline">
+	                                <div class="form-group">
+	                                	<label>    
+	                                		<i></i>失物类别：             
+		                      	            <select class="form-control" ng-model="searchEntity.categoryName">
+			                                    <option value="">请选择</option>
+			                                    <option ng-repeat="categoryEntity in categoryList" value="{{categoryEntity.categoryName}}">{{categoryEntity.categoryName}}</option>
+			                                </select>
+			                            </label> 
+		                            </div>
+	                                	                                
+								    <div class="form-group">
+							            <p class="input-group">
+							                <input class="form-control" uib-datepicker-popup="{{format}}" ng-model="searchEntity.lostTime1" is-open="pop1.opened" 
+							                     placeholder="请选择开始日期" close-text="关闭" clear-text="清空" current-text="今天" alt-input-formats="altInputFormats" datepicker-options="datepickerOptions1"/>
+							                <span class="input-group-btn">
+							                    <button class="btn btn-default" ng-click="openpop1()"><i class="glyphicon  glyphicon-calendar"></i></button>
+							                </span>
+							            </p>
+							        </div>
+							        
+							        <div class="form-group">
+							            <p class="input-group">
+							                <input class="form-control" uib-datepicker-popup="{{format}}" ng-model="searchEntity.lostTime2" is-open="pop2.opened" 
+							                     placeholder="请选择结束日期" close-text="关闭" clear-text="清空" current-text="今天" alt-input-formats="altInputFormats" datepicker-options="datepickerOptions2"/>
+							                <span class="input-group-btn">
+							                    <button class="btn btn-default" ng-click="openpop2()"><i class="glyphicon  glyphicon-calendar"></i></button>
+							                </span>
+							            </p>
+							        </div> 
+			                               
+			                        <div class="form-group">         
+								      	<input placeholder="请输入失物地点" class="form-control" ng-model="searchEntity.lostPlace"/>      
+							        </div>   
+	                                 
+	                                 <button class="btn btn-white" ng-click="reloadList()">查询</button>
+	                                 
+                                </form>                 
+                            </div>
+                            <!--工具栏/-->
+                            
+                            
+
+			                  <!--数据列表-->
+			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+			                      <thead>
+			                          <tr>
+			                              <th class="" style="padding-right:0px">
+			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue">
+			                              </th> 
+										  <th class="sorting_asc">失物ID</th>
+									      <th class="sorting">分类名称</th>
+									      <th class="sorting">用户名</th>
+									      <th class="sorting">丢失地点</th>									    								      							
+					                      <th class="sorting">报酬方式</th>
+									      <th class="sorting">联系人</th>
+									      <th class="sorting">联系邮箱</th>
+									      <th class="sorting">丢失时间</th>
+			                          </tr>
+			                      </thead>
+			                      <tbody>
+			                          <tr ng-repeat="entity in list">
+			                              <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>			                              
+				                          <td>{{entity.id}}</td>
+									      <td>{{entity.categoryName}}</td>
+									      <td>{{entity.userName}}</td>
+									      <td>{{entity.lostPlace}}</td>
+		                                  <td>{{entity.rewards}}</td>
+		                                  <td>{{entity.contacts}}</td>
+									      <td>{{entity.email}}</td>
+									      <td>{{entity.lostTime1 | date:'yyyy-MM-dd'}}</td>
+			                          </tr>
+			                      </tbody>
+			                  </table>
+			                  <!--数据列表/--> 
+                        </div>
+                        <!-- 数据表格 /-->
+                     </div>
+                    <!-- /.box-body -->
+	            <!-- 分页 -->
+				<tm-pagination conf="paginationConf"></tm-pagination>
+				
+				
+				
+	            
+</body>
+
+</html>

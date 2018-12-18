@@ -1,0 +1,1 @@
+var app = angular.module('lostProperty',["pagination","ui.bootstrap"]);//定义品优购模块

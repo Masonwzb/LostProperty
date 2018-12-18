@@ -1,0 +1,11 @@
+com\lost\mapper\TbAboutusMapper.class
+com\lost\mapper\TbCommentMapper.class
+com\lost\mapper\TbUsersMapper.class
+com\lost\mapper\TbThanksMapper.class
+com\lost\mapper\TbTextinfoMapper.class
+com\lost\customMapper\DetLostMapper.class
+com\lost\customMapper\DetFoundMapper.class
+com\lost\mapper\TbSoulmateMapper.class
+com\lost\mapper\TbFoundMapper.class
+com\lost\mapper\TbCategoryMapper.class
+com\lost\mapper\TbLostMapper.class
