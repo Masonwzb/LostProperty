@@ -17,6 +17,27 @@ ul,label{
 body a:hover{
 	text-decoration:none;
 }
+
+/*自定义div开始*/
+.custom-div{
+     position: relative;
+	 height: 270px;
+	 padding-right: 15px;
+     padding-left: 15px;
+	 float: left;
+	 width: 25%;
+}
+.show-limit{
+    overflow:hidden;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-height: 90px;
+    text-overflow:ellipsis;
+}
+/*自定义div结束*/
+
+
 /*-- header --*/
 .header-grid-left ul li a,.new-collections-grid1-image-pos a,.new-collections-grid1 h4 a,.login a,.register-home a,.checkout-right-basket a,.bootstrap-tab-text-grid-right ul li a,.occasion-cart a,input[type="submit"],.mail-grid-right1 ul li a,.categories ul li a,.new-products-grid-right-add-cart p a,.new-products-grid-right h4 a,.products-right-grid1-add-cart p a,.timer-grid-left h3 a,.new-collections-grid1-left p a,.copy-right p a,.footer-grid-sub-grid-right h4 a,input[type="submit"],.footer-grid ul li a{
 	transition:.5s ease-in-out;

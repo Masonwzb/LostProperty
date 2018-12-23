@@ -1,5 +1,6 @@
 package com.lost.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import com.lost.customMapper.DetLostMapper;
 import com.lost.customPojo.DetLost;
 import com.lost.mapper.TbLostMapper;
 import com.lost.pojo.TbLost;
+import com.lost.pojo.TbLostExample;
+import com.lost.pojo.TbLostExample.Criteria;
 import com.lost.service.LostService;
 @Service
 public class LostServiceImpl implements LostService{
@@ -24,7 +27,7 @@ public class LostServiceImpl implements LostService{
 	
 	//查询所有失物
 	@Override
-	public List<TbLost> getAllLost() {
+	public List<TbLost> getAllLost() {		
 		return lostMapper.selectByExample(null);
 	}
 

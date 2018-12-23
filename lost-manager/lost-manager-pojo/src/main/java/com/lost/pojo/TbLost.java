@@ -1,15 +1,9 @@
 package com.lost.pojo;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class TbLost  implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 5184462184352370995L;
-
-	private Long id;
+public class TbLost {
+    private Long id;
 
     private Long categoryId;
 
@@ -27,7 +21,7 @@ public class TbLost  implements Serializable{
 
     private String contacts;
 
-    private String number;
+    private String tel;
 
     private String qq;
 
@@ -113,12 +107,12 @@ public class TbLost  implements Serializable{
         this.contacts = contacts == null ? null : contacts.trim();
     }
 
-    public String getNumber() {
-        return number;
+    public String getTel() {
+        return tel;
     }
 
-    public void setNumber(String number) {
-        this.number = number == null ? null : number.trim();
+    public void setTel(String tel) {
+        this.tel = tel == null ? null : tel.trim();
     }
 
     public String getQq() {

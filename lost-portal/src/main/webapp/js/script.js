@@ -2,11 +2,11 @@
 $(document).ready(function(){
 
 
-	/* ---- Countdown timer ---- */
+	/* ---- Countdown timer ---- 
 
 	$('#counter').countdown({
 		timestamp : (new Date()).getTime() + 11*24*60*60*1000
-	});
+	});*/
 
 
 	/* ---- Animations ---- */

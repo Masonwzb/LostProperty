@@ -695,73 +695,73 @@ public class TbLostExample {
             return (Criteria) this;
         }
 
-        public Criteria andNumberIsNull() {
-            addCriterion("number is null");
+        public Criteria andTelIsNull() {
+            addCriterion("tel is null");
             return (Criteria) this;
         }
 
-        public Criteria andNumberIsNotNull() {
-            addCriterion("number is not null");
+        public Criteria andTelIsNotNull() {
+            addCriterion("tel is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNumberEqualTo(String value) {
-            addCriterion("number =", value, "number");
+        public Criteria andTelEqualTo(String value) {
+            addCriterion("tel =", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andNumberNotEqualTo(String value) {
-            addCriterion("number <>", value, "number");
+        public Criteria andTelNotEqualTo(String value) {
+            addCriterion("tel <>", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andNumberGreaterThan(String value) {
-            addCriterion("number >", value, "number");
+        public Criteria andTelGreaterThan(String value) {
+            addCriterion("tel >", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andNumberGreaterThanOrEqualTo(String value) {
-            addCriterion("number >=", value, "number");
+        public Criteria andTelGreaterThanOrEqualTo(String value) {
+            addCriterion("tel >=", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andNumberLessThan(String value) {
-            addCriterion("number <", value, "number");
+        public Criteria andTelLessThan(String value) {
+            addCriterion("tel <", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andNumberLessThanOrEqualTo(String value) {
-            addCriterion("number <=", value, "number");
+        public Criteria andTelLessThanOrEqualTo(String value) {
+            addCriterion("tel <=", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andNumberLike(String value) {
-            addCriterion("number like", value, "number");
+        public Criteria andTelLike(String value) {
+            addCriterion("tel like", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andNumberNotLike(String value) {
-            addCriterion("number not like", value, "number");
+        public Criteria andTelNotLike(String value) {
+            addCriterion("tel not like", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andNumberIn(List<String> values) {
-            addCriterion("number in", values, "number");
+        public Criteria andTelIn(List<String> values) {
+            addCriterion("tel in", values, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andNumberNotIn(List<String> values) {
-            addCriterion("number not in", values, "number");
+        public Criteria andTelNotIn(List<String> values) {
+            addCriterion("tel not in", values, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andNumberBetween(String value1, String value2) {
-            addCriterion("number between", value1, value2, "number");
+        public Criteria andTelBetween(String value1, String value2) {
+            addCriterion("tel between", value1, value2, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andNumberNotBetween(String value1, String value2) {
-            addCriterion("number not between", value1, value2, "number");
+        public Criteria andTelNotBetween(String value1, String value2) {
+            addCriterion("tel not between", value1, value2, "tel");
             return (Criteria) this;
         }
 

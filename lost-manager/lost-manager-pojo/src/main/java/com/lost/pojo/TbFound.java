@@ -1,15 +1,9 @@
 package com.lost.pojo;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class TbFound  implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1641436389144139862L;
-
-	private Long id;
+public class TbFound {
+    private Long id;
 
     private Long categoryId;
 
@@ -24,6 +18,8 @@ public class TbFound  implements Serializable{
     private String images;
 
     private String contacts;
+
+    private String tel;
 
     private String qq;
 
@@ -99,6 +95,14 @@ public class TbFound  implements Serializable{
 
     public void setContacts(String contacts) {
         this.contacts = contacts == null ? null : contacts.trim();
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel == null ? null : tel.trim();
     }
 
     public String getQq() {

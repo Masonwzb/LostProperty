@@ -11,7 +11,7 @@
     <result column="rewards" property="rewards" jdbcType="VARCHAR" />
     <result column="images" property="images" jdbcType="VARCHAR" />
     <result column="contacts" property="contacts" jdbcType="VARCHAR" />
-    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
     <result column="QQ" property="qq" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
@@ -21,6 +21,19 @@
   <resultMap id="ResultMapWithBLOBs" type="com.lost.pojo.TbLost" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
   </resultMap>
+  
+  <!-- 自定义开始 -->
+  	<select id="selectByTime" resultMap="BaseResultMap">
+  		SELECT
+  			id,category_id,user_id,
+	        lost_place,lost_time,infoTitle,rewards,
+			description,images,contacts,tel,
+			QQ,email,address,created,updated
+  	    FROM tb_lost
+		where lost_time BETWEEN  CURRENT_DATE()-7 AND SYSDATE()
+  	</select>
+  <!-- 自定义结束 -->
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -81,7 +94,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, category_id, user_id, lost_place, lost_time, infoTitle, rewards, images, contacts, 
-    number, QQ, email, address, created, updated
+    tel, QQ, email, address, created, updated
   </sql>
   <sql id="Blob_Column_List" >
     description
@@ -138,15 +151,15 @@
     insert into tb_lost (id, category_id, user_id, 
       lost_place, lost_time, infoTitle, 
       rewards, images, contacts, 
-      number, QQ, email, 
-      address, created, updated, 
-      description)
+      tel, QQ, email, address, 
+      created, updated, description
+      )
     values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
       #{lostPlace,jdbcType=VARCHAR}, #{lostTime,jdbcType=TIMESTAMP}, #{infotitle,jdbcType=VARCHAR}, 
       #{rewards,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
-      #{number,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
-      #{description,jdbcType=LONGVARCHAR})
+      #{tel,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.lost.pojo.TbLost" >
     insert into tb_lost
@@ -178,8 +191,8 @@
       <if test="contacts != null" >
         contacts,
       </if>
-      <if test="number != null" >
-        number,
+      <if test="tel != null" >
+        tel,
       </if>
       <if test="qq != null" >
         QQ,
@@ -228,8 +241,8 @@
       <if test="contacts != null" >
         #{contacts,jdbcType=VARCHAR},
       </if>
-      <if test="number != null" >
-        #{number,jdbcType=VARCHAR},
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
       </if>
       <if test="qq != null" >
         #{qq,jdbcType=VARCHAR},
@@ -287,8 +300,8 @@
       <if test="record.contacts != null" >
         contacts = #{record.contacts,jdbcType=VARCHAR},
       </if>
-      <if test="record.number != null" >
-        number = #{record.number,jdbcType=VARCHAR},
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=VARCHAR},
       </if>
       <if test="record.qq != null" >
         QQ = #{record.qq,jdbcType=VARCHAR},
@@ -324,7 +337,7 @@
       rewards = #{record.rewards,jdbcType=VARCHAR},
       images = #{record.images,jdbcType=VARCHAR},
       contacts = #{record.contacts,jdbcType=VARCHAR},
-      number = #{record.number,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
       QQ = #{record.qq,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
@@ -346,7 +359,7 @@
       rewards = #{record.rewards,jdbcType=VARCHAR},
       images = #{record.images,jdbcType=VARCHAR},
       contacts = #{record.contacts,jdbcType=VARCHAR},
-      number = #{record.number,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
       QQ = #{record.qq,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
@@ -383,8 +396,8 @@
       <if test="contacts != null" >
         contacts = #{contacts,jdbcType=VARCHAR},
       </if>
-      <if test="number != null" >
-        number = #{number,jdbcType=VARCHAR},
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
       </if>
       <if test="qq != null" >
         QQ = #{qq,jdbcType=VARCHAR},
@@ -417,7 +430,7 @@
       rewards = #{rewards,jdbcType=VARCHAR},
       images = #{images,jdbcType=VARCHAR},
       contacts = #{contacts,jdbcType=VARCHAR},
-      number = #{number,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
       QQ = #{qq,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
@@ -436,7 +449,7 @@
       rewards = #{rewards,jdbcType=VARCHAR},
       images = #{images,jdbcType=VARCHAR},
       contacts = #{contacts,jdbcType=VARCHAR},
-      number = #{number,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
       QQ = #{qq,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},

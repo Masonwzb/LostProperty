@@ -6,6 +6,13 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TbLostMapper {
+	
+	//自定义开始
+	
+	List<TbLost> selectByTime();
+		
+	//自定义结束
+	 
     int countByExample(TbLostExample example);
 
     int deleteByExample(TbLostExample example);

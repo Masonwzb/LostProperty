@@ -1,45 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
-<%@ page session="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>失物招领首页</title>
-<!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Lost&Found" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- js -->
-<script src="js/jquery.min.js"></script>
-<!-- //js -->
-<!-- cart -->
-<script src="js/simpleCart.min.js"></script>
-<!-- cart -->
-<!-- for bootstrap working -->
-<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
-<!-- //for bootstrap working -->
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-<!-- timer -->
-<link rel="stylesheet" href="css/jquery.countdown.css" />
-<!-- //timer -->
-<!-- animation-effect -->
-<link href="css/animate.min.css" rel="stylesheet"> 
-<script src="js/wow.min.js"></script>
-<script>
- new WOW().init();
-</script>
-<!-- //animation-effect -->
+<!-- link start -->
+<jsp:include page="commons/head-link.jsp"/>
+<!-- link end -->
+
+<!-- index script start -->
+<script type="text/javascript" src="angular_js/js/base_pagination.js"></script>
+<script type="text/javascript" src="angular_js/js/controller/baseController.js"></script>
+<script type="text/javascript" src="angular_js/js/service/lostService.js"></script>
+<script type="text/javascript" src="angular_js/js/controller/lostController.js"></script>
+<script type="text/javascript" src="angular_js/js/service/foundService.js"></script>
+<script type="text/javascript" src="angular_js/js/controller/foundController.js"></script>
+<!-- index script end -->
 </head>
 	
-<body>
+<body ng-app="portalRest">
 <!-- header start-->
 <jsp:include page="commons/header.jsp"/>
 <!-- //header end-->
@@ -60,7 +41,6 @@
 						 物归原主，弘扬助人为乐精神  拾金不昧 体现中华民族美德，每一个丢失物品的背后，都有一个着急寻找的身影．．．拒绝冷漠，传递温暖，
 						 让爱在你我蔓延。</h4>
 					</div>
-					<script src="js/script.js"></script>
 				</div>
 				<div class="col-md-4 timer-grid-right animated wow slideInRight" data-wow-delay=".5s">
 					<div class="timer-grid-right1">
@@ -87,197 +67,75 @@
 						<li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">最新招领资讯</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
-					<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-						    <div class="new-collections-grids">
-								<div class="col-md-3 new-collections-grid">
-										<div class="new-collections-grid-sub-grids">
-											<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-												<div class="new-collections-grid1-image">
-													<div class="new-collections-grid1-image-pos">
-														<a href="single.html">查看 详情</a>
+						<div ng-controller="lostController" role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+						
+							    <div class="new-collections-grids">
+							    <!-- 失物遍历开始 -->
+									<div ng-repeat="entity in list" class="custom-div new-collections-grid">
+											<div class="new-collections-grid-sub-grids">
+												<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
+													<div class="new-collections-grid1-image">
+														<div class="new-collections-grid1-image-pos">
+															<a href="single.html">查看 详情</a>
+														</div>
 													</div>
-												</div>
-												<h4><a href="single.html">寻物。有捡到请联系我。</a></h4>
-												<p><h5><b>中区-寻物启事</b></h5></p>
-												<p>黑色卡包。里面有三张银行卡保险卡。几百元现金。身份证（姓名。李慧、性别，女。19961010出生年）。有奶奶照片急寻</p>
-												<div class="new-collections-grid1-left simpleCart_shelfItem">
-													<span>18年12月19日 </span>
-												</div>
-											</div> 
-										</div>
-								</div>
-								
-								<div class="col-md-3 new-collections-grid">
-										<div class="new-collections-grid-sub-grids">
-											<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-												<div class="new-collections-grid1-image">
-													<div class="new-collections-grid1-image-pos">
-														<a href="single.html">查看 详情</a>
+													<h4><a href="single.html">{{entity.infotitle}}</a></h4>
+													<p><h5><b>{{entity.lostPlace}}-寻物启事</b></h5></p>
+													<p class="show-limit">{{entity.description}}</p>
+													<div class="new-collections-grid1-left simpleCart_shelfItem">
+														<span>{{entity.lostTime | date:'yyyy年MM月dd日'}}</span>
 													</div>
-												</div>
-												<h4><a href="single.html">寻物。有捡到请联系我。</a></h4>
-												<p><h5><b>中区-寻物启事</b></h5></p>
-												<p>黑色卡包。里面有三张银行卡保险卡。几百元现金。身份证（姓名。李慧、性别，女。19961010出生年）。有奶奶照片急寻</p>
-												<div class="new-collections-grid1-left simpleCart_shelfItem">
-													<span>18年12月19日 </span>
-												</div>
-											</div> 
-										</div>
-								</div>
-								<div class="col-md-3 new-collections-grid">
-										<div class="new-collections-grid-sub-grids">
-											<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-												<div class="new-collections-grid1-image">
-													<div class="new-collections-grid1-image-pos">
-														<a href="single.html">查看 详情</a>
-													</div>
-												</div>
-												<h4><a href="single.html">寻物。有捡到请联系我。</a></h4>
-												<p><h5><b>中区-寻物启事</b></h5></p>
-												<p>黑色卡包。里面有三张银行卡保险卡。几百元现金。身份证（姓名。李慧、性别，女。19961010出生年）。有奶奶照片急寻</p>
-												<div class="new-collections-grid1-left simpleCart_shelfItem">
-													<span>18年12月19日 </span>
-												</div>
-											</div> 
-										</div>
-								</div>
-								<div class="col-md-3 new-collections-grid">
-										<div class="new-collections-grid-sub-grids">
-											<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-												<div class="new-collections-grid1-image">
-													<div class="new-collections-grid1-image-pos">
-														<a href="single.html">查看 详情</a>
-													</div>
-												</div>
-												<h4><a href="single.html">寻物。有捡到请联系我。</a></h4>
-												<p><h5><b>中区-寻物启事</b></h5></p>
-												<p>黑色卡包。里面有三张银行卡保险卡。几百元现金。身份证（姓名。李慧、性别，女。19961010出生年）。有奶奶照片急寻</p>
-												<div class="new-collections-grid1-left simpleCart_shelfItem">
-													<span>18年12月19日 </span>
-												</div>
-											</div> 
-										</div>
-								</div>
-								<div class="col-md-3 new-collections-grid">
-										<div class="new-collections-grid-sub-grids">
-											<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-												<div class="new-collections-grid1-image">
-													<div class="new-collections-grid1-image-pos">
-														<a href="single.html">查看 详情</a>
-													</div>
-												</div>
-												<h4><a href="single.html">寻物。有捡到请联系我。</a></h4>
-												<p><h5><b>中区-寻物启事</b></h5></p>
-												<p>黑色卡包。里面有三张银行卡保险卡。几百元现金。身份证（姓名。李慧、性别，女。19961010出生年）。有奶奶照片急寻</p>
-												<div class="new-collections-grid1-left simpleCart_shelfItem">
-													<span>18年12月19日 </span>
-												</div>
-											</div> 
-										</div>
-								</div>
-								<div class="col-md-3 new-collections-grid">
-										<div class="new-collections-grid-sub-grids">
-											<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-												<div class="new-collections-grid1-image">
-													<div class="new-collections-grid1-image-pos">
-														<a href="single.html">查看 详情</a>
-													</div>
-												</div>
-												<h4><a href="single.html">寻物。有捡到请联系我。</a></h4>
-												<p><h5><b>中区-寻物启事</b></h5></p>
-												<p>黑色卡包。里面有三张银行卡保险卡。几百元现金。身份证（姓名。李慧、性别，女。19961010出生年）。有奶奶照片急寻</p>
-												<div class="new-collections-grid1-left simpleCart_shelfItem">
-													<span>18年12月19日 </span>
-												</div>
-											</div> 
-										</div>
-								</div>
-								<div class="col-md-3 new-collections-grid">
-										<div class="new-collections-grid-sub-grids">
-											<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-												<div class="new-collections-grid1-image">
-													<div class="new-collections-grid1-image-pos">
-														<a href="single.html">查看 详情</a>
-													</div>
-												</div>
-												<h4><a href="single.html">寻物。有捡到请联系我。</a></h4>
-												<p><h5><b>中区-寻物启事</b></h5></p>
-												<p>黑色卡包。里面有三张银行卡保险卡。几百元现金。身份证（姓名。李慧、性别，女。19961010出生年）。有奶奶照片急寻</p>
-												<div class="new-collections-grid1-left simpleCart_shelfItem">
-													<span>18年12月19日 </span>
-												</div>
-											</div> 
-										</div>
-								</div>
-								<div class="col-md-3 new-collections-grid">
-										<div class="new-collections-grid-sub-grids">
-											<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-												<div class="new-collections-grid1-image">
-													<div class="new-collections-grid1-image-pos">
-														<a href="single.html">查看 详情</a>
-													</div>
-												</div>
-												<h4><a href="single.html">寻物。有捡到请联系我。</a></h4>
-												<p><h5><b>中区-寻物启事</b></h5></p>
-												<p>黑色卡包。里面有三张银行卡保险卡。几百元现金。身份证（姓名。李慧、性别，女。19961010出生年）。有奶奶照片急寻</p>
-												<div class="new-collections-grid1-left simpleCart_shelfItem">
-													<span>18年12月19日 </span>
-												</div>
-											</div> 
-										</div>
-								</div>
-								
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-							<div class="new-collections-grids">
-								<div class="col-md-3 new-collections-grid">
-										<div class="new-collections-grid-sub-grids">
-											<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-												<div class="new-collections-grid1-image">
-													<div class="new-collections-grid1-image-pos">
-														<a href="single.html">查看 详情</a>
-													</div>
-												</div>
-												<h4><a href="#">寻物。有捡到请联系我。</a></h4>
-												<p><h5><b>中区-寻物启事</b></h5></p>
-												<p>黑色卡包。里面有三张银行卡保险卡。几百元现金。身份证（姓名。李慧、性别，女。19961010出生年）。有奶奶照片急寻</p>
-												<div class="new-collections-grid1-left simpleCart_shelfItem">
-													<span>18年12月19日</span>
-												</div>
+												</div> 
 											</div>
-										</div>
+									</div>
+								<!-- 失物遍历结束 -->
+									
 								</div>
-							</div>
+								
+								<div class="clearfix"> </div>
+								<!-- 分页处理开始 -->
+									<tm-pagination conf="paginationConf"></tm-pagination>
+								<!-- 分页处理结束 -->
+								
 						</div>
+						
+						<div ng-controller="foundController" role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+		
+							<div class="new-collections-grids">
+								<!-- 失物遍历开始 -->
+									<div ng-repeat="entity in list" class="custom-div new-collections-grid">
+											<div class="new-collections-grid-sub-grids">
+												<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
+													<div class="new-collections-grid1-image">
+														<div class="new-collections-grid1-image-pos">
+															<a href="single.html">查看 详情</a>
+														</div>
+													</div>
+													<h4><a href="single.html">{{entity.infotitle}}</a></h4>
+													<p><h5><b>{{entity.foundPlace}}-招领启事</b></h5></p>
+													<p class="show-limit">{{entity.description}}</p>
+													<div class="new-collections-grid1-left simpleCart_shelfItem">
+														<span>{{entity.foundTime | date:'yyyy年MM月dd日'}}</span>
+													</div>
+												</div> 
+											</div>
+									</div>
+								<!-- 失物遍历结束 -->
+								
+							</div>
+							<div class="clearfix"> </div>
+							<!-- 分页处理开始 -->
+									<tm-pagination conf="paginationConf"></tm-pagination>
+							<!-- 分页处理结束 -->
+							
+						</div>
+						
 					</div>
 				</div>
 			</div>
-				
-			<!-- 自定义开始 -->
-				 <div class="new-collections-grids">
-								<div class="col-md-3 new-collections-grid">
-										<div class="new-collections-grid-sub-grids">
-											<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-												<div class="new-collections-grid1-image">
-													<div class="new-collections-grid1-image-pos">
-														<a href="single.html">查看 详情</a>
-													</div>
-												</div>
-												<h4><a href="single.html">寻物。有捡到请联系我。</a></h4>
-												<p><h5><b>中区-寻物启事</b></h5></p>
-												<p>黑色卡包。里面有三张银行卡保险卡。几百元现金。身份证（姓名。李慧、性别，女。19961010出生年）。有奶奶照片急寻</p>
-												<div class="new-collections-grid1-left simpleCart_shelfItem">
-													<p>18年12月19日 </p>
-												</div>
-											</div>
-										</div>
-								</div>
-				</div>
-			<!-- 自定义结束 -->
+			
 		</div>
 	</div>
-	
 	
 <!-- //collections -->
 

@@ -1,0 +1,1 @@
+var app = angular.module('lostProperty',[]);//定义品优购模块

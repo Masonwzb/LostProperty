@@ -3,13 +3,22 @@ package com.lost.common.pojo;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /*
  * 分页结果类
  */
-public class PageResult implements Serializable {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PageResult implements Serializable{
+
+	private static final long serialVersionUID = 6418469403093199737L;
 
 	private long total;// 总记录数
 	private List rows;// 当前记录数
+	
+	public PageResult() {
+	}
 
 	public PageResult(long total, List rows) {
 		super();

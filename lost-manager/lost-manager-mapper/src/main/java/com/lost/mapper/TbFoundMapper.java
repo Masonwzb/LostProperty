@@ -2,10 +2,19 @@ package com.lost.mapper;
 
 import com.lost.pojo.TbFound;
 import com.lost.pojo.TbFoundExample;
+import com.lost.pojo.TbLost;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TbFoundMapper {
+	
+	//自定义开始
+	
+	List<TbFound> selectByTime();
+		
+	//自定义结束
+	
     int countByExample(TbFoundExample example);
 
     int deleteByExample(TbFoundExample example);
