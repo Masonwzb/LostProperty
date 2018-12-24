@@ -1,23 +1,5 @@
 app.controller('baseController',function($scope){
 	
-	//分页控件配置 currentPage:当前页 totalItems：总记录数
-	//itemsPerPage:每页记录数 perPageOptions：分页选项  onChange:当页码变更后自动触发的方法
-	$scope.paginationConf = {
-			 currentPage: 1,
-			 totalItems: 10,
-			 itemsPerPage: 8,
-			 perPageOptions: [8, 12, 16, 20, 24],
-			 onChange: function(){
-			       $scope.reloadList();//重新加载
-			 }
-	}; 
-	
-	//重新加载列表 数据 刷新列表
-	$scope.reloadList=function(){
-		 //切换页码  
-		 $scope.search( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
-	}
-	
 	$scope.selectIds=[];//用户勾选的ID集合
 	//用户勾选复选框
 	$scope.updateSelection=function($event,id){

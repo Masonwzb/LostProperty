@@ -3,6 +3,17 @@ app.controller('foundController',function($scope,$timeout,$controller,foundServi
 		
 			$controller('baseController',{$scope:$scope});//继承
 	
+			//查询最近一周内的失物
+			$scope.findNewest=function(page,size){
+			
+				foundService.findNewest(page,size).success(
+					function(response){
+						$scope.listNewest=response.rows;//显示当前页数据
+						$scope.paginationConf.totalItems=response.total;//更新总记录数
+					}
+				);	
+			}
+			
 			//监听entity如果发生变化则加载失物类别
             $scope.$watch('entity',function(){
                 //$scope.findAllCategory();
@@ -149,6 +160,25 @@ app.controller('foundController',function($scope,$timeout,$controller,foundServi
 						$scope.paginationConf.totalItems=response.total;//更新总记录数
 					}
 				);	
+			}
+			
+			//分页控件配置 currentPage:当前页 totalItems：总记录数
+			//itemsPerPage:每页记录数 perPageOptions：分页选项  onChange:当页码变更后自动触发的方法
+			$scope.paginationConf = {
+					 currentPage: 1,
+					 totalItems: 10,
+					 itemsPerPage: 8,
+					 perPageOptions: [8,12, 16, 20, 24],
+					 onChange: function(){
+					       $scope.reloadList();//重新加载
+					 }
+			}; 
+			
+			//重新加载列表 数据 刷新列表
+			$scope.reloadList=function(){
+				 //切换页码  
+				 //$scope.search( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
+				 $scope.findNewest( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
 			}
 			
 		

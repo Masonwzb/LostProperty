@@ -1,5 +1,5 @@
 	//品牌服务
-		app.service("lostService",function($http){
+		app.service("lSearchService",function($http){
 			
 			//查询最近一周内的失物
 			this.findNewest=function(page,size){

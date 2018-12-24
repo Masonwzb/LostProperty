@@ -1,12 +1,12 @@
 
-app.controller('lostController',function($scope,$timeout,$controller,lostService){
+app.controller('lSearchController',function($scope,$timeout,$controller,lSearchService){
 		
 			$controller('baseController',{$scope:$scope});//继承
 			
 			//查询最近一周内的失物
 			$scope.findNewest=function(page,size){
 			
-				lostService.findNewest(page,size).success(
+				lSearchService.findNewest(page,size).success(
 					function(response){
 						$scope.listNewest=response.rows;//显示当前页数据
 						$scope.paginationConf.totalItems=response.total;//更新总记录数
@@ -16,7 +16,7 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 			
 			//监听entity如果发生变化则加载失物类别
             $scope.$watch('entity',function(){
-                //$scope.findAllCategory();
+                $scope.findAllCategory();
             });
 			
 			$scope.searchEntity={};
@@ -29,11 +29,11 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
             $scope.today=new Date();
             $scope.altInputFormats=['yyyy/M!/d!','yyyy.M!.d!','yyyy M! d!'];//手动输入支持的格式
             $scope.datepickerOptions1={
-                maxDate:$scope.searchEntity.lostTime2,
+                maxDate:$scope.searchEntity.lSearchTime2,
                 startingDay:1
             };
             $scope.datepickerOptions2={
-                minDate:$scope.searchEntity.lostTime1,
+                minDate:$scope.searchEntity.lSearchTime1,
                 maxDate:$scope.today,
                 startingDay:1
             };
@@ -52,10 +52,10 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
             };
 
             //监听dt1 和dt2 如果dt1 变化就设置 datepickeroptions.mindate就变化
-            $scope.$watch('searchEntity.lostTime1',function(newValue,oldValue){
+            $scope.$watch('searchEntity.lSearchTime1',function(newValue,oldValue){
                 $scope.datepickerOptions2.minDate=newValue;
             });
-            $scope.$watch('searchEntity.lostTime2',function(newValue,oldValue){
+            $scope.$watch('searchEntity.lSearchTime2',function(newValue,oldValue){
                 $scope.datepickerOptions1.maxDate=newValue;
             });
             /*手动输入限制 使用表单验证
@@ -67,7 +67,7 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 			
 			//查询所有失物分类
 			$scope.findAllCategory=function(){
-				lostService.findAllCategory().success(
+				lSearchService.findAllCategory().success(
 					function(response){
 						$scope.categoryList = response;
 					}
@@ -76,7 +76,7 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 			
 			//查询品牌列表
 			$scope.findAll=function(){
-				lostService.findAll().success(
+				lSearchService.findAll().success(
 					function(response){
 						$scope.list=response;
 					}
@@ -85,7 +85,7 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 			
 			//分页
 			$scope.findPage=function(page,size){
-				lostService.findPage(page,size).success(
+				lSearchService.findPage(page,size).success(
 					function(response){
 						$scope.list=response.rows;//显示当前页数据
 						$scope.paginationConf.totalItems=response.total;//更新总记录数
@@ -97,9 +97,9 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 			$scope.save=function(){
 				var object=null;
 				if($scope.entity.id!=null){
-					object=lostService.update($scope.entity);
+					object=lSearchService.update($scope.entity);
 				}else{
-					object=lostService.add($scope.entity);
+					object=lSearchService.add($scope.entity);
 				}
 			
 				object.success(
@@ -116,7 +116,7 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 			
 			//查询实体
 			$scope.findOne=function(id){
-				lostService.findOne(id).success(
+				lSearchService.findOne(id).success(
 					function(response){
 						$scope.entity=response;
 					}
@@ -132,7 +132,7 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 						  btn: ['确定','取消'] //按钮
 						}, function(){
 							
-							lostService.del($scope.selectIds).success(
+							lSearchService.del($scope.selectIds).success(
 									function(response){
 										if(response.status == 200){
 											$scope.reloadList();//刷新
@@ -154,7 +154,7 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 			//条件查询
 			$scope.search=function(page,size){
 			
-				lostService.search(page,size,$scope.searchEntity).success(
+				lSearchService.search(page,size,$scope.searchEntity).success(
 					function(response){
 						$scope.list=response.rows;//显示当前页数据
 						$scope.paginationConf.totalItems=response.total;//更新总记录数
@@ -177,8 +177,8 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 			//重新加载列表 数据 刷新列表
 			$scope.reloadList=function(){
 				 //切换页码  
-				 //$scope.search( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
-				 $scope.findNewest( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
+				 $scope.search( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
+				 //$scope.findNewest( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
 			}
 			
 		

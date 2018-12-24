@@ -8,6 +8,7 @@
 		tu.username AS userName,
 		tl.lost_place AS lostPlace,
 		tl.rewards,tl.contacts,tl.email,
+		tl.description,tl.infoTitle,
 		tl.lost_time AS lostTime1
 	</sql>
 

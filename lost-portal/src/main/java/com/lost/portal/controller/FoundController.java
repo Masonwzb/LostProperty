@@ -14,7 +14,7 @@ public class FoundController {
 	@Autowired
 	private FoundService foundService;
 	
-	@RequestMapping("/search")
+	@RequestMapping("/newest")
 	public PageResult getByTimeFound(int page,int size){
 		PageResult result = foundService.getFoundByTime(page, size);
 		return result;

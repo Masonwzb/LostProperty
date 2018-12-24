@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header -->
+
 	<div class="header">
 		<div class="container">
 			<div class="header-grid">
@@ -39,12 +41,12 @@
 					</div> 
 					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.html" class="act">首页</a></li>	
+							<li id="index" class=""><a href="index.html" class="">首页</a></li>	
 							<!-- Mega Menu -->
-							<li><a href="#">寻物 </a></li>
-							<li><a href="#">招领 </a></li>
-							<li><a href="short-codes.html">寻&nbsp;&nbsp;他/她<i class="glyphicon glyphicon-heart" aria-hidden="true"></i></a></li>
-							<li><a href="mail.html">联系 我们</a></li>
+							<li id="lost" class=""><a href="lost.html" class="">寻物 </a></li>
+							<li id="found" class=""><a href="found.html" class="">招领 </a></li>
+							<li id="short-codes" class=""><a href="short-codes.html" class="">寻&nbsp;&nbsp;人<i class="glyphicon glyphicon-heart" aria-hidden="true"></i></a></li>
+							<li id="mail" class=""><a href="mail.html" class="">联系 我们</a></li>
 						</ul>
 					</div>
 					</nav>
@@ -75,4 +77,26 @@
 			</div>
 		</div>
 	</div>
+	
+
+<!-- 动态导航栏添加active start -->
+<script type="text/javascript">
+$(function () {
+
+    var li = $("#bs-megadropdown-tabs ul").children("li");
+
+    for (var i = 0; i < li.length; i++) {
+        var url = window.location.pathname;
+        var url = url.replace("/", "");
+        if (url.indexOf(li[i].id)!=-1) {
+        	li[i].className = "active";
+            li[i].firstChild.className = "act";
+
+        } else {
+            li[i].firstChild.className = "";
+        }
+    }
+})
+</script>
+<!-- 动态导航栏添加active end -->	
 <!-- //header -->

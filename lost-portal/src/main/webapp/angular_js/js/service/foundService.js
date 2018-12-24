@@ -1,6 +1,11 @@
 	//品牌服务
 		app.service("foundService",function($http){
 		
+			//查询最近一周内的失物
+			this.findNewest=function(page,size){
+				return $http.get('../found/newest.action?page='+page+'&size='+size)
+			}
+			
 			//查询所有物品分类
 			this.findAllCategory=function(){
 				return $http.get("../category/findAll.action");

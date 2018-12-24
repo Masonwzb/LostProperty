@@ -30,7 +30,7 @@
 		<div class="container">
 			<div class="timer-grids">
 				<div class="col-md-8 timer-grid-left animated wow slideInLeft" data-wow-delay=".5s">
-					<h3><a href="products.html">来 带 熊 猫 宝 宝 们 回 家 吧~</a></h3>
+					<h3><a href="#">求 带 熊 猫 宝 宝 们 回 家 吧~</a></h3>
 					<div class="rating">
 						<div class="clearfix"> </div>
 					</div>
@@ -71,7 +71,7 @@
 						
 							    <div class="new-collections-grids">
 							    <!-- 失物遍历开始 -->
-									<div ng-repeat="entity in list" class="custom-div new-collections-grid">
+									<div ng-repeat="entity in listNewest" class="custom-div new-collections-grid">
 											<div class="new-collections-grid-sub-grids">
 												<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
 													<div class="new-collections-grid1-image">
@@ -103,7 +103,7 @@
 		
 							<div class="new-collections-grids">
 								<!-- 失物遍历开始 -->
-									<div ng-repeat="entity in list" class="custom-div new-collections-grid">
+									<div ng-repeat="entity in listNewest" class="custom-div new-collections-grid">
 											<div class="new-collections-grid-sub-grids">
 												<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
 													<div class="new-collections-grid1-image">

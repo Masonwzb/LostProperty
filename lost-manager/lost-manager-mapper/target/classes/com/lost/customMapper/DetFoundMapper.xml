@@ -8,6 +8,7 @@
 		tu.username AS userName,
 		tl.found_place AS foundPlace,
 		tl.contacts,tl.email,
+		tl.description,tl.infoTitle,
 		tl.found_time AS foundTime1
 	</sql>
 

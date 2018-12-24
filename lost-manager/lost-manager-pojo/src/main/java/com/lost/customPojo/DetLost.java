@@ -11,6 +11,8 @@ public class DetLost {
 	private String rewards;
 	private String contacts;
 	private String email;
+	private String infoTitle;
+	private String description;
 	private Date lostTime1;
 	private Date lostTime2;
 
@@ -89,6 +91,22 @@ public class DetLost {
 
 	public void setLostTime2(Date lostTime2) {
 		this.lostTime2 = lostTime2;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getInfoTitle() {
+		return infoTitle;
+	}
+
+	public void setInfoTitle(String infoTitle) {
+		this.infoTitle = infoTitle;
 	}
 
 }

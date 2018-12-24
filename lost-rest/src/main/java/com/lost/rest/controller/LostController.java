@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lost.common.pojo.LostResult;
 import com.lost.common.pojo.PageResult;
+import com.lost.customPojo.DetLost;
 import com.lost.pojo.TbLost;
 import com.lost.rest.service.LostService;
 
@@ -27,4 +29,13 @@ public class LostController {
 	public LostResult getLostByTime(int page,int size){
 		return lostService.getLostByTime(page,size);
 	}
+	
+	/*
+	 * 根据条件查询失物
+	 */
+	@RequestMapping("/search")
+	public LostResult getLostByCondition(@RequestBody DetLost detLost, int page, int size){
+		return lostService.getLostByCondition(detLost, page, size);
+	}
+	
 }

@@ -10,6 +10,8 @@ public class DetFound {
 	private String foundPlace;
 	private String contacts;
 	private String email;
+	private String infoTitle;
+	private String description;
 	private Date foundTime1;
 	private Date foundTime2;
 
@@ -80,6 +82,22 @@ public class DetFound {
 
 	public void setFoundTime2(Date foundTime2) {
 		this.foundTime2 = foundTime2;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getInfoTitle() {
+		return infoTitle;
+	}
+
+	public void setInfoTitle(String infoTitle) {
+		this.infoTitle = infoTitle;
 	}
 
 }
