@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>失物招领-寻物启事信息页面</title>
+<title>失物招领-寻物启事信息</title>
 <!-- link start -->
 <jsp:include page="commons/head-link.jsp"/>
 <!-- link end -->
@@ -67,6 +67,7 @@
                              <input placeholder="请输入失物地点" class="form-control" ng-model="searchEntity.lostPlace"/> 
                     </div>
                     <div class="newsletter" data-wow-delay=".5s">
+                 	  <button class="btn btn-info" onclick="window.location.reload();">刷新</button>
                   	  <input type="submit" ng-click="reloadList()" value="查 询" >
                     </div>
 				        			     	                            			                                                           
@@ -94,8 +95,8 @@
 														</div>
 													</div>
 													<h4><a href="single.html">{{entity.infoTitle}}</a></h4>
-													<p><h5><b>{{entity.lostPlace}}-寻物启事</b></h5></p>
-													<p class="show-limit">{{entity.description}}</p>
+													<p><h5><b>{{entity.lostPlace | textLengthSet:true:10:'... '}} -寻物启事</b></h5></p>
+													<p class="show-limit">{{entity.description | textLengthSet:true:45:'...'}}</p>
 													<div class="new-collections-grid1-left simpleCart_shelfItem">
 														<span>{{entity.lostTime1 | date:'yyyy年MM月dd日'}}</span>
 													</div>

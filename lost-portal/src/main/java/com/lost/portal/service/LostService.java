@@ -1,7 +1,9 @@
 package com.lost.portal.service;
 
+import com.lost.common.pojo.LostResult;
 import com.lost.common.pojo.PageResult;
 import com.lost.customPojo.DetLost;
+import com.lost.pojo.TbLost;
 
 public interface LostService {
 
@@ -9,4 +11,6 @@ public interface LostService {
 	public PageResult getLostByTime(int page, int size);
 	//根据条件查询失物
 	public PageResult getLostByCondition(DetLost detLost,int page,int size);
+	//添加失物信息
+	public LostResult addLostInfo(TbLost tbLost);
 }

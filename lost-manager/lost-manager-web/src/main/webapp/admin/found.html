@@ -111,6 +111,7 @@
 									      <th class="sorting">联系人</th>
 									      <th class="sorting">联系邮箱</th>
 									      <th class="sorting">拾取时间</th>
+									      <th class="sorting">发布时间</th>
 			                          </tr>
 			                      </thead>
 			                      <tbody>
@@ -123,6 +124,7 @@
 		                                  <td>{{entity.contacts}}</td>
 									      <td>{{entity.email}}</td>
 									      <td>{{entity.foundTime1 | date:'yyyy-MM-dd'}}</td>
+									      <td>{{entity.updated | date:'yyyy-MM-dd'}}</td>
 			                          </tr>
 			                      </tbody>
 			                  </table>

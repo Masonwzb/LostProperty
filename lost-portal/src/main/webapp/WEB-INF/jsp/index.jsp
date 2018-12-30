@@ -30,7 +30,7 @@
 		<div class="container">
 			<div class="timer-grids">
 				<div class="col-md-8 timer-grid-left animated wow slideInLeft" data-wow-delay=".5s">
-					<h3><a href="#">求 带 熊 猫 宝 宝 们 回 家 吧~</a></h3>
+					<h3><a href="#">等你来、领回去~</a></h3>
 					<div class="rating">
 						<div class="clearfix"> </div>
 					</div>
@@ -58,7 +58,7 @@
 	<div class="new-collections">
 		<div class="container">
 			<h3 class="animated wow zoomIn" data-wow-delay=".5s">最新失物招领资讯</h3>
-			<p class="est animated wow zoomIn" data-wow-delay=".5s">等你来、领回去，本页面仅显示最近一周内失物招领的信息。</p>
+			<p class="est animated wow zoomIn" data-wow-delay=".5s">本页面仅显示最近一周内失物招领的信息,按发布时间排序。</p>
 				
 			<div class="grid_3 grid_5 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
@@ -80,10 +80,10 @@
 														</div>
 													</div>
 													<h4><a href="single.html">{{entity.infotitle}}</a></h4>
-													<p><h5><b>{{entity.lostPlace}}-寻物启事</b></h5></p>
-													<p class="show-limit">{{entity.description}}</p>
+													<p><h5><b>{{entity.lostPlace | textLengthSet:true:10:'... '}} -寻物启事</b></h5></p>
+													<p class="show-limit">{{entity.description | textLengthSet:true:45:'...'}}</p>
 													<div class="new-collections-grid1-left simpleCart_shelfItem">
-														<span>{{entity.lostTime | date:'yyyy年MM月dd日'}}</span>
+														<span class="time-type">丢失时间：{{entity.lostTime | date:'yyyy.MM.dd'}}</span>
 													</div>
 												</div> 
 											</div>
@@ -112,8 +112,8 @@
 														</div>
 													</div>
 													<h4><a href="single.html">{{entity.infotitle}}</a></h4>
-													<p><h5><b>{{entity.foundPlace}}-招领启事</b></h5></p>
-													<p class="show-limit">{{entity.description}}</p>
+													<p><h5><b>{{entity.foundPlace | textLengthSet:true:10:'... '}} -招领启事</b></h5></p>
+													<p class="show-limit">{{entity.description | textLengthSet:true:45:'...'}}</p>
 													<div class="new-collections-grid1-left simpleCart_shelfItem">
 														<span>{{entity.foundTime | date:'yyyy年MM月dd日'}}</span>
 													</div>

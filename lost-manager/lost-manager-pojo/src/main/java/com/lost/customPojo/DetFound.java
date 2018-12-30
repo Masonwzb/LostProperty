@@ -14,6 +14,7 @@ public class DetFound {
 	private String description;
 	private Date foundTime1;
 	private Date foundTime2;
+	private Date updated;
 
 	public DetFound() {
 		super();
@@ -98,6 +99,14 @@ public class DetFound {
 
 	public void setInfoTitle(String infoTitle) {
 		this.infoTitle = infoTitle;
+	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
 	}
 
 }

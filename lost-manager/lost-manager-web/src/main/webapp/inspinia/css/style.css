@@ -6,13 +6,6 @@
  *   version 2.7
  *
 */
-/*
-添加
-*/
-.bg {
-       background:url("../img/notebook.jpg") no-repeat center;
-}
-
 h1,
 h2,
 h3,
@@ -45,6 +38,7 @@ h5 {
   margin-top: 5px;
   font-weight: 600;
 }
+
 .nav > li > a {
   color: #a7b1c2;
   font-weight: 600;

@@ -13,4 +13,6 @@ public interface LostService {
 	public LostResult getLostByTime(int page,int size);
 	//根据条件查询失物
 	public LostResult getLostByCondition(DetLost detLost,int page,int size);
+	//添加失物信息
+	public LostResult addLost(TbLost tbLost);
 }

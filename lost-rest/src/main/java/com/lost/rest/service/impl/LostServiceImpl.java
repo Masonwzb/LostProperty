@@ -1,5 +1,6 @@
 package com.lost.rest.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.lost.common.pojo.LostResult;
 import com.lost.common.pojo.PageResult;
+import com.lost.common.utils.IDUtils;
 import com.lost.customMapper.DetLostMapper;
 import com.lost.customPojo.DetLost;
 import com.lost.mapper.TbLostMapper;
@@ -48,6 +50,25 @@ public class LostServiceImpl implements LostService {
 		PageResult result = new PageResult(page1.getTotal(),page1.getResult());
 		//结果使用LostResult包装
 		return LostResult.ok(result);
+	}
+
+	/*
+	 * 添加失物信息
+	 */
+	@Override
+	public LostResult addLost(TbLost tbLost) {
+		// 补全失物信息
+		//设置ID
+		Long userId = (long) 2;
+		tbLost.setId(IDUtils.generateId());
+		tbLost.setUserId(userId);
+		
+		//设置日期
+		tbLost.setCreated(new Date());
+		tbLost.setUpdated(new Date());
+		//添加至数据库
+		lostMapper.insert(tbLost);
+		return LostResult.ok();
 	}
 
 

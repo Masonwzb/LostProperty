@@ -71,6 +71,17 @@
 				</div>
 				<div class="header-right">
 					<div class="cart box_1">
+						<a href="addLost.html">
+								<div>
+									<button class="btn btn-default">发布->寻物信息</button>
+								</div>
+						</a>
+						<br/>
+						<a href="#">
+							<div>
+								<button class="btn btn-default"><span>发布->招领信息</span></button>
+							</div>
+						</a>
 					</div>	
 				</div>
 				<div class="clearfix"> </div>
@@ -86,6 +97,7 @@ $(function () {
     var li = $("#bs-megadropdown-tabs ul").children("li");
 
     for (var i = 0; i < li.length; i++) {
+    
         var url = window.location.pathname;
         var url = url.replace("/", "");
         if (url.indexOf(li[i].id)!=-1) {
@@ -94,6 +106,7 @@ $(function () {
 
         } else {
             li[i].firstChild.className = "";
+            li[i].className = "";
         }
     }
 })

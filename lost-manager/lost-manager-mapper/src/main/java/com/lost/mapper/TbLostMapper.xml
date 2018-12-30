@@ -23,6 +23,7 @@
   </resultMap>
   
   <!-- 自定义开始 -->
+  <!-- 一周内失物 -->
   	<select id="selectByTime" resultMap="BaseResultMap">
   		SELECT
   			id,category_id,user_id,
@@ -30,7 +31,8 @@
 			description,images,contacts,tel,
 			QQ,email,address,created,updated
   	    FROM tb_lost
-		where lost_time BETWEEN  CURRENT_DATE()-7 AND SYSDATE()
+		WHERE lost_time BETWEEN  CURRENT_DATE()-7 AND SYSDATE()
+		ORDER BY updated DESC
   	</select>
   <!-- 自定义结束 -->
   

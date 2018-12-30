@@ -38,4 +38,12 @@ public class LostController {
 		return lostService.getLostByCondition(detLost, page, size);
 	}
 	
+	/*
+	 * 添加失物信息
+	 */
+	@RequestMapping("/add")
+	public LostResult addLostInfo(@RequestBody TbLost tbLost){
+		return lostService.addLost(tbLost);
+	}
+	
 }

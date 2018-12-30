@@ -15,6 +15,7 @@ public class DetLost {
 	private String description;
 	private Date lostTime1;
 	private Date lostTime2;
+	private Date updated;
 
 	public DetLost() {
 		super();
@@ -107,6 +108,14 @@ public class DetLost {
 
 	public void setInfoTitle(String infoTitle) {
 		this.infoTitle = infoTitle;
+	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
 	}
 
 }
