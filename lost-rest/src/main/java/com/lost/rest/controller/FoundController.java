@@ -13,6 +13,7 @@ import com.lost.common.pojo.LostResult;
 import com.lost.common.pojo.PageResult;
 import com.lost.customPojo.DetFound;
 import com.lost.customPojo.DetLost;
+import com.lost.pojo.TbFound;
 import com.lost.pojo.TbLost;
 import com.lost.rest.service.FoundService;
 import com.lost.rest.service.LostService;
@@ -38,6 +39,14 @@ public class FoundController {
 	@RequestMapping("/search")
 	public LostResult getFoundByCondition(@RequestBody DetFound detFound, int page, int size){
 		return foundService.getFoundByCondition(detFound, page, size);
+	}
+	
+	/*
+	 * 添加招领信息
+	 */
+	@RequestMapping("/add")
+	public LostResult addFoundInfo(@RequestBody TbFound tbFound){
+		return foundService.addFound(tbFound);
 	}
 	
 	

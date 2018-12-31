@@ -31,7 +31,7 @@
 			description,images,contacts,tel,
 			QQ,email,address,created,updated
   	    FROM tb_lost
-		WHERE lost_time BETWEEN  CURRENT_DATE()-7 AND SYSDATE()
+		WHERE updated BETWEEN  CURRENT_DATE()-7 AND SYSDATE()
 		ORDER BY updated DESC
   	</select>
   <!-- 自定义结束 -->

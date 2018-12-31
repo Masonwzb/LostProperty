@@ -2,8 +2,11 @@ package com.lost.rest.controller;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +47,14 @@ public class LostController {
 	@RequestMapping("/add")
 	public LostResult addLostInfo(@RequestBody TbLost tbLost){
 		return lostService.addLost(tbLost);
+	}
+	
+	/*
+	 * 根据ID查询失物信息
+	 */
+	@RequestMapping("/findOne/{lostId}")
+	public LostResult findLostById(@PathVariable Long lostId){
+		return lostService.getLostById(lostId);
 	}
 	
 }

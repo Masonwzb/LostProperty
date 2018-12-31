@@ -114,13 +114,9 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 				)		
 			}
 			
-			//查询实体
+			//根据ID查询失物
 			$scope.findOne=function(id){
-				lostService.findOne(id).success(
-					function(response){
-						$scope.entity=response;
-					}
-				)
+				lostService.findOne(id);
 			}
 			
 			//删除

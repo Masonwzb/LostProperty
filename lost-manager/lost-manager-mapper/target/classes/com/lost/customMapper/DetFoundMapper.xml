@@ -10,6 +10,7 @@
 		tf.contacts,tf.email,
 		tf.description,tf.infoTitle,
 		tf.found_time AS foundTime1,
+		tf.images,tf.QQ,tf.tel,tf.address,
 		tf.updated
 	</sql>
 

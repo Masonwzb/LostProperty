@@ -13,6 +13,10 @@ public class DetLost {
 	private String email;
 	private String infoTitle;
 	private String description;
+	private String images;
+	private String tel;
+	private String qq;
+	private String address;
 	private Date lostTime1;
 	private Date lostTime2;
 	private Date updated;
@@ -117,5 +121,38 @@ public class DetLost {
 	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
+	
+	public String getImages() {
+		return images;
+	}
+
+	public void setImages(String images) {
+		this.images = images;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 
 }

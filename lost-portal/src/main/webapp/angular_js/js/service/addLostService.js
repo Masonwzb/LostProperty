@@ -1,4 +1,4 @@
-	//品牌服务
+	//添加失物服务
 		app.service("addLostService",function($http){
 			
 			//查询最近一周内的失物

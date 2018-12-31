@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.lost.common.pojo.LostResult;
@@ -28,6 +29,8 @@ public class FoundServiceImpl implements FoundService {
 	private String REST_INDEX_FOUND_TIME;
 	@Value("${REST_FOUND_SEARCH_URL}")
 	private String REST_FOUND_SEARCH_URL;
+	@Value("${REST_ADD_FOUND}")
+	private String REST_ADD_FOUND;
 	
 	
 	//根据时间查询失物
@@ -77,6 +80,29 @@ public class FoundServiceImpl implements FoundService {
 		}
 		
 		return null;
+	}
+
+
+	/*
+	 * 添加招领信息
+	 */
+	@Override
+	public LostResult addFoundInfo(TbFound tbFound) {
+		//将对象转换为json数据
+				String json = JsonUtils.objectToJson(tbFound);
+				//获取服务层的数据
+				try {
+					String jsons = HttpClientUtil.doPostJson(REST_BASE_URL + REST_ADD_FOUND, json);
+					//判断jsons是否为空
+					if(!StringUtils.isEmpty(jsons)){
+						return LostResult.ok();
+					}
+						
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				return null;
 	}
 
 }

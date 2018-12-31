@@ -58,7 +58,7 @@
 	<div class="new-collections">
 		<div class="container">
 			<h3 class="animated wow zoomIn" data-wow-delay=".5s">最新失物招领资讯</h3>
-			<p class="est animated wow zoomIn" data-wow-delay=".5s">本页面仅显示最近一周内失物招领的信息,按发布时间排序。</p>
+			<p class="est animated wow zoomIn" data-wow-delay=".5s">本页面仅显示最近一周内失物招领的信息，按发布时间排序。</p>
 				
 			<div class="grid_3 grid_5 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
@@ -76,7 +76,7 @@
 												<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
 													<div class="new-collections-grid1-image">
 														<div class="new-collections-grid1-image-pos">
-															<a href="single.html">查看 详情</a>
+															<a href="lostDetail.html">查看 详情</a>
 														</div>
 													</div>
 													<h4><a href="single.html">{{entity.infotitle}}</a></h4>
@@ -102,25 +102,25 @@
 						<div ng-controller="foundController" role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
 		
 							<div class="new-collections-grids">
-								<!-- 失物遍历开始 -->
+								<!-- 招领遍历开始 -->
 									<div ng-repeat="entity in listNewest" class="custom-div new-collections-grid">
 											<div class="new-collections-grid-sub-grids">
 												<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
 													<div class="new-collections-grid1-image">
 														<div class="new-collections-grid1-image-pos">
-															<a href="single.html">查看 详情</a>
+															<a href="lostDetail.html">查看 详情</a>
 														</div>
 													</div>
 													<h4><a href="single.html">{{entity.infotitle}}</a></h4>
 													<p><h5><b>{{entity.foundPlace | textLengthSet:true:10:'... '}} -招领启事</b></h5></p>
 													<p class="show-limit">{{entity.description | textLengthSet:true:45:'...'}}</p>
 													<div class="new-collections-grid1-left simpleCart_shelfItem">
-														<span>{{entity.foundTime | date:'yyyy年MM月dd日'}}</span>
+														<span class="time-type">拾取时间：{{entity.foundTime | date:'yyyy.MM.dd'}}</span>
 													</div>
 												</div> 
 											</div>
 									</div>
-								<!-- 失物遍历结束 -->
+								<!-- 招领遍历结束 -->
 								
 							</div>
 							<div class="clearfix"> </div>

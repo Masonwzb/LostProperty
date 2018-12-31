@@ -71,5 +71,14 @@ public class LostServiceImpl implements LostService {
 		return LostResult.ok();
 	}
 
+	/*
+	 * 根据ID查询失物信息
+	 */
+	@Override
+	public LostResult getLostById(Long lostId) {
+		TbLost lost = lostMapper.selectByPrimaryKey(lostId);
+		return LostResult.ok(lost);
+	}
+
 
 }

@@ -19,8 +19,28 @@ body a:hover{
 }
 
 /*自定义div开始*/
+.detail{
+	margin:2em 0;
+}
+.detail p{
+	font-size:14px;
+	color:#999;
+	line-height:1em;
+	margin:0.5em 0 0;	
+	font-size: 13px;
+}
+.detail h5{
+	text-transform:uppercase;
+	font-size:1em;
+	color:#212121;
+	margin:0 0 1em;
+}
 .time-type{
 	font-size:15px;
+}
+.time-type2{
+	color:#999;
+	font-size:14px;
 }
 .custom-div{
      position: relative;
@@ -79,7 +99,7 @@ body a:hover{
 
 
 /*-- header --*/
-.header-grid-left ul li a,.new-collections-grid1-image-pos a,.new-collections-grid1 h4 a,.login a,.register-home a,.checkout-right-basket a,.bootstrap-tab-text-grid-right ul li a,.occasion-cart a,input[type="submit"],.mail-grid-right1 ul li a,.categories ul li a,.new-products-grid-right-add-cart p a,.new-products-grid-right h4 a,.products-right-grid1-add-cart p a,.timer-grid-left h3 a,.new-collections-grid1-left p a,.copy-right p a,.footer-grid-sub-grid-right h4 a,input[type="submit"],.footer-grid ul li a{
+.header-grid-left ul li a,.new-collections-grid1-image-pos a,.new-collections-grid1-image-pos input,.new-collections-grid1 h4 a,.login a,.register-home a,.checkout-right-basket a,.bootstrap-tab-text-grid-right ul li a,.occasion-cart a,input[type="submit"],.mail-grid-right1 ul li a,.categories ul li a,.new-products-grid-right-add-cart p a,.new-products-grid-right h4 a,.products-right-grid1-add-cart p a,.timer-grid-left h3 a,.new-collections-grid1-left p a,.copy-right p a,.footer-grid-sub-grid-right h4 a,input[type="submit"],.footer-grid ul li a{
 	transition:.5s ease-in-out;
 	-webkit-transition:.5s ease-in-out;
 	-moz-transition:.5s ease-in-out;
@@ -855,17 +875,18 @@ p.est{
 	z-index:9999;
 	display:none;
 }
-.new-collections-grid1-image-pos a{
+.new-collections-grid1-image-pos input,.new-collections-grid1-image-pos a{
 	padding:10px 20px;
 	color:#fff;
 	background:#d8703f;
 	text-decoration:none;
+	border:none;
 	font-size: 14px;
 }
 .new-collections-grid1:hover .new-collections-grid1-image-pos{
 	display:block;
 }
-.new-collections-grid1-image-pos a:hover{
+.new-collections-grid1-image-pos input:hover,.new-collections-grid1-image-pos a:hover{
 	background:#ffc229;
 }
 .new-collections-grid1-image-pos1 {
@@ -1970,11 +1991,11 @@ label.radio {
     color: #d8703f !important;
 }
 .bootstrap-tab-text-grid-left{
-	float:left;
+	float:right;
 	width:20%;
 }
 .bootstrap-tab-text-grid-right{
-	float:right;
+	float:left;
 	width:75%;
 }
 .bootstrap-tab-text-grid-right ul li{
@@ -2541,8 +2562,9 @@ td.invert-image a img {
 		float: left;
 		width: 48.2%;
 	}
-	.new-collections-grid1-image-pos a {
+	.new-collections-grid1-image-pos input,.new-collections-grid1-image-pos a {
 		padding: 7px 20px;
+		border:none;
 	}
 	.new-collections-grid1-image-pos {
 		top: 40%;

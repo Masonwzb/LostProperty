@@ -10,6 +10,7 @@
 		tl.rewards,tl.contacts,tl.email,
 		tl.description,tl.infoTitle,
 		tl.lost_time AS lostTime1,
+		tl.images,tl.tel,tl.QQ,tl.address,
 		tl.updated
 	</sql>
 

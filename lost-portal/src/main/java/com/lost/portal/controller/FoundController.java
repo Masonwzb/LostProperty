@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lost.common.pojo.LostResult;
 import com.lost.common.pojo.PageResult;
 import com.lost.customPojo.DetFound;
 import com.lost.customPojo.DetLost;
+import com.lost.pojo.TbFound;
+import com.lost.pojo.TbLost;
 import com.lost.portal.service.FoundService;
 
 @RestController
@@ -30,6 +33,14 @@ public class FoundController {
 	public PageResult getByConditionFound(@RequestBody DetFound detFound,int page,int size){
 		PageResult result = foundService.getFoundByCondition(detFound, page, size);
 		return result;
+	}
+	
+	/*
+	 * 添加失物信息
+	 */
+	@RequestMapping("/add")
+	public LostResult addFound(@RequestBody TbFound tbFound){
+		return foundService.addFoundInfo(tbFound);
 	}
 	
 }

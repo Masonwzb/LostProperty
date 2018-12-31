@@ -56,40 +56,20 @@
 						<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i></span>
 						<input type="text" ng-model="entity.infotitle" id="lalala" class="form-control" placeholder="信息标题" aria-describedby="basic-addon1" required="">
 					</div>
-					
-					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-						<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i></span>
-						<select class="form-control" required="" ng-model="entity.categoryId">
-                            <option value="">请选择失物类别</option>
-                            <option ng-repeat="categoryEntity in categoryList" value="{{categoryEntity.id}}">{{categoryEntity.categoryName}}</option>
-                        </select>
-					</div>
-					
+	
 					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 						<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i></span>
 						<input type="text" ng-model="entity.lostPlace" class="form-control" placeholder="丢失地点" aria-describedby="basic-addon1" required="">
 					</div>
-					
-					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-						<p class="input-group">
+									
+					<div class="form-inline">
+						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 							<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i></span>
-			                <input class="form-control" uib-datepicker-popup="{{format}}" ng-model="entity.lostTime" is-open="pop1.opened" 
-			                     placeholder="请选择丢失日期" required="" popup-placement="top" close-text="关闭" clear-text="清空" current-text="今天" alt-input-formats="altInputFormats" datepicker-options="datepickerOptions1"/>
-			                <span class="input-group-btn">
-			                    <button class="btn btn-default" ng-click="openpop1()"><i class="glyphicon  glyphicon-calendar"></i></button>
-			                </span>
-			            </p>
-					</div>
-					
-					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-						<span class="input-group-addon" id="basic-addon1">$</span>
-						<input type="text" ng-model="entity.rewards" class="form-control" placeholder="报酬方式" aria-describedby="basic-addon1">
-						<span class="input-group-addon">不填则默认为空。</span>
-					</div>
-					
-					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-						<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i></span>
-						<textarea type="text" ng-model="entity.description" class="form-control" required="" placeholder="详情描述"></textarea>
+							<select class="form-control" required="" ng-model="entity.categoryId">
+	                            <option value="">请选择失物类别</option>
+	                            <option ng-repeat="categoryEntity in categoryList" value="{{categoryEntity.id}}">{{categoryEntity.categoryName}}</option>
+	                        </select>
+						</div>
 					</div>
 					
 					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
@@ -101,29 +81,63 @@
 						<input type="text" ng-model="entity.images" hidden name="image"/>
 					</div>
 					
-					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-						<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-user"></i></span>
-						<input type="text" ng-model="entity.contacts" class="form-control" placeholder="联系人" aria-describedby="basic-addon1">
+					<div class="form-inline">
+						
+						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+							<p class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i></span>
+				                <input class="form-control" uib-datepicker-popup="{{format}}" ng-model="entity.lostTime" is-open="pop1.opened" 
+				                     placeholder="请选择丢失日期" required="" popup-placement="top" close-text="关闭" clear-text="清空" current-text="今天" alt-input-formats="altInputFormats" datepicker-options="datepickerOptions1"/>
+				                <span class="input-group-btn">
+				                    <button class="btn btn-default" ng-click="openpop1()"><i class="glyphicon  glyphicon-calendar"></i></button>
+				                </span>
+				            </p>
+						</div>
+					
 					</div>
 					
-					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-						<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-earphone"></i></span>
-						<input type="text" ng-model="entity.tel" class="form-control" placeholder="手机号码" aria-describedby="basic-addon1">
+					<div class="form-inline">				
+						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+							<span class="input-group-addon" id="basic-addon1">$</span>
+							<input type="text" ng-model="entity.rewards" class="form-control" placeholder="悬赏金额" aria-describedby="basic-addon1">
+							<span class="input-group-addon">不填则默认为空。</span>
+						</div>			
 					</div>
 					
-					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-						<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-plus"></i></span>
-						<input type="text" ng-model="entity.QQ" class="form-control" placeholder="QQ号码" aria-describedby="basic-addon1">
+					<div class="form-inline">
+											
+						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+							<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-user"></i></span>
+							<input type="text" ng-model="entity.contacts" class="form-control" placeholder="联系人" aria-describedby="basic-addon1">
+						</div>
+					
+						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+							<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-earphone"></i></span>
+							<input type="text" ng-model="entity.tel" class="form-control" placeholder="手机号码" aria-describedby="basic-addon1">
+						</div>
+					
 					</div>
 					
-					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-						<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-star"></i></span>
-						<input type="email" ng-model="entity.email" class="form-control" required="" placeholder="联系邮箱" aria-describedby="basic-addon1">
-					</div>
+					<div class="form-inline">
+						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+							<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-star"></i></span>
+							<input type="email" ng-model="entity.email" class="form-control" required="" placeholder="联系邮箱" aria-describedby="basic-addon1">
+						</div>
+						
+						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+							<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-plus"></i></span>
+							<input type="text" ng-model="entity.QQ" class="form-control" placeholder="QQ号码" aria-describedby="basic-addon1">
+						</div>					
+					</div>	
 					
 					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 						<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-map-marker"></i></span>
 						<input type="text" ng-model="entity.address" class="form-control" placeholder="联系地址" aria-describedby="basic-addon1">
+					</div>
+											
+					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+						<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i></span>
+						<textarea type="text"  style="height:100px" ng-model="entity.description" class="form-control" required="" placeholder="详情描述"></textarea>
 					</div>
 					
 					<input type="submit" ng-click="add()" value="发布">

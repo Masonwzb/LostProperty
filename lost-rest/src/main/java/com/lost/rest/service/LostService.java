@@ -15,4 +15,7 @@ public interface LostService {
 	public LostResult getLostByCondition(DetLost detLost,int page,int size);
 	//添加失物信息
 	public LostResult addLost(TbLost tbLost);
+	//根据ID查询失物信息
+	public LostResult getLostById(Long lostId);
+	
 }

@@ -41,12 +41,12 @@
 					</div> 
 					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav">
-							<li id="index" class=""><a href="index.html" class="">首页</a></li>	
+							<li id="index" class=""><a href="${pageContext.request.contextPath}/index.html" class="">首页</a></li>	
 							<!-- Mega Menu -->
-							<li id="lost" class=""><a href="lost.html" class="">寻物 </a></li>
-							<li id="found" class=""><a href="found.html" class="">招领 </a></li>
-							<li id="short-codes" class=""><a href="short-codes.html" class="">寻&nbsp;&nbsp;人<i class="glyphicon glyphicon-heart" aria-hidden="true"></i></a></li>
-							<li id="mail" class=""><a href="mail.html" class="">联系 我们</a></li>
+							<li id="lost" class=""><a href="${pageContext.request.contextPath}/lost.html" class="">寻物 </a></li>
+							<li id="found" class=""><a href="${pageContext.request.contextPath}/found.html" class="">招领 </a></li>
+							<li id="short-codes" class=""><a href="${pageContext.request.contextPath}/short-codes.html" class="">寻&nbsp;&nbsp;人<i class="glyphicon glyphicon-heart" aria-hidden="true"></i></a></li>
+							<li id="mail" class=""><a href="${pageContext.request.contextPath}/mail.html" class="">联系 我们</a></li>
 						</ul>
 					</div>
 					</nav>
@@ -62,8 +62,8 @@
 						</div>
 					</div>
 						<!-- search-scripts -->
-						<script src="js/classie.js"></script>
-						<script src="js/uisearch.js"></script>
+						<script src="${pageContext.request.contextPath}/js/classie.js"></script>
+						<script src="${pageContext.request.contextPath}/js/uisearch.js"></script>
 							<script>
 								new UISearch( document.getElementById( 'sb-search' ) );
 							</script>
@@ -71,13 +71,13 @@
 				</div>
 				<div class="header-right">
 					<div class="cart box_1">
-						<a href="addLost.html">
+						<a href="${pageContext.request.contextPath}/addLost.html">
 								<div>
 									<button class="btn btn-default">发布->寻物信息</button>
 								</div>
 						</a>
 						<br/>
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/addFound.html">
 							<div>
 								<button class="btn btn-default"><span>发布->招领信息</span></button>
 							</div>

@@ -91,7 +91,7 @@
 												<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
 													<div class="new-collections-grid1-image">
 														<div class="new-collections-grid1-image-pos">
-															<a href="single.html">查看 详情</a>
+															<a href="lostDetail.html">查看 详情</a>
 														</div>
 													</div>
 													<h4><a href="single.html">{{entity.infoTitle}}</a></h4>

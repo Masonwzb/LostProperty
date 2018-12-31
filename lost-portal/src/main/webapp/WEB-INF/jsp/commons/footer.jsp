@@ -42,7 +42,7 @@
 				<div class="clearfix"> </div>
 			</div>
 			<div class="footer-logo animated wow slideInUp" data-wow-delay=".5s">
-				<h2><a href="index.html">失物 招领 <span>Lost & Found</span></a></h2>
+				<h2><a href="${pageContext.request.contextPath}/index.html">失物 招领 <span>Lost & Found</span></a></h2>
 			</div>
 			<div class="copy-right animated wow slideInUp" data-wow-delay=".5s">
 				<p>Copyright &copy; 2018-2019.Lost & Found.All rights reserved.Design by Binea</p>
