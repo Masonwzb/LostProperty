@@ -56,7 +56,7 @@ public class LostController {
 	 */
 	@RequestMapping("/findOne/{lostId}")
 	public String findLostById(@PathVariable Long lostId,Model model){
-		TbLost lost = lostService.getLostById(lostId);
+		DetLost lost = lostService.getLostById(lostId);
 		model.addAttribute("lost",lost);
 		return "lostDetail";
 	}

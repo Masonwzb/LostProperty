@@ -14,5 +14,5 @@ public interface LostService {
 	//添加失物信息
 	public LostResult addLostInfo(TbLost tbLost);
 	//根据Id查询失物信息
-	public TbLost getLostById(Long lostId);
+	public DetLost getLostById(Long lostId);
 }

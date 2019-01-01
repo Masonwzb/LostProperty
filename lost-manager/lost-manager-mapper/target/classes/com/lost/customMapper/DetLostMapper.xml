@@ -13,6 +13,17 @@
 		tl.images,tl.tel,tl.QQ,tl.address,
 		tl.updated
 	</sql>
+	
+	<!-- 根据ID查询明细失物 -->
+	<select id="selectLostById" resultType="com.lost.customPojo.DetLost" parameterType="java.lang.Long">
+		SELECT
+			<include refid="Common_List" />
+		FROM
+			tb_lost AS tl
+			INNER JOIN tb_category AS tc ON tl.category_id = tc.id
+			INNER JOIN tb_users AS tu ON tl.user_id = tu.id
+		WHERE tl.id = #{id,jdbcType=BIGINT}
+	</select>	
 
 	<!-- 查询所有明细失物 -->
 	<select id="selectAllDetailLost" resultType="com.lost.customPojo.DetLost">

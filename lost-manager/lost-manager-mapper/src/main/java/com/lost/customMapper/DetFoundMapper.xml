@@ -13,6 +13,17 @@
 		tf.images,tf.QQ,tf.tel,tf.address,
 		tf.updated
 	</sql>
+	
+	<!-- 根据ID查询明细招领物 -->
+	<select id="selectFoundById" resultType="com.lost.customPojo.DetFound" parameterType="java.lang.Long">
+		SELECT
+			<include refid="Common_List" />
+		FROM
+			tb_found AS tf
+			INNER JOIN tb_category AS tc ON tf.category_id = tc.id
+			INNER JOIN tb_users AS tu ON tf.user_id = tu.id
+		WHERE tf.id = #{id,jdbcType=BIGINT}
+	</select>	
 
 	<!-- 查询所有明细失物 -->
 	<select id="selectAllDetailFound" resultType="com.lost.customPojo.DetFound">

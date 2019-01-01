@@ -108,14 +108,14 @@ public class LostServiceImpl implements LostService {
 	 * 根据ID查询失物信息
 	 */
 	@Override
-	public TbLost getLostById(Long lostId) {
+	public DetLost getLostById(Long lostId) {
 		//获取服务层的信息
 		try {
 			String json = HttpClientUtil.doGet(REST_BASE_URL + REST_ID_GET_LOST + lostId);
 			//将字符串转换为对象
-			LostResult lostResult = LostResult.formatToPojo(json, TbLost.class);
+			LostResult lostResult = LostResult.formatToPojo(json, DetLost.class);
 			if(lostResult.getStatus() == 200){
-				TbLost result = (TbLost) lostResult.getData();
+				DetLost result = (DetLost) lostResult.getData();
 				return result;
 			}
 		} catch (Exception e) {

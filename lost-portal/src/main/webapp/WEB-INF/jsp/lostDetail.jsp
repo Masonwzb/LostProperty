@@ -51,7 +51,7 @@
 							<li><a href="#">联系地址：</a><span>${lost.address }</span></li>
 						</c:if>
 						<li><a href="#">发布时间：</a> <span><fmt:formatDate pattern="yyyy年MM月dd日 HH:mm:ss" 
-            					value="${lost.lostTime}" /></span></li>
+            					value="${lost.updated}" /></span></li>
 					</ul>
 				</div>
 				<div class="men-position animated wow slideInUp" data-wow-delay=".5s">
@@ -64,15 +64,22 @@
 			<div class="col-md-8 single-right">
 				<div class="col-md-5 single-right-left animated wow slideInUp" data-wow-delay=".5s">
 					<div class="men-position animated wow slideInUp" data-wow-delay=".5s">
-							<a href="#"><img src="${pageContext.request.contextPath}/images/ocean.jpg" alt=" " class="img-responsive" /></a>
+							<c:choose>
+								<c:when test="${!empty lost.images }">
+									<a href="#"><img src="${pageContext.request.contextPath}/${lost.images }" alt=" " class="img-responsive" /></a>
+								</c:when>
+								<c:otherwise>
+									<a href="#"><img src="${pageContext.request.contextPath}/images/ocean.jpg" alt=" " class="img-responsive" /></a>
+								</c:otherwise>
+							</c:choose>
 						<div class="men-position-pos">
 							<!-- 放置文字位置点 -->
 						</div>
 					</div>
 				</div>
 				<div class="col-md-7 single-right-left simpleCart_shelfItem animated wow slideInRight" data-wow-delay=".5s">
-					<h3>${lost.infotitle }</h3>
-					<h4><span class="item_price">失物类别ID：</span> ${lost.categoryId }</h4>
+					<h3>${lost.infoTitle }</h3>
+					<h4><span class="item_price">失物类别ID：</span> ${lost.categoryName }</h4>
 					<div class="detail">
 						<h5>丢失地点：  </h5>
 						<p>${lost.lostPlace }</p>
@@ -86,7 +93,7 @@
 					<div class="detail">
 						<h5>丢失时间：  </h5>
 						<p><fmt:formatDate pattern="yyyy年MM月dd日" 
-            					value="${lost.lostTime}" /></p>
+            					value="${lost.lostTime1}" /></p>
 					</div>
 				</div> 
 				<div class="clearfix"> </div>

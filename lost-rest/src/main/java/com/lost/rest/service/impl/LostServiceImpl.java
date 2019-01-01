@@ -76,8 +76,8 @@ public class LostServiceImpl implements LostService {
 	 */
 	@Override
 	public LostResult getLostById(Long lostId) {
-		TbLost lost = lostMapper.selectByPrimaryKey(lostId);
-		return LostResult.ok(lost);
+		DetLost detlost = detLostMapper.selectLostById(lostId);
+		return LostResult.ok(detlost);
 	}
 
 
