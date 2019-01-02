@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,6 +48,14 @@ public class FoundController {
 	@RequestMapping("/add")
 	public LostResult addFoundInfo(@RequestBody TbFound tbFound){
 		return foundService.addFound(tbFound);
+	}
+	
+	/*
+	 * 根据ID查询招领信息
+	 */
+	@RequestMapping("/findOne/{foundId}")
+	public LostResult findLostById(@PathVariable Long foundId){
+		return foundService.getFoundById(foundId);
 	}
 	
 	

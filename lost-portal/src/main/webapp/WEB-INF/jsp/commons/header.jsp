@@ -10,8 +10,8 @@
 					<ul>
 						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">@example.com</a></li>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 567</li>
-						<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="login.html">登录</a></li>
-						<li><i class="glyphicon glyphicon-book" aria-hidden="true"></i><a href="register.html">注册</a></li>
+						<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#"></a></li>
+						<li><i class="glyphicon glyphicon-book" aria-hidden="true"></i><a href="#"></a></li>
 					</ul>
 				</div>
 				<div class="header-grid-right animated wow slideInRight" data-wow-delay=".5s">
@@ -26,7 +26,7 @@
 			</div>
 			<div class="logo-nav">
 				<div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
-					<h1><a href="index.html">嘉园 失物招领<span>Lost&Found</span></a></h1>
+					<h1><a href="${pageContext.request.contextPath}/index.html">嘉园 失物招领<span>Lost&Found</span></a></h1>
 				</div>
 				<div class="logo-nav-left1">
 					<nav class="navbar navbar-default">
@@ -45,8 +45,8 @@
 							<!-- Mega Menu -->
 							<li id="lost" class=""><a href="${pageContext.request.contextPath}/lost.html" class="">寻物 </a></li>
 							<li id="found" class=""><a href="${pageContext.request.contextPath}/found.html" class="">招领 </a></li>
-							<li id="short-codes" class=""><a href="${pageContext.request.contextPath}/short-codes.html" class="">寻&nbsp;&nbsp;人<i class="glyphicon glyphicon-heart" aria-hidden="true"></i></a></li>
-							<li id="mail" class=""><a href="${pageContext.request.contextPath}/mail.html" class="">联系 我们</a></li>
+							<li id="short-codes" class=""><a href="#" class="">关于 我们</a></li>
+							<li id="mail" class=""><a href="#" class="">联系 我们</a></li>
 						</ul>
 					</div>
 					</nav>

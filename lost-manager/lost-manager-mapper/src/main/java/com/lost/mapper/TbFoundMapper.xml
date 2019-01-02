@@ -30,7 +30,7 @@
 			description,images,contacts,tel,
 			QQ,email,address,created,updated
   	    FROM tb_found
-		where updated BETWEEN  CURRENT_DATE()-7 AND SYSDATE()
+		where updated BETWEEN DATE_SUB(CURDATE(),INTERVAL 7 DAY) AND SYSDATE()
 		ORDER BY updated DESC
   	</select>
   <!-- 自定义结束 -->

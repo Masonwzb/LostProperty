@@ -73,5 +73,15 @@ public class FoundServiceImpl implements FoundService {
 		return LostResult.ok();
 	}
 
+	
+	/*
+	 * 根据ID查询失物信息
+	 */
+	@Override
+	public LostResult getFoundById(Long foundId) {
+		DetFound detFound = detFoundMapper.selectFoundById(foundId);
+		return LostResult.ok(detFound);
+	}
+
 
 }

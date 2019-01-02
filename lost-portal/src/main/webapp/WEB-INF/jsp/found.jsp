@@ -85,13 +85,13 @@
 						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 						
 							    <div class="new-collections-grids">
-							    <!-- 失物遍历开始 -->
+							    <!-- 招领遍历开始 -->
 									<div ng-repeat="entity in list" class="custom-div new-collections-grid">
 											<div class="new-collections-grid-sub-grids">
 												<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
 													<div class="new-collections-grid1-image">
 														<div class="new-collections-grid1-image-pos">
-															<a href="lostDetail.html">查看 详情</a>
+															<a href="found/findOne/{{entity.id}}.html">查看 详情</a>
 														</div>
 													</div>
 													<h4><a href="single.html">{{entity.infoTitle}}</a></h4>
@@ -103,7 +103,7 @@
 												</div> 
 											</div>
 									</div>
-								<!-- 失物遍历结束 -->
+								<!-- 招领遍历结束 -->
 									
 								</div>
 								

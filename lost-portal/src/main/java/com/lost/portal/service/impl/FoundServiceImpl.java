@@ -31,6 +31,8 @@ public class FoundServiceImpl implements FoundService {
 	private String REST_FOUND_SEARCH_URL;
 	@Value("${REST_ADD_FOUND}")
 	private String REST_ADD_FOUND;
+	@Value("${REST_ID_GET_FOUND}")
+	private String REST_ID_GET_FOUND;
 	
 	
 	//根据时间查询失物
@@ -103,6 +105,28 @@ public class FoundServiceImpl implements FoundService {
 				}
 				
 				return null;
+	}
+
+
+	/*
+	 * 根据ID查询招领信息
+	 */
+	@Override
+	public DetFound getFoundById(Long foundId) {
+		//获取服务层的信息
+		try {
+			String json = HttpClientUtil.doGet(REST_BASE_URL + REST_ID_GET_FOUND + foundId);
+			//将字符串转换为对象
+			LostResult lostResult = LostResult.formatToPojo(json, DetFound.class);
+			if(lostResult.getStatus() == 200){
+				DetFound result = (DetFound) lostResult.getData();
+				return result;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }

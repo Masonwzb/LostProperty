@@ -17,5 +17,7 @@ public interface FoundService {
 	public LostResult getFoundByCondition(DetFound detFound,int page,int size);
 	//添加招领信息
 	public LostResult addFound(TbFound tbFound);
+	//根据ID查询招领物信息
+	public LostResult getFoundById(Long foundId);
 
 }
