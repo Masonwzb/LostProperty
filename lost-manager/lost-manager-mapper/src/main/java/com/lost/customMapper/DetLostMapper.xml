@@ -56,10 +56,13 @@
 			) AS tc ON tl.category_id = tc.id
 		<where>
 			<if test="lostPlace != null">
-					tl.lost_place LIKE "%"#{lostPlace,jdbcType=VARCHAR}"%"
+				tl.lost_place LIKE "%"#{lostPlace,jdbcType=VARCHAR}"%"
 			</if>
 			<if test="lostTime1 != null and lostTime2 != null">
-					AND tl.lost_time BETWEEN #{lostTime1,jdbcType=TIMESTAMP} AND #{lostTime2,jdbcType=TIMESTAMP}
+				AND tl.lost_time BETWEEN #{lostTime1,jdbcType=TIMESTAMP} AND #{lostTime2,jdbcType=TIMESTAMP}
+			</if>
+			<if test="keyword != null">
+				AND tl.infoTitle LIKE "%"#{keyword,jdbcType=VARCHAR}"%" OR tl.description LIKE "%"#{keyword,jdbcType=VARCHAR}"%"
 			</if>
 		</where>
 		ORDER BY tl.updated DESC

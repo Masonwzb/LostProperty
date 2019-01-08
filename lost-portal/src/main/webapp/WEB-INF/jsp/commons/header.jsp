@@ -6,7 +6,7 @@
 	<div class="header">
 		<div class="container">
 			<div class="header-grid">
-				<div class="header-grid-left animated wow slideInLeft" data-wow-delay=".5s">
+				<div class="header-grid-left animated wow slideInLeft" data-wow-delay=".5s" >
 					<ul>
 						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">@example.com</a></li>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 567</li>
@@ -45,30 +45,32 @@
 							<!-- Mega Menu -->
 							<li id="lost" class=""><a href="${pageContext.request.contextPath}/lost.html" class="">寻物 </a></li>
 							<li id="found" class=""><a href="${pageContext.request.contextPath}/found.html" class="">招领 </a></li>
-							<li id="short-codes" class=""><a href="#" class="">关于 我们</a></li>
-							<li id="mail" class=""><a href="#" class="">联系 我们</a></li>
+							<li id="searchResult" class=""><a href="${pageContext.request.contextPath}/searchResult.html" class="">快速搜索 <span class="glyphicon glyphicon-search"></span></a></li>
+							<li id="mail" class=""><a href="#" class="">关于我们</a></li>
+							<li id="mail" class=""><a href="#" class="">联系我们</a></li>
 						</ul>
 					</div>
 					</nav>
 				</div>
-				<div class="logo-nav-right">
+				<!--<div class="logo-nav-right">
 					<div class="search-box">
-						<div id="sb-search" class="sb-search">
-							<form>
-								<input class="sb-search-input" placeholder="输入查询信息..." type="search" id="search">
-								<input class="sb-search-submit" type="submit" value="">
-								<span class="sb-icon-search"> </span>
+					
+						<div id="sb-search" class="sb-search" ng-controller="searchController">
+							<form action="${pageContext.request.contextPath}/searchResult.html">
+								<input type="text" class="sb-search-input" placeholder="输入查询信息..." ng-model="queryEntity.keyword" id="search"/>
+								<input class="sb-search-submit" ng-click="reloadQuery()" type="submit" value=""/>
+								<span class="sb-icon-search"></span>
 							</form>
 						</div>
-					</div>
-						<!-- search-scripts -->
+					</div>-->
+						<!-- search-scripts 
 						<script src="${pageContext.request.contextPath}/js/classie.js"></script>
 						<script src="${pageContext.request.contextPath}/js/uisearch.js"></script>
 							<script>
 								new UISearch( document.getElementById( 'sb-search' ) );
-							</script>
+							</script>-->
 						<!-- //search-scripts -->
-				</div>
+				<!--</div>  -->
 				<div class="header-right">
 					<div class="cart box_1">
 						<a href="${pageContext.request.contextPath}/addLost.html">

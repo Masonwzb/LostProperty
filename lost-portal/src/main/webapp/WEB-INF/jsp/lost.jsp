@@ -28,7 +28,7 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a></li>
-				<li class="active">寻物</li>
+				<li class="active">寻物启事</li>
 			</ol>
 		</div>
 	</div>
@@ -37,8 +37,8 @@
 <!-- collections -->
 	<div class="new-collections">
 		<div class="container">
-			<h3>寻物信息列表</h3>
-			<p class="est">本页面显示所有寻物信息。</p>
+			<h3>寻物启事</h3>
+			<p class="est">本页面默认显示所有寻物启事信息，可以选择任意查询条件进行查询。</p>
 			<div class="mail-grids">
 			
 			<div align="center">
@@ -65,6 +65,9 @@
                                  <option ng-repeat="categoryEntity in categoryList" value="{{categoryEntity.categoryName}}">{{categoryEntity.categoryName}}</option>
                              </select>
                              <input placeholder="请输入失物地点" class="form-control" ng-model="searchEntity.lostPlace"/> 
+                    </div>
+                    <div class="form-group form-inline">
+                    	<input placeholder="关键字查询" class="form-control" ng-model="searchEntity.keyword"/> 
                     </div>
                     <div class="newsletter" data-wow-delay=".5s">
                  	  <button class="btn btn-info" onclick="window.location.reload();">刷新</button>

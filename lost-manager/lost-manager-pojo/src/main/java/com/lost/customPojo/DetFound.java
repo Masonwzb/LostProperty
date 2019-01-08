@@ -16,6 +16,7 @@ public class DetFound {
 	private String tel;
 	private String qq;
 	private String address;
+	private String keyword;
 	private Date foundTime1;
 	private Date foundTime2;
 	private Date updated;
@@ -143,6 +144,14 @@ public class DetFound {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 
 }

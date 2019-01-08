@@ -61,6 +61,9 @@
 			<if test="foundTime1 != null and foundTime2 != null">
 					AND tf.found_time BETWEEN #{foundTime1,jdbcType=TIMESTAMP} AND #{foundTime2,jdbcType=TIMESTAMP}
 			</if>
+			<if test="keyword != null">
+				AND tf.infoTitle LIKE "%"#{keyword,jdbcType=VARCHAR}"%" OR tf.description LIKE "%"#{keyword,jdbcType=VARCHAR}"%"
+			</if>
 		</where>
 		ORDER BY tf.updated DESC
 	</select>

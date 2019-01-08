@@ -47,5 +47,11 @@ public class PageController {
 	public String showAddFound(){
 		return "addFound";
 	}
+	
+	//映射查询结果页面
+	@RequestMapping("/searchResult")
+	public String showSearchResult(){
+		return "searchResult";
+	}
 		
 }

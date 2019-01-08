@@ -28,7 +28,7 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a></li>
-				<li class="active">招领</li>
+				<li class="active">招领启事</li>
 			</ol>
 		</div>
 	</div>
@@ -37,8 +37,8 @@
 <!-- collections -->
 	<div class="new-collections">
 		<div class="container">
-			<h3>招领信息列表</h3>
-			<p class="est">本页面显示所有招领信息。</p>
+			<h3>招领启事</h3>
+			<p class="est">本页面显示所有招领启事信息，可以选择任意查询条件进行查询。</p>
 			<div class="mail-grids">
 			
 			<div align="center">
@@ -66,6 +66,9 @@
                              </select>
                              <input placeholder="请输入拾取地点" class="form-control" ng-model="searchEntity.foundPlace"/> 
                     </div>
+                    <div class="form-group form-inline">
+                    	<input placeholder="关键字查询" class="form-control" ng-model="searchEntity.keyword"/> 
+                    </div>
                     <div class="newsletter" data-wow-delay=".5s">
                  	  <button class="btn btn-info" onclick="window.location.reload();">刷新</button>
                   	  <input type="submit" ng-click="reloadList()" value="查 询" >
@@ -79,7 +82,7 @@
 			<div class="grid_3 grid_5 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">寻物信息展示</a></li>
+						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">招领信息展示</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
 						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
