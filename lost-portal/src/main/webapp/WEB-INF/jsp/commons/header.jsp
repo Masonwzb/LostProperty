@@ -43,9 +43,9 @@
 						<ul class="nav navbar-nav">
 							<li id="index" class=""><a href="${pageContext.request.contextPath}/index.html" class="">首页</a></li>	
 							<!-- Mega Menu -->
-							<li id="lost" class=""><a href="${pageContext.request.contextPath}/lost.html" class="">寻物 </a></li>
-							<li id="found" class=""><a href="${pageContext.request.contextPath}/found.html" class="">招领 </a></li>
-							<li id="searchResult" class=""><a href="${pageContext.request.contextPath}/searchResult.html" class="">快速搜索 <span class="glyphicon glyphicon-search"></span></a></li>
+							<li id="lost" class=""><a href="${pageContext.request.contextPath}/lost.html" class="">寻物启事</a></li>
+							<li id="found" class=""><a href="${pageContext.request.contextPath}/found.html" class="">招领启事 </a></li>
+							<li id="searchResult" class=""><a href="${pageContext.request.contextPath}/searchResult.html" class="">快速检索 <span class="glyphicon glyphicon-search"></span></a></li>
 							<li id="mail" class=""><a href="#" class="">关于我们</a></li>
 							<li id="mail" class=""><a href="#" class="">联系我们</a></li>
 						</ul>

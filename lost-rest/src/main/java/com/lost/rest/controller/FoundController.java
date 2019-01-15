@@ -46,7 +46,7 @@ public class FoundController {
 	 * 添加招领信息
 	 */
 	@RequestMapping("/add")
-	public LostResult addFoundInfo(@RequestBody TbFound tbFound){
+	public LostResult addFoundInfo(@RequestBody TbFound tbFound) throws Exception{
 		return foundService.addFound(tbFound);
 	}
 	

@@ -23,7 +23,6 @@
 	<!-- 弹窗开始 -->
 	<script type="text/javascript" src="../layer/layer.js"></script>
 	<!-- 弹窗结束 -->
-	
     
 </head>
 <body class="hold-transition skin-red sidebar-mini" ng-app="lostProperty" ng-controller="categoryController">
@@ -60,16 +59,16 @@
 			                      <thead>
 			                          <tr>
 			                              <th class="" style="padding-right:0px">
-			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue">
+			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue" ng-click="getAllSelection($event)">
 			                              </th> 
 										  <th class="sorting_asc">分类ID</th>
 									      <th class="sorting">分类名称</th>									      									     				
 					                      <th class="text-center">操作</th>
 			                          </tr>
 			                      </thead>
-			                      <tbody>
+			                      <tbody id="checkList">
 			                          <tr ng-repeat="entity in list">
-			                              <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>			                              
+			                              <td><input type="checkbox" class="checkbox1" onclick="allcheck()" ng-click="updateSelection($event,entity.id)"></td>			                              
 				                          <td>{{entity.id}}</td>
 									      <td>{{entity.categoryName}}</td>									     	                                 
 		                                  <td class="text-center">                                           
@@ -116,6 +115,41 @@
 	  </div>
 	</div>
 </div>
+   
+<script type="text/javascript">
+
+	$(function(){
+		$("#selall").prop("checked",false);
+	});
+
+	//复选框的全选和取消全选
+	$("#selall").click(function(){
+		if(this.checked){
+			$("#checkList :checkbox").prop("checked",true);
+		}else{
+			$("#checkList :checkbox").prop("checked",false);
+		}
+	
+	});
+	
+	function allcheck(){
+		var chknum = $("#checkList :checkbox").size();//选项总个数
+		var chk = 0;
+		
+		$("#checkList :checkbox").each(function() {  
+	        if($(this).prop("checked")==true){
+				chk++;
+			}
+	    });
+	    
+		if(chknum==chk){//全选
+			$("#selall").prop("checked",true);
+		}else{//不全选
+			$("#selall").prop("checked",false);
+		}
+	}
+		
+</script>   
    
 </body>
 </html>

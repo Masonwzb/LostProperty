@@ -14,7 +14,9 @@ import com.lost.common.utils.IDUtils;
 import com.lost.customMapper.DetLostMapper;
 import com.lost.customPojo.DetLost;
 import com.lost.mapper.TbLostMapper;
+import com.lost.mapper.TbTextinfoMapper;
 import com.lost.pojo.TbLost;
+import com.lost.pojo.TbTextinfo;
 import com.lost.rest.service.LostService;
 @Service
 public class LostServiceImpl implements LostService {
@@ -23,6 +25,8 @@ public class LostServiceImpl implements LostService {
 	private TbLostMapper lostMapper;
 	@Autowired
 	private DetLostMapper detLostMapper;
+	@Autowired
+	private TbTextinfoMapper textInfoMapper;
 
 	/*
 	 * 根据时间查询失物
@@ -56,11 +60,18 @@ public class LostServiceImpl implements LostService {
 	 * 添加失物信息
 	 */
 	@Override
-	public LostResult addLost(TbLost tbLost) {
+	public LostResult addLost(TbLost tbLost) throws Exception{
 		// 补全失物信息
 		//设置ID
 		Long userId = (long) 2;
 		tbLost.setId(IDUtils.generateId());
+		
+		//添加添加失物详细文章信息
+		LostResult result = insertTextInfo(tbLost.getId());
+		if(result.getStatus() != 200){
+			throw new Exception();
+		}
+		
 		tbLost.setUserId(userId);
 		
 		//设置日期
@@ -70,6 +81,22 @@ public class LostServiceImpl implements LostService {
 		lostMapper.insert(tbLost);
 		return LostResult.ok();
 	}
+	
+	/*
+	 * 添加失物详细文章信息
+	 */
+	private LostResult insertTextInfo(Long goods_id){
+		TbTextinfo text = new TbTextinfo();
+		text.setGoodsId(goods_id);
+		text.setPublishTime(new Date());
+		text.setPageView(0);
+		text.setStatus(0);
+		text.setCreated(new Date());
+		text.setUpdated(new Date());
+		textInfoMapper.insert(text);
+		return LostResult.ok();
+	}
+	
 
 	/*
 	 * 根据ID查询失物信息

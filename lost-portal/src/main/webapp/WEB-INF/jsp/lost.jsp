@@ -97,7 +97,7 @@
 															<a href="lost/findOne/{{entity.id}}.html">查看 详情</a>
 														</div>
 													</div>
-													<h4><a href="single.html">{{entity.infoTitle}}</a></h4>
+													<h4><a href="single.html">{{entity.infoTitle | textLengthSet:true:12:'... '}}</a></h4>
 													<p><h5><b>{{entity.lostPlace | textLengthSet:true:10:'... '}} -寻物启事</b></h5></p>
 													<p class="show-limit">{{entity.description | textLengthSet:true:45:'...'}}</p>
 													<div class="new-collections-grid1-left simpleCart_shelfItem">

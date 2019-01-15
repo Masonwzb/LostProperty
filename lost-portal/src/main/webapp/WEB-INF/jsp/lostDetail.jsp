@@ -35,7 +35,7 @@
 					<h3>文章详情信息</h3>
 					<ul class="cate">
 						<li><a href="#">信息编号：</a><span>${lost.id }</span></li>
-						<!--<li><a href="#">浏览次数：</a><span>21231次</span></li>  -->
+						<li><a href="#">浏览次数：</a><span>${lostTextInfo.pageView}次</span></li>
 						<li><a href="#">当前状态：</a><span>寻找中...</span></li>
 						<c:if test="${!empty lost.contacts }">
 							<li><a href="#">联系人：</a><span>${lost.contacts }</span></li>
@@ -51,7 +51,7 @@
 							<li><a href="#">联系地址：</a><span>${lost.address }</span></li>
 						</c:if>
 						<li><a href="#">发布时间：</a> <span><fmt:formatDate pattern="yyyy年MM月dd日 HH:mm:ss" 
-            					value="${lost.updated}" /></span></li>
+            					value="${lostTextInfo.publishTime}" /></span></li>
 					</ul>
 				</div>
 				<div class="men-position animated wow slideInUp" data-wow-delay=".5s">

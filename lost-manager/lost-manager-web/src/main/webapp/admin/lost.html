@@ -101,7 +101,7 @@
 			                      <thead>
 			                          <tr>
 			                              <th class="" style="padding-right:0px">
-			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue">
+			                                  <input id="selallLost" type="checkbox" class="icheckbox_square-blue" ng-click="getAllSelection($event)">
 			                              </th> 
 										  <th class="sorting_asc">失物ID</th>
 									      <th class="sorting">分类名称</th>
@@ -114,9 +114,9 @@
 									      <th class="sorting">发布时间</th>
 			                          </tr>
 			                      </thead>
-			                      <tbody>
+			                      <tbody id="checkLostList">
 			                          <tr ng-repeat="entity in list">
-			                              <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)"></td>			                              
+			                              <td><input  type="checkbox" onclick="allcheck2()" ng-click="updateSelection($event,entity.id)"></td>			                              
 				                          <td>{{entity.id}}</td>
 									      <td>{{entity.categoryName}}</td>
 									      <td>{{entity.userName}}</td>
@@ -138,7 +138,40 @@
 				<tm-pagination conf="paginationConf"></tm-pagination>
 				<!-- 分页处理结束 -->
 				
-				
+<script type="text/javascript">
+
+	$(function(){
+		$("#selallLost").prop("checked",false);
+	});
+
+	//复选框的全选和取消全选
+	$("#selallLost").click(function(){
+		if(this.checked){
+			$("#checkLostList :checkbox").prop("checked",true);
+		}else{
+			$("#checkLostList :checkbox").prop("checked",false);
+		}
+	
+	});
+	
+	function allcheck2(){
+		var chknum = $("#checkLostList :checkbox").size();//选项总个数
+		var chk = 0;
+		
+		$("#checkLostList :checkbox").each(function() {  
+	        if($(this).prop("checked")==true){
+				chk++;
+			}
+	    });
+	    
+		if(chknum==chk){//全选
+			$("#selallLost").prop("checked",true);
+		}else{//不全选
+			$("#selallLost").prop("checked",false);
+		}
+	}
+		
+</script> 				
 				
 	            
 </body>

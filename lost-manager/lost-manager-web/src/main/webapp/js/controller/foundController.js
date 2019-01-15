@@ -124,6 +124,9 @@ app.controller('foundController',function($scope,$timeout,$controller,foundServi
 							foundService.del($scope.selectIds).success(
 									function(response){
 										if(response.status == 200){
+											//重置全选中为空
+											$("#selallFound").prop("checked",false);
+											
 											$scope.reloadList();//刷新
 											 layer.msg('删除成功', {icon: 1,time: 1000});
 										}else{

@@ -114,6 +114,7 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 			
 			//删除
 			$scope.del=function(){
+				console.log("选中的id有：" + $scope.selectIds);
 				if($scope.selectIds.length == 0){
 					layer.alert('您还未有任何选中哦', {icon: 6});
 				}else{
@@ -124,6 +125,9 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 							lostService.del($scope.selectIds).success(
 									function(response){
 										if(response.status == 200){
+											//重置全选中为空
+											$("#selallLost").prop("checked",false);
+											 
 											$scope.reloadList();//刷新
 											 layer.msg('删除成功', {icon: 1,time: 1000});
 										}else{

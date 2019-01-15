@@ -15,7 +15,9 @@ import com.lost.customPojo.DetFound;
 import com.lost.customPojo.DetLost;
 import com.lost.pojo.TbFound;
 import com.lost.pojo.TbLost;
+import com.lost.pojo.TbTextinfo;
 import com.lost.portal.service.FoundService;
+import com.lost.portal.service.TextService;
 
 @Controller
 @RequestMapping("/found")
@@ -23,6 +25,8 @@ public class FoundController {
 
 	@Autowired
 	private FoundService foundService;
+	@Autowired
+	private TextService textService;
 	
 	@RequestMapping("/newest")
 	@ResponseBody
@@ -57,6 +61,10 @@ public class FoundController {
 	public String findFoundById(@PathVariable Long foundId,Model model){
 		DetFound found = foundService.getFoundById(foundId);
 		model.addAttribute("found",found);
+		//增加该失物文章信息浏览次数
+		TbTextinfo textInfo = textService.getTextInfo(foundId);
+		model.addAttribute("foundTextInfo", textInfo);
+		
 		return "foundDetail";
 	}
 	

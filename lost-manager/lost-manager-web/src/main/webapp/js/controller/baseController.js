@@ -28,7 +28,15 @@ app.controller('baseController',function($scope){
 			$scope.selectIds.splice(index, 1);//参数一：移除的位置   参数二：移除的个数
 		}
 	}
-	
-	
+	//用户全选复选框
+	$scope.getAllSelection=function($event){
+		if($event.target.checked){
+			angular.forEach($scope.list,function(value,key) {
+				$scope.selectIds.push(value.id);//向集合添加元素
+			});
+		}else{
+			$scope.selectIds=[];
+		}
+	}
 	
 });

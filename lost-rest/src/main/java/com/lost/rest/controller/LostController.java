@@ -45,7 +45,7 @@ public class LostController {
 	 * 添加失物信息
 	 */
 	@RequestMapping("/add")
-	public LostResult addLostInfo(@RequestBody TbLost tbLost){
+	public LostResult addLostInfo(@RequestBody TbLost tbLost) throws Exception{
 		return lostService.addLost(tbLost);
 	}
 	

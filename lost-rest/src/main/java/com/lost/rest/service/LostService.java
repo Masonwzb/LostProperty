@@ -14,7 +14,7 @@ public interface LostService {
 	//根据条件查询失物
 	public LostResult getLostByCondition(DetLost detLost,int page,int size);
 	//添加失物信息
-	public LostResult addLost(TbLost tbLost);
+	public LostResult addLost(TbLost tbLost) throws Exception;
 	//根据ID查询失物信息
 	public LostResult getLostById(Long lostId);
 	

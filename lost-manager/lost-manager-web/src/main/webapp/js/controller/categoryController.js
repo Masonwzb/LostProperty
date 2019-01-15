@@ -64,6 +64,9 @@ app.controller('categoryController',function($scope,$timeout,$controller,categor
 							categoryService.del($scope.selectIds).success(
 									function(response){
 										if(response.status == 200){
+											//重置全选中为空
+											$("#selall").prop("checked",false);
+											 
 											$scope.reloadList();//刷新
 											 layer.msg('删除成功', {icon: 1,time: 1000});
 										}else{
