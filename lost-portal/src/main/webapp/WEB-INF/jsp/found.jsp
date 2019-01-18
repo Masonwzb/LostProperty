@@ -111,8 +111,11 @@
 								</div>
 								
 								<div class="clearfix"> </div>
+								<hr/>
 								<!-- 分页处理开始 -->
+								<div style="float:right">
 									<tm-pagination conf="paginationConf"></tm-pagination>
+								</div>
 								<!-- 分页处理结束 -->
 								<div class="clearfix"> </div>
 								

@@ -20,13 +20,17 @@ public class TextServiceImpl implements TextService {
 	 */
 	@Override
 	public TbTextinfo getTextInfo(Long goods_id) {
-		//获取服务层的数据
-		String jsons = HttpClientUtil.doGet(REST_BASE_URL + REST_ADD_PAGEVIEW + goods_id);
-		//将字符串转换为对象
-		LostResult lostResult = LostResult.formatToPojo(jsons, TbTextinfo.class);
-		if(lostResult.getStatus() == 200){
-			TbTextinfo data = (TbTextinfo) lostResult.getData();
-			return data;
+		try {
+			//获取服务层的数据
+			String jsons = HttpClientUtil.doGet(REST_BASE_URL + REST_ADD_PAGEVIEW + goods_id);
+			//将字符串转换为对象
+			LostResult lostResult = LostResult.formatToPojo(jsons, TbTextinfo.class);
+			if(lostResult.getStatus() == 200){
+				TbTextinfo data = (TbTextinfo) lostResult.getData();
+				return data;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return null;

@@ -45,11 +45,11 @@ public class LostServiceImpl implements LostService {
 		try {
 			String jsons = HttpClientUtil.doGet(REST_BASE_URL + REST_INDEX_LOST_TIME, param);
 			//将字符串转换为对象;
-				LostResult lost = LostResult.formatToPojo(jsons, PageResult.class);
-				if(lost.getStatus() == 200){
-					PageResult data = (PageResult) lost.getData();
-					return data;
-				}
+			LostResult lost = LostResult.formatToPojo(jsons, PageResult.class);
+			if(lost.getStatus() == 200){
+				PageResult data = (PageResult) lost.getData();
+				return data;
+			}
 				
 		} catch (Exception e) {
 			e.printStackTrace();

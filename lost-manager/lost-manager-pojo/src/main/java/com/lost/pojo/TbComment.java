@@ -1,15 +1,11 @@
 package com.lost.pojo;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class TbComment  implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 2625318638256237729L;
+public class TbComment {
+    private Long id;
 
-	private Long id;
+    private Long goodsId;
 
     private Date commentTime;
 
@@ -25,6 +21,14 @@ public class TbComment  implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
     }
 
     public Date getCommentTime() {

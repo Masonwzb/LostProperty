@@ -12,7 +12,8 @@
 <jsp:include page="commons/head-link.jsp"/>
 <!-- link end -->
 </head>
-<body>
+
+<body  ng-app="portalRest" ng-controller="commentController">
 <!-- header start-->
 <jsp:include page="commons/header.jsp"/>
 <!-- //header end-->
@@ -32,6 +33,8 @@
 		<div class="container">
 			<div class="col-md-4 products-left">
 				<div class="categories animated wow slideInUp" data-wow-delay=".5s">
+				    <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
+				    <input id="goodsId" type="hidden" value="${lost.id}" />
 					<h3>文章详情信息</h3>
 					<ul class="cate">
 						<li><a href="#">信息编号：</a><span>${lost.id }</span></li>
@@ -109,31 +112,32 @@
 							</div>
 							<div role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="profile" aria-labelledby="profile-tab">
 								<div class="bootstrap-tab-text-grids">
-									<div class="bootstrap-tab-text-grid">
+								
+									<div ng-repeat="comment in commentList" class="bootstrap-tab-text-grid">
 										<div class="bootstrap-tab-text-grid-right">
 											<ul>
-												<li><a href="#">网友21301231</a></li>
-												<li class="time-type2">2018-12-31 15:35:23</li>
+												<li><a href="#">网友{{comment.id}}</a></li>
+												<li class="time-type2">{{comment.commentTime | date:'yyyy-MM-dd HH:mm:ss'}}</li>
 											</ul>
-											<p>生活总是这样，不能叫人处处都满意。但我们还要热情地活下去。——路遥。再见，2018；你好，2019!</p>
+											<p>{{comment.commentText}}</p>
+										    <br/>
 										</div>
-										<div class="clearfix"> </div>
 									</div>
-									<div class="bootstrap-tab-text-grid">
-										<div class="bootstrap-tab-text-grid-right">
-											<ul>
-												<li><a href="#">网友34241543</a></li>
-												<li class="time-type2">2018-12-31 12:39:03</li>
-											</ul>
-											<p>这一年，生活没有想象中那么好，但也没想象中那么糟，2018，最后跟你说一次，早安。</p>
-										</div>
-										<div class="clearfix"> </div>
+									
+									<div class="clearfix"> </div>
+									<!-- 分页处理开始 -->
+									<hr/>
+									<div style="float:right">
+										<tm-pagination conf="paginationConf"></tm-pagination>
+									<!-- 分页处理结束 -->
 									</div>
+									<div class="clearfix"> </div>
+									
 									<div class="add-review">
 										<h4>回复</h4>
 										<form>
-											<textarea type="text" placeholder="评论信息..." required=""></textarea>
-											<input type="submit" value="发送" >
+											<textarea type="text" ng-model="entity.commentText" placeholder="评论信息..." required=""></textarea>
+											<input type="submit" ng-click="add()" value="发送" >
 										</form>
 									</div>
 								</div>
@@ -160,5 +164,13 @@
 <!-- fooer start-->
 <jsp:include page="commons/footer.jsp"/>
 <!-- //footer end-->
+
+<!-- comment script start -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/base_pagination.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/baseController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/service/commentService.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/commentController.js"></script>
+<!-- comment script end -->
+
 </body>
 </html>
