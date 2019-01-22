@@ -2,8 +2,6 @@ package com.lost.mapper;
 
 import com.lost.pojo.TbFound;
 import com.lost.pojo.TbFoundExample;
-import com.lost.pojo.TbLost;
-
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

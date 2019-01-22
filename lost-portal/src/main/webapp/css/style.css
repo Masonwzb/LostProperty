@@ -124,6 +124,12 @@ body a:hover{
 .add-lostAndFound input[type="reset"]:hover{
 	background:#FFC229;
 }
+.add-lostAndFound h5{
+	font-size:1em;
+	color:#212121;
+	text-transform:uppercase;
+	margin:0 0 2em;
+}
 /*自定义div结束*/
 
 

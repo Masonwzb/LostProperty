@@ -16,6 +16,7 @@ import com.lost.customPojo.DetLost;
 import com.lost.mapper.TbLostMapper;
 import com.lost.mapper.TbTextinfoMapper;
 import com.lost.pojo.TbLost;
+import com.lost.pojo.TbLostExample;
 import com.lost.pojo.TbTextinfo;
 import com.lost.rest.service.LostService;
 @Service
@@ -105,6 +106,23 @@ public class LostServiceImpl implements LostService {
 	public LostResult getLostById(Long lostId) {
 		DetLost detlost = detLostMapper.selectLostById(lostId);
 		return LostResult.ok(detlost);
+	}
+
+	/*
+	 * 验证管理密码是否正确
+	 */
+	@Override
+	public LostResult getPwdValidate(TbLost tbLost) {
+		// 获取数据库中失物信息
+		TbLost databaseLost = lostMapper.selectByPrimaryKey(tbLost.getId());
+		//判断密码是否一致
+		if(databaseLost.getPassword().equals(tbLost.getPassword())){
+			return LostResult.ok();
+		}else{
+			//如果不一致
+			LostResult lostResult = new LostResult(404, "ERROR", null);
+			return lostResult;
+		}
 	}
 
 

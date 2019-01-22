@@ -93,6 +93,26 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 				);	
 			}
 			
+			/*
+			 * 验证管理密码是否正确
+			 */
+			$scope.validate=function(){
+				
+				if($scope.entity.password != null){
+					lostService.validate($scope.entity).success(
+							function(response){
+								console.log("response============：" + response);	
+								if(response.msg == "OK"){
+									$("#msg").html("<font color='red'>密码正确！</font>");
+								}else if(response.msg == 'ERROR'){
+									$("#msg").html("<font color='red'>密码错误！请重新输入。</font>");
+								}
+							}
+					);
+				}
+				
+			}
+			
 			//新增或更新数据
 			$scope.save=function(){
 				var object=null;

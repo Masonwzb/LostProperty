@@ -15,6 +15,7 @@
     <result column="QQ" property="qq" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="created" property="created" jdbcType="TIMESTAMP" />
     <result column="updated" property="updated" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -96,7 +97,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, category_id, user_id, lost_place, lost_time, infoTitle, rewards, images, contacts, 
-    tel, QQ, email, address, created, updated
+    tel, QQ, email, address, password, created, updated
   </sql>
   <sql id="Blob_Column_List" >
     description
@@ -154,14 +155,14 @@
       lost_place, lost_time, infoTitle, 
       rewards, images, contacts, 
       tel, QQ, email, address, 
-      created, updated, description
-      )
+      password, created, updated, 
+      description)
     values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
       #{lostPlace,jdbcType=VARCHAR}, #{lostTime,jdbcType=TIMESTAMP}, #{infotitle,jdbcType=VARCHAR}, 
       #{rewards,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
       #{tel,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}
-      )
+      #{password,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lost.pojo.TbLost" >
     insert into tb_lost
@@ -204,6 +205,9 @@
       </if>
       <if test="address != null" >
         address,
+      </if>
+      <if test="password != null" >
+        password,
       </if>
       <if test="created != null" >
         created,
@@ -254,6 +258,9 @@
       </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
       </if>
       <if test="created != null" >
         #{created,jdbcType=TIMESTAMP},
@@ -314,6 +321,9 @@
       <if test="record.address != null" >
         address = #{record.address,jdbcType=VARCHAR},
       </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
       <if test="record.created != null" >
         created = #{record.created,jdbcType=TIMESTAMP},
       </if>
@@ -343,6 +353,7 @@
       QQ = #{record.qq,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
       created = #{record.created,jdbcType=TIMESTAMP},
       updated = #{record.updated,jdbcType=TIMESTAMP},
       description = #{record.description,jdbcType=LONGVARCHAR}
@@ -365,6 +376,7 @@
       QQ = #{record.qq,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
       created = #{record.created,jdbcType=TIMESTAMP},
       updated = #{record.updated,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
@@ -410,6 +422,9 @@
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
       <if test="created != null" >
         created = #{created,jdbcType=TIMESTAMP},
       </if>
@@ -436,6 +451,7 @@
       QQ = #{qq,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
       created = #{created,jdbcType=TIMESTAMP},
       updated = #{updated,jdbcType=TIMESTAMP},
       description = #{description,jdbcType=LONGVARCHAR}
@@ -455,6 +471,7 @@
       QQ = #{qq,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
       created = #{created,jdbcType=TIMESTAMP},
       updated = #{updated,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

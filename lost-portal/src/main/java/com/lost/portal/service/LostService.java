@@ -15,5 +15,7 @@ public interface LostService {
 	public LostResult addLostInfo(TbLost tbLost);
 	//根据Id查询失物信息
 	public DetLost getLostById(Long lostId);
+	//验证密码是否正确
+	public LostResult getValidatePwd(TbLost tbLost);
 	
 }

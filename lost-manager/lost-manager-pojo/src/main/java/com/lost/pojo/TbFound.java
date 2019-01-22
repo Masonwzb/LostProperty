@@ -27,6 +27,8 @@ public class TbFound {
 
     private String address;
 
+    private String password;
+
     private Date created;
 
     private Date updated;
@@ -127,6 +129,14 @@ public class TbFound {
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
     public Date getCreated() {

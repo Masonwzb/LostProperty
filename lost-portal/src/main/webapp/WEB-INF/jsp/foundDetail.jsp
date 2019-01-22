@@ -12,7 +12,7 @@
 <jsp:include page="commons/head-link.jsp"/>
 <!-- link end -->
 </head>
-<body ng-app="portalRest" ng-controller="commentController" >
+<body ng-app="portalRest">
 <!-- header start-->
 <jsp:include page="commons/header.jsp"/>
 <!-- //header end-->
@@ -34,7 +34,7 @@
 				<div class="categories animated wow slideInUp" data-wow-delay=".5s">
 				    <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
 				    <input id="goodsId" type="hidden" value="${found.id}" />
-					<h3>文章详情信息</h3>
+					<h3>启事详情信息</h3>
 					<ul class="cate">
 						<li><a href="#">信息编号：</a><span>${found.id }</span></li>
 						<li><a href="#">浏览次数：</a><span>${foundTextInfo.pageView}次</span></li>
@@ -103,7 +103,7 @@
 							<div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="home" aria-labelledby="home-tab">
 								<p>${found.description }</p>
 							</div>
-							<div role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="profile" aria-labelledby="profile-tab">
+							<div  ng-controller="commentController"  role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="profile" aria-labelledby="profile-tab">
 								<div class="bootstrap-tab-text-grids">
 									
 									<div ng-repeat="comments in commentList" class="bootstrap-tab-text-grid">
@@ -142,7 +142,7 @@
 			<div class="clearfix"> </div>
 			<!-- 返回上一页 -->
 			<div class="checkout-left">	
-				<div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
+				<div class="checkout-right-basket slideInRight">
 				<a href="#" onClick="javascript:history.back(-1);"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>返回 上一页</a>
 				</div>
 				<div class="clearfix"> </div>

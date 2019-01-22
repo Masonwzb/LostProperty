@@ -75,7 +75,7 @@
 					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 						<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-picture"></i> 选择图片</span>
 			        	<div class="file-loading">
-							<input id="imagesFile" name="imagesFile" type="file" multiple>
+							<input id="imagesFile" name="imagesFile" type="file">
 						</div>
 						<div id="errorBlocks" class="help-block"></div>
 						<input type="text" ng-model="entity.images" hidden name="image"/>
@@ -132,6 +132,22 @@
 						<textarea type="text"  style="height:100px" ng-model="entity.description" class="form-control" required="" placeholder="详情描述"></textarea>
 					</div>
 					
+					<h5 class="animated wow slideInUp" data-wow-delay=".5s"><i class="glyphicon glyphicon-star"></i>必填，请牢记该密码（修改、删除信息使用）</h5>
+					
+					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+						<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+						<input type="password" ng-model="entity.password" class="form-control" placeholder="管理密码" aria-describedby="basic-addon1" required="">
+					</div>
+					
+					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+						<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+						<input type="password" ng-model="confirmPwd2" class="form-control" placeholder="确认管理密码" aria-describedby="basic-addon1" required="">
+					</div>
+					
+					<div>
+						<span id="message2"></span>
+					</div>
+					
 					<input type="submit" ng-click="add()" value="发布">
 					
 					<input type="reset" onclick="window.location.reload();" value="重置">
@@ -139,7 +155,7 @@
 			</div>
 			
 			<div class="register-home animated wow slideInUp" data-wow-delay=".5s">
-				<a href="index.html">Home</a>
+				<a href="index.html">返回首页</a>
 			</div>
 			
 		</div>

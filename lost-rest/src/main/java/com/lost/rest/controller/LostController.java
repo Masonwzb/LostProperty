@@ -57,4 +57,13 @@ public class LostController {
 		return lostService.getLostById(lostId);
 	}
 	
+	/*
+	 * 验证管理密码是否正确
+	 */
+	@RequestMapping("/pwd/validate")
+	public LostResult getValidatePassword(@RequestBody TbLost tbLost){
+		return lostService.getPwdValidate(tbLost);
+	}
+	
+	
 }

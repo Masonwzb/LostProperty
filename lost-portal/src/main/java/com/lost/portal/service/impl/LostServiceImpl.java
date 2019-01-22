@@ -32,6 +32,8 @@ public class LostServiceImpl implements LostService {
 	private String REST_ADD_LOST;
 	@Value("${REST_ID_GET_LOST}")
 	private String REST_ID_GET_LOST;
+	@Value("${REST_LOST_VALIDATEPWD}")
+	private String REST_LOST_VALIDATEPWD;
 	
 	
 	//根据时间查询失物
@@ -118,6 +120,26 @@ public class LostServiceImpl implements LostService {
 				DetLost result = (DetLost) lostResult.getData();
 				return result;
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	/*
+	 * 验证密码是否正确
+	 */
+	@Override
+	public LostResult getValidatePwd(TbLost tbLost) {
+		//将对象转换为json数据
+		String json = JsonUtils.objectToJson(tbLost);
+		// 获取服务器的数据
+		try {
+			String jsons = HttpClientUtil.doPostJson(REST_BASE_URL + REST_LOST_VALIDATEPWD, json);
+			//将字符串转换为对象
+			LostResult result = LostResult.formatToPojo(jsons, TbLost.class);
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

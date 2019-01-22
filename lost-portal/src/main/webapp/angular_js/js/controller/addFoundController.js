@@ -83,7 +83,14 @@ app.controller('addFoundController',function($scope,$location,$timeout,$controll
 					
 				if($scope.entity.categoryId != null && $scope.entity.foundPlace != null 
 						&& $scope.entity.foundTime != null && $scope.entity.infotitle != null 
-						&& $scope.entity.email != null && $scope.entity.description != null){
+						&& $scope.entity.email != null && $scope.entity.description != null
+						&& $scope.entity.password != null && $scope.confirmPwd2 != null){
+					
+						if($scope.entity.password != $scope.confirmPwd2){
+							$("#message2").html("<font color='red'>密码不一致！请重新填写。</font>");
+						}else if($scope.entity.password.length < 6 || $scope.confirmPwd2.length < 6){
+							$("#message2").html("<font color='red'>密码不得少于6位！请重新填写。</font>");
+						}else{
 								addFoundService.add($scope.entity).success(
 									function(response){
 										if(response.status == 200){
@@ -100,6 +107,7 @@ app.controller('addFoundController',function($scope,$location,$timeout,$controll
 										}
 									}
 								)		
+						}
 				}
 			}
 			

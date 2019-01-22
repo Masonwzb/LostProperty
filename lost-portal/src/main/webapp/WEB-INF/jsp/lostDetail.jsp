@@ -13,7 +13,7 @@
 <!-- link end -->
 </head>
 
-<body  ng-app="portalRest" ng-controller="commentController">
+<body  ng-app="portalRest">
 <!-- header start-->
 <jsp:include page="commons/header.jsp"/>
 <!-- //header end-->
@@ -35,7 +35,7 @@
 				<div class="categories animated wow slideInUp" data-wow-delay=".5s">
 				    <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
 				    <input id="goodsId" type="hidden" value="${lost.id}" />
-					<h3>文章详情信息</h3>
+					<h3>启事详情信息</h3>
 					<ul class="cate">
 						<li><a href="#">信息编号：</a><span>${lost.id }</span></li>
 						<li><a href="#">浏览次数：</a><span>${lostTextInfo.pageView}次</span></li>
@@ -105,12 +105,19 @@
 						<ul id="myTab" class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">详情描述</a></li>
 							<li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">评论</a></li>
+							<li role="presentation" class="dropdown">
+								<a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents">管理启事 <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+									<li><a href="#dropdown1" tabindex="-1" role="tab" id="dropdown1-tab" data-toggle="tab" aria-controls="dropdown1">修改</a></li>
+									<li><a href="#dropdown2" tabindex="-1" role="tab" id="dropdown2-tab" data-toggle="tab" aria-controls="dropdown2">删除</a></li>
+								</ul>
+							</li>
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="home" aria-labelledby="home-tab">
 								<p>${lost.description }</p>
 							</div>
-							<div role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="profile" aria-labelledby="profile-tab">
+							<div ng-controller="commentController" role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="profile" aria-labelledby="profile-tab">
 								<div class="bootstrap-tab-text-grids">
 								
 									<div ng-repeat="comment in commentList" class="bootstrap-tab-text-grid">
@@ -142,6 +149,35 @@
 									</div>
 								</div>
 							</div>
+							<div ng-controller="lostController" role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="dropdown1" aria-labelledby="dropdown1-tab">
+								
+								<!-- password -->
+									<div class="login-form-grids">
+										<h5>请输入管理密码</h5>
+										<form>
+											<input type="password" ng-model="entity.password" placeholder="管理密码" required="" >
+											<span id="msg"></span>
+											<input type="submit" ng-click="validate()" value="前往修改">
+										</form>	
+									</div>
+							<!-- //password -->
+							
+							</div>
+							<div role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="dropdown2" aria-labelledby="dropdown2-tab">
+							
+							<!-- password -->
+									<div class="login-form-grids">
+										<h5>请输入管理密码</h5>
+										<form>
+											<input type="password" name="password" placeholder="管理密码" required="" >
+											<input type="submit" value="确认删除">
+										</form>	
+									</div>
+						<!-- //password -->
+							
+							
+							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -149,7 +185,7 @@
 			<div class="clearfix"> </div>
 			<!-- 返回上一页 -->
 			<div class="checkout-left">	
-				<div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
+				<div class="checkout-right-basket slideInRight">
 				<a href="#" onClick="javascript:history.back(-1);"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>返回 上一页</a>
 				</div>
 				<div class="clearfix"> </div>
@@ -170,6 +206,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/baseController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/service/commentService.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/commentController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/service/lostService.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/lostController.js"></script>
 <!-- comment script end -->
 
 </body>

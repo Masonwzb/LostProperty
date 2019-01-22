@@ -83,7 +83,14 @@ app.controller('addLostController',function($scope,$location,$timeout,$controlle
 					
 				if($scope.entity.categoryId != null && $scope.entity.lostPlace != null 
 						&& $scope.entity.lostTime != null && $scope.entity.infotitle != null 
-						&& $scope.entity.email != null && $scope.entity.description != null){
+						&& $scope.entity.email != null && $scope.entity.description != null
+						&& $scope.entity.password != null && $scope.confirmPwd != null){
+								
+						if($scope.entity.password != $scope.confirmPwd){
+							$("#message").html("<font color='red'>密码不一致！请重新填写。</font>");
+						}else if($scope.entity.password.length < 6 || $scope.confirmPwd.length < 6){
+							$("#message").html("<font color='red'>密码不得少于6位！请重新填写。</font>");
+						}else{
 								addLostService.add($scope.entity).success(
 									function(response){
 										if(response.status == 200){
@@ -99,7 +106,9 @@ app.controller('addLostController',function($scope,$location,$timeout,$controlle
 											alert(response.message);
 										}
 									}
-								)		
+								)
+						}
+								
 				}
 			}
 			

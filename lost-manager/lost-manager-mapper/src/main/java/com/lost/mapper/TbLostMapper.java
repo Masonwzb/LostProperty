@@ -12,7 +12,7 @@ public interface TbLostMapper {
 	List<TbLost> selectByTime();
 		
 	//自定义结束
-	 
+	
     int countByExample(TbLostExample example);
 
     int deleteByExample(TbLostExample example);

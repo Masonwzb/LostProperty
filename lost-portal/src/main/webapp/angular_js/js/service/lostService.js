@@ -1,6 +1,11 @@
 	//失物服务
 		app.service("lostService",function($http){
 			
+			//获取该物品ID
+			var goodsId = $("#goodsId").val();
+			//获取基础URL
+			var baseUrl = $("#PageContext").val();
+			
 			//查询最近一周内的失物
 			this.findNewest=function(page,size){
 				return $http.get('../lost/newest.action?page='+page+'&size='+size)
@@ -25,6 +30,11 @@
 			
 			this.add=function(entity){
 				return $http.post("../lost/add.action",entity);
+			}
+			
+			this.validate=function(entity){
+				entity.id = goodsId;
+				return $http.post(baseUrl + '/lost/pwd/validate.action',entity);
 			}
 			
 			this.update=function(entity){
