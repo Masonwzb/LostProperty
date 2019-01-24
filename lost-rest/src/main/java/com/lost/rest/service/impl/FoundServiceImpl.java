@@ -18,6 +18,7 @@ import com.lost.customPojo.DetLost;
 import com.lost.mapper.TbFoundMapper;
 import com.lost.mapper.TbTextinfoMapper;
 import com.lost.pojo.TbFound;
+import com.lost.pojo.TbLost;
 import com.lost.pojo.TbTextinfo;
 import com.lost.rest.service.FoundService;
 @Service
@@ -104,9 +105,55 @@ public class FoundServiceImpl implements FoundService {
 	 * 根据ID查询失物信息
 	 */
 	@Override
-	public LostResult getFoundById(Long foundId) {
+	public LostResult getDetFoundById(Long foundId) {
 		DetFound detFound = detFoundMapper.selectFoundById(foundId);
 		return LostResult.ok(detFound);
+	}
+
+	/*
+	 * 验证管理密码是否正确
+	 */
+	@Override
+	public LostResult getPwdValidate(TbFound tbFound) {
+		// 获取数据库中失物信息
+		TbFound databaseLost = foundMapper.selectByPrimaryKey(tbFound.getId());
+		//判断密码是否一致
+		if(databaseLost.getPassword().equals(tbFound.getPassword())){
+			return LostResult.ok();
+		}else{
+			//如果不一致
+			LostResult lostResult = new LostResult(404, "ERROR", null);
+			return lostResult;
+		}
+	}
+
+	/*
+	 * 更新招领物信息
+	 */
+	@Override
+	public LostResult updateFound(TbFound tbFound) {
+		// 补全更新信息
+		tbFound.setUpdated(new Date());
+		
+		try {
+			 foundMapper.updateByPrimaryKeySelective(tbFound);
+			 return LostResult.ok();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	/*
+	 * 根据ID查询招领物
+	 */
+	@Override
+	public LostResult getFoundById(Long foundId) {
+		//根据ID查询
+		TbFound found = foundMapper.selectByPrimaryKey(foundId);
+		
+		return LostResult.ok(found);
 	}
 
 

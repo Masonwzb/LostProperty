@@ -34,6 +34,10 @@ public class LostServiceImpl implements LostService {
 	private String REST_ID_GET_LOST;
 	@Value("${REST_LOST_VALIDATEPWD}")
 	private String REST_LOST_VALIDATEPWD;
+	@Value("${REST_BY_ID_LOST}")
+	private String REST_BY_ID_LOST;
+	@Value("${REST_UPDATE_LOST}")
+	private String REST_UPDATE_LOST;
 	
 	
 	//根据时间查询失物
@@ -107,10 +111,10 @@ public class LostServiceImpl implements LostService {
 	}
 
 	/*
-	 * 根据ID查询失物信息
+	 * 根据ID查询明细失物信息
 	 */
 	@Override
-	public DetLost getLostById(Long lostId) {
+	public DetLost getDetLostById(Long lostId) {
 		//获取服务层的信息
 		try {
 			String json = HttpClientUtil.doGet(REST_BASE_URL + REST_ID_GET_LOST + lostId);
@@ -140,6 +144,48 @@ public class LostServiceImpl implements LostService {
 			//将字符串转换为对象
 			LostResult result = LostResult.formatToPojo(jsons, TbLost.class);
 			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	/*
+	 * 根据ID查询失物信息
+	 */
+	@Override
+	public TbLost getLostById(Long lostId) {
+		//获取服务层的信息
+		try {
+			String json = HttpClientUtil.doGet(REST_BASE_URL + REST_BY_ID_LOST + lostId);
+			//将字符串转换为对象
+			LostResult lostResult = LostResult.formatToPojo(json, TbLost.class);
+			if(lostResult.getStatus() == 200){
+				TbLost result = (TbLost) lostResult.getData();
+				return result;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	/*
+	 * 更新失物信息
+	 */
+	@Override
+	public LostResult updateLost(TbLost tbLost) {
+		//将对象转换为json数据
+		String jsons = JsonUtils.objectToJson(tbLost);
+		try {
+			// 从数据层获取数据
+			String json = HttpClientUtil.doPostJson(REST_BASE_URL + REST_UPDATE_LOST, jsons);
+			//判断json是否为空
+			if(!StringUtils.isEmpty(json)){
+				return LostResult.ok();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

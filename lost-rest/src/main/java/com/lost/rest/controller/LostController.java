@@ -50,11 +50,11 @@ public class LostController {
 	}
 	
 	/*
-	 * 根据ID查询失物信息
+	 * 根据ID查询明细失物信息
 	 */
 	@RequestMapping("/findOne/{lostId}")
-	public LostResult findLostById(@PathVariable Long lostId){
-		return lostService.getLostById(lostId);
+	public LostResult findDetLostById(@PathVariable Long lostId){
+		return lostService.getDetLostById(lostId);
 	}
 	
 	/*
@@ -63,6 +63,22 @@ public class LostController {
 	@RequestMapping("/pwd/validate")
 	public LostResult getValidatePassword(@RequestBody TbLost tbLost){
 		return lostService.getPwdValidate(tbLost);
+	}
+	
+	/*
+	 * 更新失物信息
+	 */
+	@RequestMapping("/update")
+	public LostResult updateLostById(@RequestBody TbLost tbLost){
+		return lostService.updateLost(tbLost);
+	}
+	
+	/*
+	 * 根据ID查询失物
+	 */
+	@RequestMapping("/findOne/update/{lostId}")
+	public LostResult selectLostById(@PathVariable Long lostId){
+		return lostService.getLostById(lostId);
 	}
 	
 	

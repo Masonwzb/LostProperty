@@ -54,7 +54,31 @@ public class FoundController {
 	 * 根据ID查询招领信息
 	 */
 	@RequestMapping("/findOne/{foundId}")
-	public LostResult findLostById(@PathVariable Long foundId){
+	public LostResult findDetFoundById(@PathVariable Long foundId){
+		return foundService.getDetFoundById(foundId);
+	}
+	
+	/*
+	 * 验证管理密码是否正确
+	 */
+	@RequestMapping("/pwd/validate")
+	public LostResult getValidatePassword(@RequestBody TbFound tbFound){
+		return foundService.getPwdValidate(tbFound);
+	}
+	
+	/*
+	 * 更新失物信息
+	 */
+	@RequestMapping("/update")
+	public LostResult updateFoundById(@RequestBody TbFound tbFound){
+		return foundService.updateFound(tbFound);
+	}
+	
+	/*
+	 * 根据ID查询失物
+	 */
+	@RequestMapping("/findOne/update/{foundId}")
+	public LostResult selectFoundById(@PathVariable Long foundId){
 		return foundService.getFoundById(foundId);
 	}
 	

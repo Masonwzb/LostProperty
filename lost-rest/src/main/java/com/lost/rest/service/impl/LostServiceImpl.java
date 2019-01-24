@@ -100,10 +100,10 @@ public class LostServiceImpl implements LostService {
 	
 
 	/*
-	 * 根据ID查询失物信息
+	 * 根据ID查询明细失物信息
 	 */
 	@Override
-	public LostResult getLostById(Long lostId) {
+	public LostResult getDetLostById(Long lostId) {
 		DetLost detlost = detLostMapper.selectLostById(lostId);
 		return LostResult.ok(detlost);
 	}
@@ -123,6 +123,35 @@ public class LostServiceImpl implements LostService {
 			LostResult lostResult = new LostResult(404, "ERROR", null);
 			return lostResult;
 		}
+	}
+
+	/*
+	 * 更新失物信息
+	 */
+	@Override
+	public LostResult updateLost(TbLost tbLost) {
+		// 补全更新信息
+		tbLost.setUpdated(new Date());
+		
+		try {
+			 lostMapper.updateByPrimaryKeySelective(tbLost);
+			 return LostResult.ok();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	/*
+	 * 根据ID查询失物
+	 */
+	@Override
+	public LostResult getLostById(Long lostId) {
+		//根据ID查询
+		TbLost lost = lostMapper.selectByPrimaryKey(lostId);
+		
+		return LostResult.ok(lost);
 	}
 
 

@@ -4,14 +4,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html>  
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>失物招领-失物启事详情信息</title>
 <!-- link start -->
 <jsp:include page="commons/head-link.jsp"/>
 <!-- link end -->
+<!-- comment script start -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/base_pageUibs.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/baseController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/service/commentService.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/commentController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/service/lostService.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/lostController.js"></script>
+<!-- comment script end -->
 </head>
+
 
 <body  ng-app="portalRest">
 <!-- header start-->
@@ -191,6 +200,184 @@
 				<div class="clearfix"> </div>
 			</div>
 			
+			<a id="modal-620847" href="#modal-container-620847" role="button" class="btn" data-toggle="modal"></a>
+			
+			<div ng-controller="lostController" class="modal fade" id="modal-container-620847" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" onclick="window.location.reload();" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								<b>修改寻物启事</b><i>（表单中图片为回显图片，如需更新请重新上传。）</i>
+							</h4>
+						</div>
+						<div class="modal-body">						
+						
+								<form>
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i> 信息标题</span>
+										<input type="text" ng-model="lostEntity.infotitle" class="form-control" aria-describedby="basic-addon1" required="">
+									</div>
+					
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i> 丢失地点</span>
+										<input type="text" ng-model="lostEntity.lostPlace" class="form-control" aria-describedby="basic-addon1" required="">
+									</div>
+													 
+									<div class="form-inline">
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i> 失物类别</span>
+											<select class="form-control" required="" ng-model="lostEntity.categoryId" 
+											ng-options="categoryEntity.id as categoryEntity.categoryName for categoryEntity in categoryList"></select>
+										</div>
+									</div>
+									
+									<c:if test="${!empty lost.images }">
+										<div class="form-inline">
+											<a href="#"><img src="${pageContext.request.contextPath}/{{lostEntity.images}}" style="height: 120px;width: 120px" alt=" " class="img-responsive" /></a>
+										</div>
+									</c:if>
+									
+									
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-picture"></i> 选择图片</span>
+							        	<div class="file-loading">
+											<input id="imagesFile" name="imagesFile" type="file">
+										</div>
+										<div id="errorBlocks" class="help-block"></div>
+										<input type="text" ng-model="lostEntity.images" hidden name="image"/>
+									</div>
+									
+									<div class="form-inline">
+										
+										<div class="input-group">
+											<p class="input-group">
+												<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i> 丢失日期</span>
+								                <input class="form-control" uib-datepicker-popup="{{format}}" ng-model="lostEntity.lostTime" is-open="pop1.opened" 
+								                      required="" popup-placement="top" close-text="关闭" clear-text="清空" current-text="今天" alt-input-formats="altInputFormats" datepicker-options="datepickerOptions1"/>
+								                <span class="input-group-btn">
+								                    <button class="btn btn-default" ng-click="openpop1()"><i class="glyphicon  glyphicon-calendar"></i></button>
+								                </span>
+								            </p>
+										</div>
+									
+									</div>
+									
+									<div class="form-inline">				
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1">$ 悬赏金额</span>
+											<input type="text" ng-model="lostEntity.rewards" class="form-control" aria-describedby="basic-addon1">
+											<span class="input-group-addon">不填则默认为空。</span>
+										</div>			
+									</div>
+									
+									<div class="form-inline">
+															
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-user"></i> 联系人</span>
+											<input type="text" ng-model="lostEntity.contacts" class="form-control" aria-describedby="basic-addon1">
+										</div>
+									
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-earphone"></i> 手机号码</span>
+											<input type="text" ng-model="lostEntity.tel" class="form-control" aria-describedby="basic-addon1">
+										</div>
+									
+									</div>
+									
+									<div class="form-inline">
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-star"></i> 联系邮箱</span>
+											<input type="email" ng-model="lostEntity.email" class="form-control" required="" aria-describedby="basic-addon1">
+										</div>
+										
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-plus"></i> QQ号码</span>
+											<input type="text" ng-model="lostEntity.QQ" class="form-control" aria-describedby="basic-addon1">
+										</div>					
+									</div>	
+									
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-map-marker"></i> 联系地址</span>
+										<input type="text" ng-model="lostEntity.address" class="form-control" aria-describedby="basic-addon1">
+									</div>
+															
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i> 详情描述</span>
+										<textarea type="text"  style="height:100px" ng-model="lostEntity.description" class="form-control" required="">{{lostEntity.description}}</textarea>
+									</div>
+									
+									<h5><i class="glyphicon glyphicon-star"></i>必填，请牢记该密码（修改、删除信息使用）</h5>
+									
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-lock"></i> 管理密码</span>
+										<input type="password" ng-model="lostEntity.password" class="form-control" aria-describedby="basic-addon1" required="">
+									</div>
+									
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-lock"></i> 确认密码</span>
+										<input type="password" id="confirmPassword" ng-model="confirmPwd" class="form-control" aria-describedby="basic-addon1" required="">
+									</div>
+									
+									<div>
+										<span id="lostMsg"></span>
+									</div>
+									
+									<div class="modal-footer">
+										 <button type="button" onclick="window.location.reload();" class="btn btn-default" data-dismiss="modal">关闭</button> 
+										 <input type="submit" class="btn btn-primary" ng-click="update()" value="确认修改">
+									</div>
+									
+								</form>
+								
+						</div>
+					</div>
+					
+				</div>
+				
+		   </div>
+		   
+		   <!--图片上传 开始-->
+			 <link href="${pageContext.request.contextPath}/fileUpload/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+			 <link href="${pageContext.request.contextPath}/fileUpload/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
+			 <script src="${pageContext.request.contextPath}/fileUpload/js/plugins/sortable.js" type="text/javascript"></script>
+			 <script src="${pageContext.request.contextPath}/fileUpload/js/fileinput.js" type="text/javascript"></script>
+			 <script src="${pageContext.request.contextPath}/fileUpload/js/locales/zh.js" type="text/javascript"></script>
+			 <script src="${pageContext.request.contextPath}/fileUpload/themes/fas/theme.js" type="text/javascript"></script>
+			 <script src="${pageContext.request.contextPath}/fileUpload/themes/explorer-fas/theme.js" type="text/javascript"></script>
+			<!--图片上传结束 -->
+			
+		  <script>
+			    $(document).ready(function () {
+			    	$("#imagesFile").fileinput({
+				 		theme: 'fas',
+				 		language: 'zh',
+				 		showCaption: false, 
+				 		dropZoneEnabled: false,
+				 		showUpload: true,
+				 		showRemove: false,
+				 		uploadUrl: '${pageContext.request.contextPath}/pic/upload.action',
+				 		elErrorContainer: '#errorBlocks',
+				 		allowedFileExtensions: ['jpg', 'png', 'gif'],
+				 		fileActionSettings:{
+				 			showRemove: false,
+						    showUpload: false,
+						    showZoom: false,
+						    showDrag: true,
+				 		}
+				 	}).on('fileerror', function(event, data) {
+			        			layer.msg('上传失败', {icon: 2,time:1200});
+							}).on('fileuploaded', function(event, data) {
+									//设置image路径
+									$("input[name='image']").val(data.response.url).trigger('change');
+									layer.msg('上传成功', {icon: 1,time:1200});
+			         			});
+			    });
+			
+			</script>
+								     	
+		   
+			
 		</div>
 	</div>
 <!-- //single -->
@@ -201,14 +388,6 @@
 <jsp:include page="commons/footer.jsp"/>
 <!-- //footer end-->
 
-<!-- comment script start -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/base_pagination.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/baseController.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/service/commentService.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/commentController.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/service/lostService.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/lostController.js"></script>
-<!-- comment script end -->
 
 </body>
 </html>

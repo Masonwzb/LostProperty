@@ -13,9 +13,14 @@ public interface LostService {
 	public PageResult getLostByCondition(DetLost detLost,int page,int size);
 	//添加失物信息
 	public LostResult addLostInfo(TbLost tbLost);
-	//根据Id查询失物信息
-	public DetLost getLostById(Long lostId);
+	//根据Id查询明细失物信息
+	public DetLost getDetLostById(Long lostId);
 	//验证密码是否正确
 	public LostResult getValidatePwd(TbLost tbLost);
+	//根据Id查询失物信息
+	public TbLost getLostById(Long lostId);
+	//更新失物信息
+	public LostResult updateLost(TbLost tbLost);
+	
 	
 }

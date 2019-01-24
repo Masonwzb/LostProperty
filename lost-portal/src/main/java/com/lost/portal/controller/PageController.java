@@ -53,5 +53,11 @@ public class PageController {
 	public String showSearchResult(){
 		return "searchResult";
 	}
+	
+	//映射查询结果页面
+	@RequestMapping("/updateLost")
+	public String showUpdateLost(){
+		return "updateLost";
+	}
 		
 }

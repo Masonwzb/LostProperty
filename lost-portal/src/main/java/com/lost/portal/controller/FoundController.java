@@ -59,13 +59,42 @@ public class FoundController {
 	 */
 	@RequestMapping("/findOne/{foundId}")
 	public String findFoundById(@PathVariable Long foundId,Model model){
-		DetFound found = foundService.getFoundById(foundId);
+		DetFound found = foundService.getDetFoundById(foundId);
 		model.addAttribute("found",found);
 		//增加该失物文章信息浏览次数
 		TbTextinfo textInfo = textService.getTextInfo(foundId);
 		model.addAttribute("foundTextInfo", textInfo);
 		
 		return "foundDetail";
+	}
+	
+	/*
+	 * 更新失物根据ID查询信息
+	 */
+	@RequestMapping("/findOneUpdate/{foundId}")
+	@ResponseBody
+	public TbFound findFoundByIdUpdate(@PathVariable Long foundId){
+		TbFound result = foundService.getFoundById(foundId);
+		
+		return result;
+	}
+	
+	/*
+	 * 验证密码是否正确
+	 */
+	@RequestMapping("/pwd/validate")
+	@ResponseBody
+	public LostResult validatePwd(@RequestBody TbFound tbFound){
+		return foundService.getValidatePwd(tbFound);
+	}
+	
+	/*
+	 * 更新失物信息
+	 */
+	@RequestMapping("/update")
+	@ResponseBody
+	public LostResult toUpdateFound(@RequestBody TbFound tbFound){
+		return foundService.updateFound(tbFound);
 	}
 	
 }

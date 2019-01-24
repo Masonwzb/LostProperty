@@ -3,6 +3,11 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 		
 			$controller('baseController',{$scope:$scope});//继承
 			
+			//获取该物品ID
+			var goodsId2 = $("#goodsId").val();
+			//获取基础URL
+			var baseUrl2 = $("#PageContext").val();
+			
 			//查询最近一周内的失物
 			$scope.findNewest=function(page,size){
 			
@@ -15,55 +20,41 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 			}
 			
 			//监听entity如果发生变化则加载失物类别
-            $scope.$watch('entity',function(){
-                //$scope.findAllCategory();
+            $scope.$watch('searchEntity',function(){
+                $scope.findAllCategory();
+                $scope.findOne();
             });
 			
 			$scope.searchEntity={};
 			
 			//日期控件引入开始
 			 //下拉列表的数据
-            $scope.formats=['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate']
-            $scope.format=$scope.formats[0];
-            //datepickerpopup的数据
-            $scope.today=new Date();
-            $scope.altInputFormats=['yyyy/M!/d!','yyyy.M!.d!','yyyy M! d!'];//手动输入支持的格式
-            $scope.datepickerOptions1={
-                maxDate:$scope.searchEntity.lostTime2,
-                startingDay:1
-            };
-            $scope.datepickerOptions2={
-                minDate:$scope.searchEntity.lostTime1,
-                maxDate:$scope.today,
-                startingDay:1
-            };
-            //打开popup
-            $scope.pop1={
-                opened:false
-            };
-            $scope.pop2={
-                opened:false
-            };
-            $scope.openpop1=function(){
-                $scope.pop1.opened=true;
-            };
-            $scope.openpop2=function(){
-                $scope.pop2.opened=true;
-            };
+           $scope.formats=['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate']
+           $scope.format=$scope.formats[0];
+           //datepickerpopup的数据
+           $scope.today=new Date();
+           $scope.altInputFormats=['yyyy/M!/d!','yyyy.M!.d!','yyyy M! d!'];//手动输入支持的格式
+           $scope.datepickerOptions1={
+               maxDate:$scope.today,
+               startingDay:1
+           };
+           //打开popup
+           $scope.pop1={
+               opened:false
+           };
+           $scope.openpop1=function(){
+               $scope.pop1.opened=true;
+           };
 
-            //监听dt1 和dt2 如果dt1 变化就设置 datepickeroptions.mindate就变化
-            $scope.$watch('searchEntity.lostTime1',function(newValue,oldValue){
-                $scope.datepickerOptions2.minDate=newValue;
-            });
-            $scope.$watch('searchEntity.lostTime2',function(newValue,oldValue){
-                $scope.datepickerOptions1.maxDate=newValue;
-            });
-            /*手动输入限制 使用表单验证
-            *datepicker输入限制 使用maxDate minDate
-            *startPopup   最小时间  没有限制 最大时间 endTime
-            *endPopup 最小时间 startTime 最大时间 today
-            */
-          //日期控件引入结束
+           //监听dt1 和dt2 如果dt1 变化就设置 datepickeroptions.mindate就变化
+           $scope.$watch('lostEntity.lostTime',function(newValue,oldValue){
+           });
+           /*手动输入限制 使用表单验证
+           *datepicker输入限制 使用maxDate minDate
+           *startPopup   最小时间  没有限制 最大时间 endTime
+           *endPopup 最小时间 startTime 最大时间 today
+           */
+         //日期控件引入结束
 			
 			//查询所有失物分类
 			$scope.findAllCategory=function(){
@@ -102,8 +93,9 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 					lostService.validate($scope.entity).success(
 							function(response){
 								console.log("response============：" + response);	
-								if(response.msg == "OK"){
-									$("#msg").html("<font color='red'>密码正确！</font>");
+								if(response.msg == "OK"){	
+									$("#confirmPassword").val($scope.lostEntity.password).trigger('change');
+									$("#modal-620847").trigger("click");							
 								}else if(response.msg == 'ERROR'){
 									$("#msg").html("<font color='red'>密码错误！请重新输入。</font>");
 								}
@@ -111,6 +103,32 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 					);
 				}
 				
+			}
+			
+			//更新失物信息
+			$scope.update=function(){
+				if($scope.lostEntity.categoryId != null && $scope.lostEntity.lostPlace != null 
+						&& $scope.lostEntity.lostTime != null && $scope.lostEntity.infotitle != null 
+						&& $scope.lostEntity.email != null && $scope.lostEntity.description != null
+						&& $scope.lostEntity.password != null && $scope.confirmPwd != null){
+								
+						if($scope.lostEntity.password != $scope.confirmPwd){
+							$("#lostMsg").html("<font color='red'>密码不一致！请重新填写。</font>");
+						}else if($scope.lostEntity.password.length < 6 || $scope.confirmPwd.length < 6){
+							$("#lostMsg").html("<font color='red'>密码不得少于6位！请重新填写。</font>");
+						}else{
+								lostService.update($scope.lostEntity).success(
+									function(response){
+										if(response.status == 200){
+											layer.msg('修改成功', {icon: 1,time:1200});
+											window.location.reload();
+										}else{
+											alert(response.message);
+										}
+									}
+								)
+						}
+				}
 			}
 			
 			//新增或更新数据
@@ -135,8 +153,12 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 			}
 			
 			//根据ID查询失物
-			$scope.findOne=function(id){
-				lostService.findOne(id);
+			$scope.findOne=function(){
+				lostService.findOne().success(
+						function(response){
+							$scope.lostEntity=response;//显示当前页数据
+						}
+				);
 			}
 			
 			//删除

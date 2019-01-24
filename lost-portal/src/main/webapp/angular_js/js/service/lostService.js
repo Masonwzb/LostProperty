@@ -13,7 +13,7 @@
 			
 			//查询所有物品分类
 			this.findAllCategory=function(){
-				return $http.get("../category/findAll.action");
+				return $http.get( baseUrl + "/category/findAll.action");
 			}
 			
 			this.findAll=function(){
@@ -24,8 +24,8 @@
 				return $http.get('../lost/findPage.action?page='+page+'&size='+size);
 			}
 			
-			this.findOne=function(id){
-				return $http.get("../lost/findOne.action?id="+id);
+			this.findOne=function(){
+				return $http.get(baseUrl + "/lost/findOneUpdate/"+ goodsId +".action");
 			}
 			
 			this.add=function(entity){
@@ -38,7 +38,7 @@
 			}
 			
 			this.update=function(entity){
-				return $http.post("../lost/update.action",entity);
+				return $http.post(baseUrl + "/lost/update.action",entity);
 			}
 			
 			this.del=function(ids){

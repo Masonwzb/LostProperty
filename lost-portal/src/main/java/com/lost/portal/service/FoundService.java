@@ -15,7 +15,13 @@ public interface FoundService {
 	public PageResult getFoundByCondition(DetFound detFound,int page,int size);
 	//添加招领信息
 	public LostResult addFoundInfo(TbFound tbFound);
-	//根据Id查询招领信息
-	public DetFound getFoundById(Long foundId);
+	//根据Id查询明细招领信息
+	public DetFound getDetFoundById(Long foundId);
+	//验证密码是否正确
+	public LostResult getValidatePwd(TbFound tbFound);
+	//根据Id查询失物信息
+	public TbFound getFoundById(Long foundId);
+	//更新失物信息
+	public LostResult updateFound(TbFound tbFound);
 
 }

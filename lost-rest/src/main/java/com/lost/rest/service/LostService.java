@@ -15,10 +15,13 @@ public interface LostService {
 	public LostResult getLostByCondition(DetLost detLost,int page,int size);
 	//添加失物信息
 	public LostResult addLost(TbLost tbLost) throws Exception;
-	//根据ID查询失物信息
-	public LostResult getLostById(Long lostId);
+	//根据ID查询明细失物信息
+	public LostResult getDetLostById(Long lostId);
 	//验证管理密码是否正确
 	public LostResult getPwdValidate(TbLost tbLost);
-	
+	//更新失物信息
+	public LostResult updateLost(TbLost tbLost);
+	//根据ID查询失物
+	public LostResult getLostById(Long lostId);
 	
 }

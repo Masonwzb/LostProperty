@@ -17,6 +17,7 @@ public class DetLost {
 	private String tel;
 	private String qq;
 	private String address;
+	private String password;
 	private String keyword;
 	private Date lostTime1;
 	private Date lostTime2;
@@ -161,6 +162,14 @@ public class DetLost {
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 

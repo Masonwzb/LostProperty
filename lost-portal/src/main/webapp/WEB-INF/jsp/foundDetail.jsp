@@ -11,6 +11,14 @@
 <!-- link start -->
 <jsp:include page="commons/head-link.jsp"/>
 <!-- link end -->
+<!-- comment script start -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/base_pageUibs.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/baseController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/service/commentService.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/commentController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/service/foundService.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/foundController.js"></script>
+<!-- comment script end -->
 </head>
 <body ng-app="portalRest">
 <!-- header start-->
@@ -98,6 +106,13 @@
 						<ul id="myTab" class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">详情描述</a></li>
 							<li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">评论</a></li>
+							<li role="presentation" class="dropdown">
+								<a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents">管理启事 <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+									<li><a href="#dropdown1" tabindex="-1" role="tab" id="dropdown1-tab" data-toggle="tab" aria-controls="dropdown1">修改</a></li>
+									<li><a href="#dropdown2" tabindex="-1" role="tab" id="dropdown2-tab" data-toggle="tab" aria-controls="dropdown2">删除</a></li>
+								</ul>
+							</li>
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="home" aria-labelledby="home-tab">
@@ -135,6 +150,33 @@
 									</div>
 								</div>
 							</div>
+							
+							<div ng-controller="foundController" role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="dropdown1" aria-labelledby="dropdown1-tab">
+								
+								<!-- password -->
+									<div class="login-form-grids">
+										<h5>请输入管理密码</h5>
+										<form>
+											<input type="password" ng-model="entity.password" placeholder="管理密码" required="" >
+											<span id="msg"></span>
+											<input type="submit" ng-click="validate()" value="前往修改">
+										</form>	
+									</div>
+							<!-- //password -->
+							
+							</div>
+							<div role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="dropdown2" aria-labelledby="dropdown2-tab">
+							<!-- password -->
+									<div class="login-form-grids">
+										<h5>请输入管理密码</h5>
+										<form>
+											<input type="password" name="password" placeholder="管理密码" required="" >
+											<input type="submit" value="确认删除">
+										</form>	
+									</div>
+							<!-- //password -->
+							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -148,6 +190,175 @@
 				<div class="clearfix"> </div>
 			</div>
 			
+			<a id="modal-620847" href="#modal-container-620847" role="button" class="btn" data-toggle="modal"></a>
+			
+			<div ng-controller="foundController" class="modal fade" id="modal-container-620847" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" onclick="window.location.reload();" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								<b>修改招领启事</b><i>（表单中图片为回显图片，如需更新请重新上传。）</i>
+							</h4>
+						</div>
+						<div class="modal-body">						
+						
+								<form>
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i> 信息标题</span>
+										<input type="text" ng-model="foundEntity.infotitle" class="form-control" aria-describedby="basic-addon1" required="">
+									</div>
+					
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i> 拾取地点</span>
+										<input type="text" ng-model="foundEntity.foundPlace" class="form-control" aria-describedby="basic-addon1" required="">
+									</div>
+													 
+									<div class="form-inline">
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i> 招领类别</span>
+											<select class="form-control" required="" ng-model="foundEntity.categoryId" 
+											ng-options="categoryEntity.id as categoryEntity.categoryName for categoryEntity in categoryList"></select>
+										</div>
+									</div>
+									
+									<c:if test="${!empty found.images }">
+										<div class="form-inline">
+											<a href="#"><img src="${pageContext.request.contextPath}/{{foundEntity.images}}" style="height: 120px;width: 120px" alt=" " class="img-responsive" /></a>
+										</div>
+									</c:if>
+									
+									
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-picture"></i> 选择图片</span>
+							        	<div class="file-loading">
+											<input id="imagesFile" name="imagesFile" type="file">
+										</div>
+										<div id="errorBlocks" class="help-block"></div>
+										<input type="text" ng-model="foundEntity.images" hidden name="image"/>
+									</div>
+									
+									<div class="form-inline">
+										
+										<div class="input-group">
+											<p class="input-group">
+												<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i> 拾取日期</span>
+								                <input class="form-control" uib-datepicker-popup="{{format}}" ng-model="foundEntity.foundTime" is-open="pop1.opened" 
+								                      required="" popup-placement="top" close-text="关闭" clear-text="清空" current-text="今天" alt-input-formats="altInputFormats" datepicker-options="datepickerOptions1"/>
+								                <span class="input-group-btn">
+								                    <button class="btn btn-default" ng-click="openpop1()"><i class="glyphicon  glyphicon-calendar"></i></button>
+								                </span>
+								            </p>
+										</div>
+									
+									</div>
+									
+									<div class="form-inline">
+															
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-user"></i> 联系人</span>
+											<input type="text" ng-model="foundEntity.contacts" class="form-control" aria-describedby="basic-addon1">
+										</div>
+									
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-earphone"></i> 手机号码</span>
+											<input type="text" ng-model="foundEntity.tel" class="form-control" aria-describedby="basic-addon1">
+										</div>
+									
+									</div>
+									
+									<div class="form-inline">
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-star"></i> 联系邮箱</span>
+											<input type="email" ng-model="foundEntity.email" class="form-control" required="" aria-describedby="basic-addon1">
+										</div>
+										
+										<div class="input-group">
+											<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-plus"></i> QQ号码</span>
+											<input type="text" ng-model="foundEntity.QQ" class="form-control" aria-describedby="basic-addon1">
+										</div>					
+									</div>	
+									
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-map-marker"></i> 联系地址</span>
+										<input type="text" ng-model="foundEntity.address" class="form-control" aria-describedby="basic-addon1">
+									</div>
+															
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class=" glyphicon glyphicon-star"></i> 详情描述</span>
+										<textarea type="text"  style="height:100px" ng-model="foundEntity.description" class="form-control" required="">{{foundEntity.description}}</textarea>
+									</div>
+									
+									<h5><i class="glyphicon glyphicon-star"></i>必填，请牢记该密码（修改、删除信息使用）</h5>
+									
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-lock"></i> 管理密码</span>
+										<input type="password" ng-model="foundEntity.password" class="form-control" aria-describedby="basic-addon1" required="">
+									</div>
+									
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-lock"></i> 确认密码</span>
+										<input type="password" id="confirmPassword" ng-model="confirmPwd" class="form-control" aria-describedby="basic-addon1" required="">
+									</div>
+									
+									<div>
+										<span id="foundMsg"></span>
+									</div>
+									
+									<div class="modal-footer">
+										 <button type="button" onclick="window.location.reload();" class="btn btn-default" data-dismiss="modal">关闭</button> 
+										 <input type="submit" class="btn btn-primary" ng-click="update()" value="确认修改">
+									</div>
+									
+								</form>
+								
+						</div>
+					</div>
+					
+				</div>
+				
+		   </div>
+		   
+		   <!--图片上传 开始-->
+			 <link href="${pageContext.request.contextPath}/fileUpload/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+			 <link href="${pageContext.request.contextPath}/fileUpload/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
+			 <script src="${pageContext.request.contextPath}/fileUpload/js/plugins/sortable.js" type="text/javascript"></script>
+			 <script src="${pageContext.request.contextPath}/fileUpload/js/fileinput.js" type="text/javascript"></script>
+			 <script src="${pageContext.request.contextPath}/fileUpload/js/locales/zh.js" type="text/javascript"></script>
+			 <script src="${pageContext.request.contextPath}/fileUpload/themes/fas/theme.js" type="text/javascript"></script>
+			 <script src="${pageContext.request.contextPath}/fileUpload/themes/explorer-fas/theme.js" type="text/javascript"></script>
+			<!--图片上传结束 -->
+			
+		  <script>
+			    $(document).ready(function () {
+			    	$("#imagesFile").fileinput({
+				 		theme: 'fas',
+				 		language: 'zh',
+				 		showCaption: false, 
+				 		dropZoneEnabled: false,
+				 		showUpload: true,
+				 		showRemove: false,
+				 		uploadUrl: '${pageContext.request.contextPath}/pic/upload.action',
+				 		elErrorContainer: '#errorBlocks',
+				 		allowedFileExtensions: ['jpg', 'png', 'gif'],
+				 		fileActionSettings:{
+				 			showRemove: false,
+						    showUpload: false,
+						    showZoom: false,
+						    showDrag: true,
+				 		}
+				 	}).on('fileerror', function(event, data) {
+			        			layer.msg('上传失败', {icon: 2,time:1200});
+							}).on('fileuploaded', function(event, data) {
+									//设置image路径
+									$("input[name='image']").val(data.response.url).trigger('change');
+									layer.msg('上传成功', {icon: 1,time:1200});
+			         			});
+			    });
+			
+			</script>
+			
+			
 		</div>
 	</div>
 <!-- //single -->
@@ -157,13 +368,6 @@
 <!-- fooer start-->
 <jsp:include page="commons/footer.jsp"/>
 <!-- //footer end-->
-
-<!-- comment script start -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/base_pagination.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/baseController.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/service/commentService.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/angular_js/js/controller/commentController.js"></script>
-<!-- comment script end -->
 
 </body>
 </html>

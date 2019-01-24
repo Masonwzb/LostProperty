@@ -18,6 +18,12 @@ public interface FoundService {
 	//添加招领信息
 	public LostResult addFound(TbFound tbFound) throws Exception;
 	//根据ID查询招领物信息
+	public LostResult getDetFoundById(Long foundId);
+	//验证管理密码是否正确
+	public LostResult getPwdValidate(TbFound tbFound);
+	//更新招领物信息
+	public LostResult updateFound(TbFound tbFound);
+	//根据ID查询招领物
 	public LostResult getFoundById(Long foundId);
 
 }

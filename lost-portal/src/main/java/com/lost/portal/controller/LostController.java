@@ -3,6 +3,7 @@ package com.lost.portal.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,11 +59,11 @@ public class LostController {
 	}
 	
 	/*
-	 * 根据Id获取失物信息
+	 * 根据Id获取明细失物详细信息
 	 */
 	@RequestMapping("/findOne/{lostId}")
-	public String findLostById(@PathVariable Long lostId,Model model){
-		DetLost lost = lostService.getLostById(lostId);
+	public String findDetLostById(@PathVariable Long lostId,Model model){
+		DetLost lost = lostService.getDetLostById(lostId);
 		model.addAttribute("lost",lost);
 		//增加该失物文章信息浏览次数
 		TbTextinfo textInfo = textService.getTextInfo(lostId);
@@ -72,12 +73,32 @@ public class LostController {
 	}
 	
 	/*
+	 * 更新失物根据ID查询信息
+	 */
+	@RequestMapping("/findOneUpdate/{lostId}")
+	@ResponseBody
+	public TbLost findLostByIdUpdate(@PathVariable Long lostId){
+		TbLost result = lostService.getLostById(lostId);
+		
+		return result;
+	}
+	
+	/*
 	 * 验证密码是否正确
 	 */
 	@RequestMapping("/pwd/validate")
 	@ResponseBody
 	public LostResult validatePwd(@RequestBody TbLost tbLost){
 		return lostService.getValidatePwd(tbLost);
+	}
+	
+	/*
+	 * 更新失物信息
+	 */
+	@RequestMapping("/update")
+	@ResponseBody
+	public LostResult toUpdateLost(@RequestBody TbLost tbLost){
+		return lostService.updateLost(tbLost);
 	}
 	
 	

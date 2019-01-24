@@ -108,7 +108,6 @@ app.controller('addLostController',function($scope,$location,$timeout,$controlle
 									}
 								)
 						}
-								
 				}
 			}
 			
