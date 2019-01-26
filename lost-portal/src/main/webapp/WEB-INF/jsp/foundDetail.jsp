@@ -70,6 +70,14 @@
 						<!-- 放置文字位置点 -->
 					</div>
 				</div>
+				
+				<div class="men-position animated wow slideInUp" data-wow-delay=".5s">
+					<a href="#"><img src="${pageContext.request.contextPath}/images/ship.jpg" alt=" " class="img-responsive" /></a>
+					<div class="men-position-pos">
+						<!-- 放置文字位置点 -->
+					</div>
+				</div>
+				
 			</div>
 			<div class="col-md-8 single-right">
 				<div class="col-md-5 single-right-left animated wow slideInUp" data-wow-delay=".5s">
@@ -165,13 +173,14 @@
 							<!-- //password -->
 							
 							</div>
-							<div role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="dropdown2" aria-labelledby="dropdown2-tab">
+							<div ng-controller="foundController" role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="dropdown2" aria-labelledby="dropdown2-tab">
 							<!-- password -->
 									<div class="login-form-grids">
 										<h5>请输入管理密码</h5>
 										<form>
-											<input type="password" name="password" placeholder="管理密码" required="" >
-											<input type="submit" value="确认删除">
+											<input type="password" ng-model="entity.password" placeholder="管理密码" required="" >
+											<span id="msgDel"></span>
+											<input type="submit" ng-click="validateDel()" value="确认删除">
 										</form>	
 									</div>
 							<!-- //password -->
@@ -198,7 +207,7 @@
 						<div class="modal-header">
 							 <button type="button" onclick="window.location.reload();" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 							<h4 class="modal-title" id="myModalLabel">
-								<b>修改招领启事</b><i>（表单中图片为回显图片，如需更新请重新上传。）</i>
+								修改招领启事（表单中图片为回显图片，如需更新请重新上传。）
 							</h4>
 						</div>
 						<div class="modal-body">						
@@ -270,7 +279,7 @@
 									<div class="form-inline">
 										<div class="input-group">
 											<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-star"></i> 联系邮箱</span>
-											<input type="email" ng-model="foundEntity.email" class="form-control" required="" aria-describedby="basic-addon1">
+											<input type="email" ng-model="foundEntity.email" class="form-control" placeholder="忘记密码可通过邮箱找回" required="" aria-describedby="basic-addon1">
 										</div>
 										
 										<div class="input-group">

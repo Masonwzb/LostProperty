@@ -67,7 +67,7 @@ public class FoundController {
 	}
 	
 	/*
-	 * 更新失物信息
+	 * 更新招领信息
 	 */
 	@RequestMapping("/update")
 	public LostResult updateFoundById(@RequestBody TbFound tbFound){
@@ -75,11 +75,19 @@ public class FoundController {
 	}
 	
 	/*
-	 * 根据ID查询失物
+	 * 根据ID查询招领
 	 */
 	@RequestMapping("/findOne/update/{foundId}")
 	public LostResult selectFoundById(@PathVariable Long foundId){
 		return foundService.getFoundById(foundId);
+	}
+	
+	/*
+	 * 删除招领信息并级联删除启事信息和评论信息
+	 */
+	@RequestMapping("/delete/{foundId}")
+	public LostResult removeFound(@PathVariable Long foundId){
+		return foundService.deleteFound(foundId);
 	}
 	
 	

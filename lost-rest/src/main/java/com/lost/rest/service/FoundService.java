@@ -25,5 +25,7 @@ public interface FoundService {
 	public LostResult updateFound(TbFound tbFound);
 	//根据ID查询招领物
 	public LostResult getFoundById(Long foundId);
+	//删除招领信息并级联删除启事信息和评论信息
+	public LostResult deleteFound(Long foundId);
 
 }

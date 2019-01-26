@@ -81,5 +81,20 @@ public class LostController {
 		return lostService.getLostById(lostId);
 	}
 	
+	/*
+	 * 删除失物信息并级联删除启事信息和评论信息
+	 */
+	@RequestMapping("/delete/{lostId}")
+	public LostResult removeLost(@PathVariable Long lostId){
+		return lostService.deleteLost(lostId);
+	}
+	
+	/*
+	 * 获取失物管理密码发送邮件给用户
+	 */
+	@RequestMapping("/sendEmail/{lostId}")
+	public LostResult sentEmailToUser(@PathVariable Long lostId){
+		return lostService.sendEmail(lostId);
+	}
 	
 }

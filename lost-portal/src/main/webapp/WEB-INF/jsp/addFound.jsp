@@ -121,6 +121,7 @@
 							<input type="text" ng-model="entity.QQ" class="form-control" placeholder="QQ号码" aria-describedby="basic-addon1">
 						</div>					
 					</div>	
+										<h5 class="animated wow slideInUp" data-wow-delay=".5s"><i class="glyphicon glyphicon-star"></i>联系邮箱必填！忘记密码时可通过邮箱找回</h5>
 					
 					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 						<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-map-marker"></i></span>

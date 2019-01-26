@@ -41,8 +41,8 @@
 				return $http.post(baseUrl + "/lost/update.action",entity);
 			}
 			
-			this.del=function(ids){
-				return $http.get('../lost/delete.action?ids='+ids);
+			this.del=function(){
+				return $http.get(baseUrl + "/lost/delete/"+ goodsId +".action");
 			}
 			
 			this.search=function(page,size,searchEntity){

@@ -11,8 +11,12 @@ import com.lost.common.pojo.LostResult;
 import com.lost.common.pojo.PageResult;
 import com.lost.customMapper.DetFoundMapper;
 import com.lost.customPojo.DetFound;
+import com.lost.mapper.TbCommentMapper;
 import com.lost.mapper.TbFoundMapper;
+import com.lost.mapper.TbTextinfoMapper;
+import com.lost.pojo.TbCommentExample;
 import com.lost.pojo.TbFound;
+import com.lost.pojo.TbTextinfoExample;
 import com.lost.service.FoundService;
 @Service
 public class FoundServiceImpl implements FoundService{
@@ -21,6 +25,10 @@ public class FoundServiceImpl implements FoundService{
 	private TbFoundMapper foundMapper;
 	@Autowired
 	private DetFoundMapper detFoundMapper;
+	@Autowired 
+	private TbTextinfoMapper textInfoMapper;
+	@Autowired
+	private TbCommentMapper commentMapper;
 	
 	//查询所有招领物
 	@Override
@@ -64,6 +72,20 @@ public class FoundServiceImpl implements FoundService{
 	public LostResult deleteFound(Long[] ids) {
 		for (Long id : ids) {
 			foundMapper.deleteByPrimaryKey(id);
+			
+			//删除启事信息
+			//根据物品ID删除
+			TbTextinfoExample example = new TbTextinfoExample();
+			com.lost.pojo.TbTextinfoExample.Criteria createCriteria = example.createCriteria();
+			createCriteria.andGoodsIdEqualTo(id);
+			textInfoMapper.deleteByExample(example);
+			
+			//删除评论信息
+			//根据物品ID删除
+			TbCommentExample example2 = new TbCommentExample();
+			com.lost.pojo.TbCommentExample.Criteria createCriteria2 = example2.createCriteria();
+			createCriteria2.andGoodsIdEqualTo(id);
+			commentMapper.deleteByExample(example2);
 		}
 		return LostResult.ok();
 	}

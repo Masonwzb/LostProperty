@@ -96,32 +96,25 @@
 					
 					</div>
 					
-					<div class="form-inline">				
+					<div class="form-inline">
+								
 						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 							<span class="input-group-addon" id="basic-addon1">$</span>
 							<input type="text" ng-model="entity.rewards" class="form-control" placeholder="悬赏金额" aria-describedby="basic-addon1">
-							<span class="input-group-addon">不填则默认为空。</span>
-						</div>			
-					</div>
-					
-					<div class="form-inline">
+						</div>
 											
 						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 							<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-user"></i></span>
 							<input type="text" ng-model="entity.contacts" class="form-control" placeholder="联系人" aria-describedby="basic-addon1">
 						</div>
+											
+					</div>
+					
+					<div class="form-inline">
 					
 						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 							<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-earphone"></i></span>
 							<input type="text" ng-model="entity.tel" class="form-control" placeholder="手机号码" aria-describedby="basic-addon1">
-						</div>
-					
-					</div>
-					
-					<div class="form-inline">
-						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-							<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-star"></i></span>
-							<input type="email" ng-model="entity.email" class="form-control" required="" placeholder="联系邮箱" aria-describedby="basic-addon1">
 						</div>
 						
 						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
@@ -129,6 +122,14 @@
 							<input type="text" ng-model="entity.QQ" class="form-control" placeholder="QQ号码" aria-describedby="basic-addon1">
 						</div>					
 					</div>	
+					
+					<div class="form-inline">									
+						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+							<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-star"></i></span>
+							<input type="email" ng-model="entity.email" class="form-control" required="" placeholder="联系邮箱" aria-describedby="basic-addon1">
+							<span class="input-group-addon" id="basic-addon1">必填！忘记密码时可通过邮箱找回</span>
+						</div>	
+					</div>
 					
 					<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 						<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-map-marker"></i></span>

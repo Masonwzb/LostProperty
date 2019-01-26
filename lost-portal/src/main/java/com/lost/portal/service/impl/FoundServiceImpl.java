@@ -40,6 +40,8 @@ public class FoundServiceImpl implements FoundService {
 	private String REST_BY_ID_FOUND;
 	@Value("${REST_UPDATE_FOUND}")
 	private String REST_UPDATE_FOUND;
+	@Value("${REST_DELETE_FOUND}")
+	private String REST_DELETE_FOUND;
 	
 	
 	//根据时间查询失物
@@ -197,5 +199,24 @@ public class FoundServiceImpl implements FoundService {
 		
 		return null;
 	}
+
+	/*
+	 * 删除失物信息级联删除启事信息和评论信息
+	 */
+	@Override
+	public LostResult deleteFound(Long foundId) {
+		try {
+			// 获取服务层信息
+			String jsons = HttpClientUtil.doGet(REST_BASE_URL + REST_DELETE_FOUND + foundId);
+			//判断jsons是否为空
+			if(!StringUtils.isEmpty(jsons)){
+				return LostResult.ok();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 }

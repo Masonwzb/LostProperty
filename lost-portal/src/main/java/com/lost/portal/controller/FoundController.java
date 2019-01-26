@@ -97,4 +97,13 @@ public class FoundController {
 		return foundService.updateFound(tbFound);
 	}
 	
+	/*
+	 * 删除招领信息级联删除启事信息和评论信息
+	 */
+	@RequestMapping("/delete/{foundId}")
+	@ResponseBody
+	public LostResult removeFound(@PathVariable Long foundId){
+		return foundService.deleteFound(foundId);
+	}
+	
 }

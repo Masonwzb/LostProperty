@@ -15,11 +15,15 @@ import com.lost.customMapper.DetFoundMapper;
 import com.lost.customMapper.DetLostMapper;
 import com.lost.customPojo.DetFound;
 import com.lost.customPojo.DetLost;
+import com.lost.mapper.TbCommentMapper;
 import com.lost.mapper.TbFoundMapper;
 import com.lost.mapper.TbTextinfoMapper;
+import com.lost.pojo.TbCommentExample;
 import com.lost.pojo.TbFound;
 import com.lost.pojo.TbLost;
 import com.lost.pojo.TbTextinfo;
+import com.lost.pojo.TbTextinfoExample;
+import com.lost.pojo.TbTextinfoExample.Criteria;
 import com.lost.rest.service.FoundService;
 @Service
 public class FoundServiceImpl implements FoundService {
@@ -30,6 +34,8 @@ public class FoundServiceImpl implements FoundService {
 	private DetFoundMapper detFoundMapper;
 	@Autowired
 	private TbTextinfoMapper textInfoMapper;
+	@Autowired
+	private TbCommentMapper commentMapper;
 
 	/*
 	 * 根据时间查询招领物
@@ -154,6 +160,37 @@ public class FoundServiceImpl implements FoundService {
 		TbFound found = foundMapper.selectByPrimaryKey(foundId);
 		
 		return LostResult.ok(found);
+	}
+
+	/*
+	 * 删除招领信息并级联删除启事信息和评论信息
+	 */
+	@Override
+	public LostResult deleteFound(Long foundId) {
+		try {
+			//删除失物信息
+			foundMapper.deleteByPrimaryKey(foundId);
+			
+			//删除启事信息
+			//根据物品ID删除
+			TbTextinfoExample example = new TbTextinfoExample();
+			Criteria createCriteria = example.createCriteria();
+			createCriteria.andGoodsIdEqualTo(foundId);
+			textInfoMapper.deleteByExample(example);
+			
+			//删除评论信息
+			//根据物品ID删除
+			TbCommentExample example2 = new TbCommentExample();
+			com.lost.pojo.TbCommentExample.Criteria createCriteria2 = example2.createCriteria();
+			createCriteria2.andGoodsIdEqualTo(foundId);
+			commentMapper.deleteByExample(example2);
+			
+			return LostResult.ok();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 

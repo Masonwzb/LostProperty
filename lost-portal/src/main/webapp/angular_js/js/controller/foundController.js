@@ -162,20 +162,37 @@ app.controller('foundController',function($scope,$timeout,$controller,foundServi
 				);
 			}
 			
+			/*
+			 * 验证管理密码是否正确并删除
+			 */
+			$scope.validateDel=function(){
+				
+				if($scope.entity.password != null){
+					foundService.validate($scope.entity).success(
+							function(response){
+								console.log("response============：" + response);	
+								if(response.msg == "OK"){	
+									$scope.del();						
+								}else if(response.msg == 'ERROR'){
+									$("#msgDel").html("<font color='red'>密码错误！请重新输入。</font>");
+								}
+							}
+					);
+				}
+				
+			}
+			
 			//删除
 			$scope.del=function(){
-				if($scope.selectIds.length == 0){
-					layer.alert('您还未有任何选中哦', {icon: 6});
-				}else{
-					layer.confirm('您确定要删除吗？', {
+					layer.confirm('您确定要删除该启事吗？', {
 						  btn: ['确定','取消'] //按钮
 						}, function(){
 							
-							foundService.del($scope.selectIds).success(
+							foundService.del().success(
 									function(response){
 										if(response.status == 200){
-											$scope.reloadList();//刷新
-											 layer.msg('删除成功', {icon: 1,time: 1000});
+											 layer.msg('删除成功', {icon: 1,time: 1200});
+											 window.location = baseUrl2 + "/index.html";
 										}else{
 											alert(response.message);
 										}
@@ -187,7 +204,6 @@ app.controller('foundController',function($scope,$timeout,$controller,foundServi
 						   // btn: ['明白了', '知道了']
 						  //});
 						})
-				 	}
 			}
 			
 			//条件查询

@@ -1,4 +1,4 @@
-package com.lost.portal.controller;
+ package com.lost.portal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -99,6 +99,15 @@ public class LostController {
 	@ResponseBody
 	public LostResult toUpdateLost(@RequestBody TbLost tbLost){
 		return lostService.updateLost(tbLost);
+	}
+	
+	/*
+	 * 删除失物信息级联删除启事信息和评论信息
+	 */
+	@RequestMapping("/delete/{lostId}")
+	@ResponseBody
+	public LostResult removeLost(@PathVariable Long lostId){
+		return lostService.deleteLost(lostId);
 	}
 	
 	

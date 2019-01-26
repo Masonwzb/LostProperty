@@ -21,6 +21,7 @@ public interface LostService {
 	public TbLost getLostById(Long lostId);
 	//更新失物信息
 	public LostResult updateLost(TbLost tbLost);
-	
+	//删除失物信息级联删除启事信息和评论信息
+	public LostResult deleteLost(Long lostId);
 	
 }

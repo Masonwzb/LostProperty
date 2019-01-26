@@ -12,9 +12,13 @@ import com.lost.common.pojo.LostResult;
 import com.lost.common.pojo.PageResult;
 import com.lost.customMapper.DetLostMapper;
 import com.lost.customPojo.DetLost;
+import com.lost.mapper.TbCommentMapper;
 import com.lost.mapper.TbLostMapper;
+import com.lost.mapper.TbTextinfoMapper;
+import com.lost.pojo.TbCommentExample;
 import com.lost.pojo.TbLost;
 import com.lost.pojo.TbLostExample;
+import com.lost.pojo.TbTextinfoExample;
 import com.lost.pojo.TbLostExample.Criteria;
 import com.lost.service.LostService;
 @Service
@@ -24,6 +28,10 @@ public class LostServiceImpl implements LostService{
 	private TbLostMapper lostMapper;
 	@Autowired
 	private DetLostMapper detLostMapper;
+	@Autowired 
+	private TbTextinfoMapper textInfoMapper;
+	@Autowired
+	private TbCommentMapper commentMapper;
 	
 	//查询所有失物
 	@Override
@@ -67,6 +75,20 @@ public class LostServiceImpl implements LostService{
 	public LostResult deleteLost(Long[] ids) {
 		for (Long id : ids) {
 			lostMapper.deleteByPrimaryKey(id);
+			
+			//删除启事信息
+			//根据物品ID删除
+			TbTextinfoExample example = new TbTextinfoExample();
+			com.lost.pojo.TbTextinfoExample.Criteria createCriteria = example.createCriteria();
+			createCriteria.andGoodsIdEqualTo(id);
+			textInfoMapper.deleteByExample(example);
+			
+			//删除评论信息
+			//根据物品ID删除
+			TbCommentExample example2 = new TbCommentExample();
+			com.lost.pojo.TbCommentExample.Criteria createCriteria2 = example2.createCriteria();
+			createCriteria2.andGoodsIdEqualTo(id);
+			commentMapper.deleteByExample(example2);
 		}
 		return LostResult.ok();
 	}
