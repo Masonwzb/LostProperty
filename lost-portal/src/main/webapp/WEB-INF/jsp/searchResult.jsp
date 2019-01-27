@@ -10,6 +10,25 @@
 <jsp:include page="commons/head-link.jsp"/>
 <!-- link end -->
 
+<style type="text/css">
+        .search
+        {
+            left: 0;
+            position: relative;
+        }
+        #auto_div
+        {
+            display: none;
+            width: 300px;
+            border: 1px #74c0f9 solid;
+            background: #FFF;
+            position: absolute;
+            top: 24px;
+            left: 0;
+            color: #323232;
+        }
+    </style>
+
 <!-- index script start -->
 <script type="text/javascript" src="angular_js/js/base_pagination.js"></script>
 <script type="text/javascript" src="angular_js/js/controller/baseController.js"></script>
@@ -43,7 +62,9 @@
 			<form>
 			    <div class="col-sm-9">
 	           		<div class="input-group">
-		            	<input type="text" ng-model="queryEntity.keyword" placeholder="输入物品特征快速查询信息..." class="form-control mySearch"/> 
+		            	<input type="text" id="search_text" ng-model="queryEntity.keyword" placeholder="输入物品特征快速查询信息..." class="form-control mySearch"/> 
+		            	<div id="auto_div" style="position:absolute;z-index: 999;top: 45px;width: 600px">
+	        			</div>
 		            	<span class="input-group-btn"> 
 		            		<button type="button" style="height:45px;width:150px" ng-click="reloadQuery()" class="btn btn-warning">搜索</button> 
 		            	</span>

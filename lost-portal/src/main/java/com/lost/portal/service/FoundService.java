@@ -1,5 +1,7 @@
 package com.lost.portal.service;
 
+import java.util.List;
+
 import com.lost.common.pojo.LostResult;
 import com.lost.common.pojo.PageResult;
 import com.lost.customPojo.DetFound;
@@ -24,6 +26,10 @@ public interface FoundService {
 	//更新失物信息
 	public LostResult updateFound(TbFound tbFound);
 	//删除招领信息级联删除启事信息和评论信息
-	public LostResult deleteFound(Long tbFound);
+	public LostResult deleteFound(Long foundId);
+	//根据物品ID发送邮件给用户
+	public LostResult sendEmail(Long foundId);
+	//获取所有失物
+	public List<TbFound> getAllFound();
 
 }

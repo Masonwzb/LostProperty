@@ -1,5 +1,7 @@
 package com.lost.portal.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -105,5 +107,24 @@ public class FoundController {
 	public LostResult removeFound(@PathVariable Long foundId){
 		return foundService.deleteFound(foundId);
 	}
+	
+	/*
+	 * 根据物品ID发送邮件给用户
+	 */
+	@RequestMapping("/sendEmail/{foundId}")
+	@ResponseBody
+	public LostResult sendEmailToUser(@PathVariable Long foundId){
+		return foundService.sendEmail(foundId);
+	}
+	
+	/*
+	 * 获取所有招领物
+	 */
+	@RequestMapping("/findAll")
+	@ResponseBody
+	public List<TbFound> findAllFound(){
+		return foundService.getAllFound();
+	}
+	
 	
 }

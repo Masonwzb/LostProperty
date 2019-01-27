@@ -48,5 +48,10 @@
 			this.search=function(page,size,searchEntity){
 				return $http.post('../lost/search.action?page='+page+'&size='+size,searchEntity);
 			}
+			
+			this.sendEmail=function(id){
+				return $http.get(baseUrl + "/lost/sendEmail/"+ id + ".action");
+			}
+			
 		
 		});

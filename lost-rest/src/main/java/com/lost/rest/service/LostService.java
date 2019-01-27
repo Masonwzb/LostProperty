@@ -27,5 +27,7 @@ public interface LostService {
 	public LostResult deleteLost(Long lostId);
 	//获取失物管理密码发送邮件给用户
 	public LostResult sendEmail(Long lostId);
+	//获取所有的失物信息
+	public LostResult getAllLost();
 	
 }

@@ -93,8 +93,16 @@ public class LostController {
 	 * 获取失物管理密码发送邮件给用户
 	 */
 	@RequestMapping("/sendEmail/{lostId}")
-	public LostResult sentEmailToUser(@PathVariable Long lostId){
+	public LostResult sendEmailToUser(@PathVariable Long lostId){
 		return lostService.sendEmail(lostId);
+	}
+	
+	/*
+	 * 获取所有失物信息
+	 */
+	@RequestMapping("/findAll")
+	public LostResult findAllLost(){
+		return lostService.getAllLost();
 	}
 	
 }

@@ -1,4 +1,4 @@
-	//品牌服务
+	//招领服务
 		app.service("foundService",function($http){
 		
 			//获取该物品ID
@@ -47,6 +47,10 @@
 			
 			this.search=function(page,size,searchEntity){
 				return $http.post('../found/search.action?page='+page+'&size='+size,searchEntity);
+			}
+			
+			this.sendEmail=function(id){
+				return $http.get(baseUrl + "/found/sendEmail/"+ id + ".action");
 			}
 		
 		});

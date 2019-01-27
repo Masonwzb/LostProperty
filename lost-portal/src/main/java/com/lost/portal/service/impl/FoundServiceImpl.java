@@ -42,6 +42,10 @@ public class FoundServiceImpl implements FoundService {
 	private String REST_UPDATE_FOUND;
 	@Value("${REST_DELETE_FOUND}")
 	private String REST_DELETE_FOUND;
+	@Value("${REST_SENDEMAIL_FOUND}")
+	private String REST_SENDEMAIL_FOUND;
+	@Value("${REST_ALL_FOUND}")
+	private String REST_ALL_FOUND;
 	
 	
 	//根据时间查询失物
@@ -217,6 +221,42 @@ public class FoundServiceImpl implements FoundService {
 		}
 		return null;
 	}
+	
+	/*
+	 * 根据物品ID发送邮件给用户
+	 */
+	@Override
+	public LostResult sendEmail(Long foundId) {
+		try {
+			// 获取服务层信息
+			String jsons = HttpClientUtil.doGet(REST_BASE_URL + REST_SENDEMAIL_FOUND + foundId);
+			//判断jsons是否为空
+			if(!StringUtils.isEmpty(jsons)){
+				return LostResult.ok();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	/*
+	 * 获取所有招领物
+	 */
+	@Override
+	public List<TbFound> getAllFound() {
+		//从数据层获取
+		String jsons = HttpClientUtil.doGet(REST_BASE_URL + REST_ALL_FOUND);
+		//将字符串转换为对象
+		LostResult listFound = LostResult.formatToList(jsons, TbFound.class);
+		if(listFound.getStatus() == 200){
+			List<TbFound> data = (List<TbFound>) listFound.getData();
+			return data;
+		}
+		return null;
+	}
+
 
 
 }

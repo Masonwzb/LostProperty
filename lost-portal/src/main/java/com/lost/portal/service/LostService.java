@@ -1,5 +1,7 @@
 package com.lost.portal.service;
 
+import java.util.List;
+
 import com.lost.common.pojo.LostResult;
 import com.lost.common.pojo.PageResult;
 import com.lost.customPojo.DetLost;
@@ -23,5 +25,9 @@ public interface LostService {
 	public LostResult updateLost(TbLost tbLost);
 	//删除失物信息级联删除启事信息和评论信息
 	public LostResult deleteLost(Long lostId);
+	//根据物品ID发送邮件给用户
+	public LostResult sendEmail(Long lostId);
+	//获取所有失物
+	public List<TbLost> getAllLost();
 	
 }

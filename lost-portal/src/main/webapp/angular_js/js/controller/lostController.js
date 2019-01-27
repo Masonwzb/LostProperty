@@ -205,6 +205,52 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 						})
 			}
 			
+			//发送邮件
+			$scope.sendEmail=function(){
+				
+				//倒计时开始
+				var InterValObj; //timer变量，控制时间
+				var count = 10; //间隔函数，1秒执行
+				var curCount;//当前剩余秒数
+				
+			  　      curCount = count;
+			　    　//设置button效果，开始计时
+			     $("#btnSendCode").attr("disabled", "true");
+			     $("#btnSendCode").val(curCount + "秒内可收到通知");
+			     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+			     
+			   //timer处理函数
+			     function SetRemainTime() {
+	                 if (curCount == 0) {                
+	                     window.clearInterval(InterValObj);//停止计时器
+	                     $("#btnSendCode").removeAttr("disabled");//启用按钮
+	                     $("#btnSendCode").val("重新发送");
+	                 }
+	                 else {
+	                     curCount--;
+	                     $("#btnSendCode").val(curCount + "秒内可收到通知");
+	                 }
+	             }
+			    //倒计时开始
+				
+				
+				//邮件发送
+				if($scope.entity.id != null){
+					
+					lostService.sendEmail($scope.entity.id).success(
+							function(response){
+								if(response.status == 200){
+									$("#emailMsg").html("<font color='green'>发送成功！管理密码已发送至您的邮箱。</font>");
+								}else{
+									$("#emailMsg").html("<font color='red'>发送失败！出现未知错误。</font>");
+								}
+							}
+					);
+					
+				}
+				
+			}
+			
 			
 			//条件查询
 			$scope.search=function(page,size){

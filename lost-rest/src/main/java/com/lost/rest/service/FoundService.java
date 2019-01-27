@@ -27,5 +27,9 @@ public interface FoundService {
 	public LostResult getFoundById(Long foundId);
 	//删除招领信息并级联删除启事信息和评论信息
 	public LostResult deleteFound(Long foundId);
+	//获取失物管理密码发送邮件给用户
+	public LostResult sendEmail(Long foundId);
+	//获取所有的招领物信息
+	public LostResult getAllFound();
 
 }

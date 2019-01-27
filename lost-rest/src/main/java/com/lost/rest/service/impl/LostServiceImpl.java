@@ -244,5 +244,15 @@ public class LostServiceImpl implements LostService {
 		return null;
 	}
 
+	/*
+	 * 获取所有失物信息
+	 */
+	@Override
+	public LostResult getAllLost() {
+		// 从数据库获取
+		List<TbLost> listLost = lostMapper.selectByExample(null);
+		return LostResult.ok(listLost);
+	}
+
 
 }

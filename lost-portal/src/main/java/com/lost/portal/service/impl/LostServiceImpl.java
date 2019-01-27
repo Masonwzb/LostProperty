@@ -40,6 +40,10 @@ public class LostServiceImpl implements LostService {
 	private String REST_UPDATE_LOST;
 	@Value("${REST_DELETE_LOST}")
 	private String REST_DELETE_LOST;
+	@Value("${REST_SENDEMAIL_LOST}")
+	private String REST_SENDEMAIL_LOST;
+	@Value("${REST_ALL_LOST}")
+	private String REST_ALL_LOST;
 	
 	
 	//根据时间查询失物
@@ -209,6 +213,40 @@ public class LostServiceImpl implements LostService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/*
+	 * 根据物品ID发送邮件给用户
+	 */
+	@Override
+	public LostResult sendEmail(Long lostId) {
+		try {
+			// 获取服务层信息
+			String jsons = HttpClientUtil.doGet(REST_BASE_URL + REST_SENDEMAIL_LOST + lostId);
+			//判断jsons是否为空
+			if(!StringUtils.isEmpty(jsons)){
+				return LostResult.ok();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/*
+	 * 获取所有失物
+	 */
+	@Override
+	public List<TbLost> getAllLost() {
+		//从数据层获取
+		String jsons = HttpClientUtil.doGet(REST_BASE_URL + REST_ALL_LOST);
+		//将字符串转换为对象
+		LostResult listLost = LostResult.formatToList(jsons, TbLost.class);
+		if(listLost.getStatus() == 200){
+			List<TbLost> data = (List<TbLost>) listLost.getData();
+			return data;
 		}
 		return null;
 	}

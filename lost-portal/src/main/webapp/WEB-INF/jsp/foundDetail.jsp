@@ -132,7 +132,7 @@
 									<div ng-repeat="comments in commentList" class="bootstrap-tab-text-grid">
 										<div class="bootstrap-tab-text-grid-right">
 											<ul>
-												<li><a href="#">网友{{comments.id}}</a></li>
+												<li><a href="#">信息{{comments.id}}</a></li>
 												<li class="time-type2">{{comments.commentTime | date:'yyyy-MM-dd HH:mm:ss'}}</li>
 											</ul>
 											<p>{{comments.commentText}}</p>
@@ -167,6 +167,7 @@
 										<form>
 											<input type="password" ng-model="entity.password" placeholder="管理密码" required="" >
 											<span id="msg"></span>
+											<a id="modal-473189" href="#modal-container-473189" role="button" class="btn" data-toggle="modal">忘记密码？</a>
 											<input type="submit" ng-click="validate()" value="前往修改">
 										</form>	
 									</div>
@@ -180,6 +181,7 @@
 										<form>
 											<input type="password" ng-model="entity.password" placeholder="管理密码" required="" >
 											<span id="msgDel"></span>
+											<a id="modal-473189" href="#modal-container-473189" role="button" class="btn" data-toggle="modal">忘记密码？</a>
 											<input type="submit" ng-click="validateDel()" value="确认删除">
 										</form>	
 									</div>
@@ -327,6 +329,37 @@
 				</div>
 				
 		   </div>
+		   
+		   <div ng-controller="foundController" class="modal fade" id="modal-container-473189" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								请输入信息编号，管理密码将发送至您的预留邮箱！
+							</h4>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<input type="text" class="form-control" ng-model="entity.id" placeholder="输入信息编号..."/>
+								</div>
+								
+								<div>
+									<span id="emailMsg"></span>
+								</div>
+								
+								<div class="modal-footer">
+									 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+									 <input type="submit" id="btnSendCode" class="btn btn-primary" ng-click="sendEmail()" value="确认发送">
+								</div>
+							</form>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
 		   
 		   <!--图片上传 开始-->
 			 <link href="${pageContext.request.contextPath}/fileUpload/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>

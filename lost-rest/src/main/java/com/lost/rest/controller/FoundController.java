@@ -90,5 +90,21 @@ public class FoundController {
 		return foundService.deleteFound(foundId);
 	}
 	
+	/*
+	 * 获取招领管理密码发送邮件给用户
+	 */
+	@RequestMapping("/sendEmail/{foundId}")
+	public LostResult sendEmailToUser(@PathVariable Long foundId){
+		return foundService.sendEmail(foundId);
+	}
+	
+	/*
+	 * 获取所有失物信息
+	 */
+	@RequestMapping("/findAll")
+	public LostResult findAllFound(){
+		return foundService.getAllFound();
+	}
+	
 	
 }
