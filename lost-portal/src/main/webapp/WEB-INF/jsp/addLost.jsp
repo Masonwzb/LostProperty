@@ -119,7 +119,7 @@
 						
 						<div class="input-group animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 							<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-plus"></i></span>
-							<input type="text" ng-model="entity.QQ" class="form-control" placeholder="QQ号码" aria-describedby="basic-addon1">
+							<input type="text" ng-model="entity.qq" class="form-control" placeholder="QQ号码" aria-describedby="basic-addon1">
 						</div>					
 					</div>	
 					

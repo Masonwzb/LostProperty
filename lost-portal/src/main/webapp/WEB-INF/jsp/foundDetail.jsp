@@ -46,7 +46,14 @@
 					<ul class="cate">
 						<li><a href="#">信息编号：</a><span>${found.id }</span></li>
 						<li><a href="#">浏览次数：</a><span>${foundTextInfo.pageView}次</span></li>
-						<li><a href="#">当前状态：</a><span>寻找中...</span></li>
+						<c:choose>
+								<c:when test="${foundTextInfo.status == 0 }">
+									<li><a href="#">当前状态：</a><span>寻找中...</span></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="#">当前状态：</a><span>已失效</span></li>
+								</c:otherwise>
+						</c:choose>
 						<c:if test="${!empty found.contacts }">
 							<li><a href="#">联系人：</a><span>${found.contacts }</span></li>
 						</c:if>
@@ -66,13 +73,6 @@
 				</div>
 				<div class="men-position animated wow slideInUp" data-wow-delay=".5s">
 					<a href="#"><img src="${pageContext.request.contextPath}/images/hamburger.jpg" alt=" " class="img-responsive" /></a>
-					<div class="men-position-pos">
-						<!-- 放置文字位置点 -->
-					</div>
-				</div>
-				
-				<div class="men-position animated wow slideInUp" data-wow-delay=".5s">
-					<a href="#"><img src="${pageContext.request.contextPath}/images/ship.jpg" alt=" " class="img-responsive" /></a>
 					<div class="men-position-pos">
 						<!-- 放置文字位置点 -->
 					</div>
@@ -286,7 +286,7 @@
 										
 										<div class="input-group">
 											<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-plus"></i> QQ号码</span>
-											<input type="text" ng-model="foundEntity.QQ" class="form-control" aria-describedby="basic-addon1">
+											<input type="text" ng-model="foundEntity.qq" class="form-control" aria-describedby="basic-addon1">
 										</div>					
 									</div>	
 									

@@ -1,6 +1,7 @@
 package com.lost.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.lost.common.pojo.LostResult;
 import com.lost.common.pojo.PageResult;
@@ -24,4 +25,7 @@ public interface LostService {
 	
 	//批量删除失物
 	public LostResult deleteLost(Long[] ids);
+	
+	//数据统计
+	public Map<String, String> LostStatistics();
 }

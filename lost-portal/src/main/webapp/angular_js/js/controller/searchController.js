@@ -9,7 +9,10 @@ app.controller('searchController',function($scope,$timeout,$controller,searchSer
 			
 			$(function(){
 				$scope.lostFindAll();
-				$scope.foundFindAll();
+				
+				setTimeout(function() {
+					$scope.foundFindAll();
+				}, 1000);
 				console.log(inputValue);
 			});
             
@@ -34,37 +37,40 @@ app.controller('searchController',function($scope,$timeout,$controller,searchSer
                     }
                     autoNode.empty();  //清空上次的记录
                     for (i in carlist) {
-                        var wordNode = carlist[i];   //弹出框里的每一条内容
-                        var newDivNode = $("<div>").attr("id", i);    //设置每个节点的id值
-                        newDivNode.attr("style", "font:14px/25px arial;height:25px;padding:0 8px;cursor: pointer;");
-                        newDivNode.html(wordNode.replace(old_value, "<strong>"+ old_value +"</strong>")).appendTo(autoNode);  //追加到弹出框
-                        //鼠标移入高亮，移开不高亮
-                        newDivNode.mouseover(function () {
-                            if (highlightindex != -1) {        //原来高亮的节点要取消高亮（是-1就不需要了）
-                                autoNode.children("div").eq(highlightindex).css("background-color", "white");
-                            }
-                            //记录新的高亮节点索引
-                            highlightindex = $(this).attr("id");
-                            $(this).css("background-color", "#ebebeb");
-                        });
-                        newDivNode.mouseout(function () {
-                            $(this).css("background-color", "white");
-                        });
-                        //鼠标点击文字上屏
-                        newDivNode.click(function () {
-                            //取出高亮节点的文本内容
-                            var comText = autoNode.hide().children("div").eq(highlightindex).text();
-                            highlightindex = -1;
-                            //文本框中的内容变成高亮节点的内容
-                            $("#" + search).val(comText).trigger("change");
-                        })
-                        if (carlist.length > 0) {    //如果返回值有内容就显示出来
-                            autoNode.show();
-                        } else {               //服务器端无内容返回 那么隐藏弹出框
-                            autoNode.hide();
-                            //弹出框隐藏的同时，高亮节点索引值也变成-1
-                            highlightindex = -1;
-                        }
+                    	//显示不超过8条数据标题
+                    	if(i < 8){
+	                        var wordNode = carlist[i];   //弹出框里的每一条内容
+	                        var newDivNode = $("<div>").attr("id", i);    //设置每个节点的id值
+	                        newDivNode.attr("style", "font:14px/25px arial;height:25px;padding:0 8px;cursor: pointer;");
+	                        newDivNode.html(wordNode.replace(old_value, "<strong>"+ old_value +"</strong>")).appendTo(autoNode);  //追加到弹出框
+	                        //鼠标移入高亮，移开不高亮
+	                        newDivNode.mouseover(function () {
+	                            if (highlightindex != -1) {        //原来高亮的节点要取消高亮（是-1就不需要了）
+	                                autoNode.children("div").eq(highlightindex).css("background-color", "white");
+	                            }
+	                            //记录新的高亮节点索引
+	                            highlightindex = $(this).attr("id");
+	                            $(this).css("background-color", "#ebebeb");
+	                        });
+	                        newDivNode.mouseout(function () {
+	                            $(this).css("background-color", "white");
+	                        });
+	                        //鼠标点击文字上屏
+	                        newDivNode.click(function () {
+	                            //取出高亮节点的文本内容
+	                            var comText = autoNode.hide().children("div").eq(highlightindex).text();
+	                            highlightindex = -1;
+	                            //文本框中的内容变成高亮节点的内容
+	                            $("#" + search).val(comText).trigger("change");
+	                        })
+	                        if (carlist.length > 0) {    //如果返回值有内容就显示出来
+	                            autoNode.show();
+	                        } else {               //服务器端无内容返回 那么隐藏弹出框
+	                            autoNode.hide();
+	                            //弹出框隐藏的同时，高亮节点索引值也变成-1
+	                            highlightindex = -1;
+	                        }
+                    	}
                     }
                 }
                 //点击页面隐藏自动补全提示框
@@ -105,7 +111,7 @@ app.controller('searchController',function($scope,$timeout,$controller,searchSer
             		}	
             	);
             }
-            
+
             $scope.foundFindAll=function(){
             	
             	searchService.foundFindAll().success(

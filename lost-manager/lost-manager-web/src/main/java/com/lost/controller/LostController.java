@@ -1,6 +1,7 @@
 package com.lost.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,6 +61,15 @@ public class LostController {
 	public LostResult deleteLost(Long[] ids){
 		LostResult result = lostService.deleteLost(ids);
 		return result;
+	}
+	
+	/*
+	 * 数据统计
+	 */
+	@RequestMapping("/statistics")
+	public LostResult LostStatistics(){
+		Map<String, String> result = lostService.LostStatistics();
+		return LostResult.ok(result);
 	}
 	
 	

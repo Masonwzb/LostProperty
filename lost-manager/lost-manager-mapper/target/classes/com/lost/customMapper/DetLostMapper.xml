@@ -58,6 +58,9 @@
 			<if test="lostPlace != null">
 				tl.lost_place LIKE "%"#{lostPlace,jdbcType=VARCHAR}"%"
 			</if>
+			<if test="infoTitle != null">
+				AND tl.infoTitle LIKE "%"#{infoTitle,jdbcType=VARCHAR}"%"
+			</if>
 			<if test="lostTime1 != null and lostTime2 != null">
 				AND tl.lost_time BETWEEN #{lostTime1,jdbcType=TIMESTAMP} AND #{lostTime2,jdbcType=TIMESTAMP}
 			</if>
