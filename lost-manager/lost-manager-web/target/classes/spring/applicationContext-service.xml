@@ -10,6 +10,7 @@
    <!-- bean definitions here -->
 
 	<!-- 扫描包，加载Service实现类 -->
-	<context:component-scan base-package="com.lost.service"></context:component-scan>
+	<context:component-scan base-package="com.lost.service,com.lost.security"></context:component-scan>
+	
 	
 </beans>

@@ -1,6 +1,7 @@
 com\lost\controller\LostController.class
 com\lost\interceptor\LoginInterceptor.class
 com\lost\controller\PageController.class
+com\lost\security\UserDetailServiceImpl.class
 com\lost\controller\UserController.class
 com\lost\filter\LoginFilter.class
 com\lost\controller\FoundController.class

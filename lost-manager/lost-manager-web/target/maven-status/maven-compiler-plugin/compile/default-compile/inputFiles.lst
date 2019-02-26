@@ -1,6 +1,7 @@
 D:\J2EE\diploma_project\git_lostProperty\lost-manager\lost-manager-web\src\main\java\com\lost\controller\PageController.java
 D:\J2EE\diploma_project\git_lostProperty\lost-manager\lost-manager-web\src\main\java\com\lost\filter\LoginFilter.java
 D:\J2EE\diploma_project\git_lostProperty\lost-manager\lost-manager-web\src\main\java\com\lost\controller\FoundController.java
+D:\J2EE\diploma_project\git_lostProperty\lost-manager\lost-manager-web\src\main\java\com\lost\security\UserDetailServiceImpl.java
 D:\J2EE\diploma_project\git_lostProperty\lost-manager\lost-manager-web\src\main\java\com\lost\controller\LostController.java
 D:\J2EE\diploma_project\git_lostProperty\lost-manager\lost-manager-web\src\main\java\com\lost\controller\UserController.java
 D:\J2EE\diploma_project\git_lostProperty\lost-manager\lost-manager-web\src\main\java\com\lost\controller\CategoryController.java

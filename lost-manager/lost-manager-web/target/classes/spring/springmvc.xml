@@ -34,12 +34,13 @@
 		<property name="maxUploadSize" value="5242880"></property>
 	</bean>
 	
-	<!-- 拦截器配置
+	<!-- 拦截器配置 
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/user/login.do"/>
 			<bean class="com.lost.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>-->
 
 </beans>

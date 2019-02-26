@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -36,7 +38,8 @@
             <h3>欢迎登录失物招领后台</h3>
             <p>等你来 领回去</p>
             <!-- onsubmit="return false;" 取消form表单提交响应 -->
-            <form id="formlogin" method="post" onsubmit="return false;">
+            <form id="formlogin" method="post" action="/login">
+            	<span style="color: red;">${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message }</span>
                  <div id="msg" class="alert alert-danger" style="display: none;">
                      	用户名或密码错误，请重新填写。
                  </div>
@@ -46,7 +49,7 @@
                 <div class="form-group">
                     <input type="password" id="loginpwd" name="password" class="form-control" placeholder="密码" required="">
                 </div>
-                <button type="submit" id="loginsubmit" onclick="login()" class="btn btn-primary full-width">登录</button>
+                <button type="submit" id="loginsubmit" class="btn btn-primary full-width">登录</button>
 
             </form>
             <p class="m-t"> <small>Copyright &copy; 2018-2019</small> </p>
@@ -64,7 +67,7 @@
 			
 				$.post("/user/login.do",$("#formlogin").serialize(),function(data){
 					if(data.status == 200){
-						window.location = "admin/index.html";
+						window.location = "/login";
 					}else{
 						$("#loginpwd").val("");
 						$("#loginpwd").select();

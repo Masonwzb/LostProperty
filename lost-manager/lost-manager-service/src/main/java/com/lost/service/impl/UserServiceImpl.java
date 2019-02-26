@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.lost.common.pojo.LostResult;
@@ -63,12 +64,15 @@ public class UserServiceImpl implements UserService {
 		List<TbUsers> list = userMapper.selectByExample(example);
 		TbUsers admin = list.get(0);
 		
-		if(!admin.getPassword().equals(oldPwd)){
+		//密码加密
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		if(!passwordEncoder.matches(oldPwd, admin.getPassword())){
 			return LostResult.build(400, "原密码输入错误!");
 		}
 		
 		//否则更新密码
-		admin.setPassword(newPwd);
+		String encode = passwordEncoder.encode(newPwd);
+		admin.setPassword(encode);
 		admin.setUpdated(new Date());
 		userMapper.updateByPrimaryKeySelective(admin);
 		return LostResult.ok();
