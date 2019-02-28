@@ -7,8 +7,6 @@ public class TbLost {
 
     private Long categoryId;
 
-    private Long userId;
-
     private String lostPlace;
 
     private Date lostTime;
@@ -18,6 +16,8 @@ public class TbLost {
     private String rewards;
 
     private String images;
+
+    private Integer status;
 
     private String contacts;
 
@@ -51,14 +51,6 @@ public class TbLost {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getLostPlace() {
@@ -99,6 +91,14 @@ public class TbLost {
 
     public void setImages(String images) {
         this.images = images == null ? null : images.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getContacts() {

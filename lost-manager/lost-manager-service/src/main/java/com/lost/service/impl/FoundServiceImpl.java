@@ -16,6 +16,7 @@ import com.lost.mapper.TbFoundMapper;
 import com.lost.mapper.TbTextinfoMapper;
 import com.lost.pojo.TbCommentExample;
 import com.lost.pojo.TbFound;
+import com.lost.pojo.TbLost;
 import com.lost.pojo.TbTextinfoExample;
 import com.lost.service.FoundService;
 @Service
@@ -87,6 +88,33 @@ public class FoundServiceImpl implements FoundService{
 			createCriteria2.andGoodsIdEqualTo(id);
 			commentMapper.deleteByExample(example2);
 		}
+		return LostResult.ok();
+	}
+
+	/*
+	 * 根据Id查询明细招领物
+	 */
+	@Override
+	public DetFound getDetFoundById(Long foundId) {
+		return detFoundMapper.selectFoundById(foundId);
+	}
+
+	/*
+	 * 更新状态
+	 */
+	@Override
+	public LostResult updateFoundStatus(Long foundId, int status) {
+		// 根据ID查询寻物启事
+		TbFound found = foundMapper.selectByPrimaryKey(foundId);
+		
+		//判断status如果为2：审核未通过则删除否则更新status
+		if(status == 2){
+			foundMapper.deleteByPrimaryKey(foundId);
+		}else{
+			found.setStatus(status);
+			foundMapper.updateByPrimaryKey(found);
+		}
+		
 		return LostResult.ok();
 	}
 

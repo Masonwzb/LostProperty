@@ -28,4 +28,14 @@ public interface LostService {
 	
 	//数据统计
 	public Map<String, String> LostStatistics();
+	
+	//根据ID查询明细失物
+	public DetLost getDetLostById(Long lostId);
+	
+	//更新寻物审核状态
+	public LostResult updateLostStatus(Long lostId,int status);
+	
+	//统计未审核数据
+	public Map<String, String> unaudited();
+	
 }

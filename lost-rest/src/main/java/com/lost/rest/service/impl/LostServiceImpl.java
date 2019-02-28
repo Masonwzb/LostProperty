@@ -75,16 +75,16 @@ public class LostServiceImpl implements LostService {
 	public LostResult addLost(TbLost tbLost) throws Exception{
 		// 补全失物信息
 		//设置ID
-		Long userId = (long) 2;
 		tbLost.setId(IDUtils.generateId());
 		
-		//添加添加失物详细文章信息
+		//添加失物详细文章信息
 		LostResult result = insertTextInfo(tbLost.getId());
 		if(result.getStatus() != 200){
 			throw new Exception();
 		}
 		
-		tbLost.setUserId(userId);
+		//默认状态未审核
+		tbLost.setStatus(0);
 		
 		//设置日期
 		tbLost.setCreated(new Date());
@@ -249,8 +249,11 @@ public class LostServiceImpl implements LostService {
 	 */
 	@Override
 	public LostResult getAllLost() {
-		// 从数据库获取
-		List<TbLost> listLost = lostMapper.selectByExample(null);
+		// 从数据库获取审核通过的寻物启事
+		TbLostExample example = new TbLostExample();
+		com.lost.pojo.TbLostExample.Criteria createCriteria = example.createCriteria();
+		createCriteria.andStatusEqualTo(1);
+		List<TbLost> listLost = lostMapper.selectByExample(example);
 		return LostResult.ok(listLost);
 	}
 

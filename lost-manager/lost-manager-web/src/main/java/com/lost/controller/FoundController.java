@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lost.common.pojo.LostResult;
 import com.lost.common.pojo.PageResult;
 import com.lost.customPojo.DetFound;
+import com.lost.customPojo.DetLost;
 import com.lost.pojo.TbFound;
 import com.lost.service.FoundService;
 
@@ -59,6 +61,22 @@ public class FoundController {
 	public LostResult deleteFound(Long[] ids){
 		LostResult result = foundService.deleteFound(ids);
 		return result;
+	}
+	
+	/*
+	 * 根据ID查询明细招领物
+	 */
+	@RequestMapping("/findOne")
+	public DetFound selectDetFoundById(@RequestParam(value="id") Long foundId){
+		return foundService.getDetFoundById(foundId);
+	}
+	
+	/*
+	 * 更新寻物审核状态
+	 */
+	@RequestMapping("/updateStatus")
+	public LostResult updateFoundStatus(Long foundId,int status){
+		return foundService.updateFoundStatus(foundId, status);
 	}
 	
 	

@@ -1,4 +1,4 @@
-	//品牌服务
+	//物品服务
 		app.service("lostService",function($http){
 		
 			//查询所有物品分类
@@ -33,5 +33,11 @@
 			this.search=function(page,size,searchEntity){
 				return $http.post('../lost/search.do?page='+page+'&size='+size,searchEntity);
 			}
+			
+			//更改状态
+			this.updateStatus=function (lostId,status) {
+				return $http.get('../lost/updateStatus.do?lostId='+ lostId +'&status='+ status);
+			}
+			
 		
 		});

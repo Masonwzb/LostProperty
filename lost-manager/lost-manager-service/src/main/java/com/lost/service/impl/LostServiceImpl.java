@@ -134,11 +134,79 @@ public class LostServiceImpl implements LostService{
 		
 		//将数据统计放进map中
 		Map<String, String> result = new HashMap<String, String>();
-		result.put(validLost, "有效寻物启事");
-		result.put(invalidLost, "无效寻物启事");
-		result.put(validFound, "有效招领启事");
-		result.put(invalidFound, "无效招领启事");
+		result.put(validLost, "寻找中寻物启事");
+		result.put(invalidLost, "已失效寻物启事");
+		result.put(validFound, "寻找中招领启事");
+		result.put(invalidFound, "已失效招领启事");
 		
+		
+		return result;
+	}
+
+	/*
+	 * 根据Id查询明细寻物
+	 */
+	@Override
+	public DetLost getDetLostById(Long lostId) {
+		return detLostMapper.selectLostById(lostId);
+	}
+
+	/*
+	 * 更新寻物审核状态
+	 */
+	@Override
+	public LostResult updateLostStatus(Long lostId, int status) {
+		// 根据ID查询寻物启事
+		TbLost lost = lostMapper.selectByPrimaryKey(lostId);
+		
+		//判断status如果为2：审核未通过则删除否则更新status
+		if(status == 2){
+			lostMapper.deleteByPrimaryKey(lostId);
+		}else{
+			lost.setStatus(status);
+			lostMapper.updateByPrimaryKey(lost);
+		}
+		
+		return LostResult.ok();
+	}
+
+	/*
+	 * 统计未审核数据
+	 */
+	@Override
+	public Map<String, String> unaudited() {
+		
+		//未审核寻物启事
+		TbLostExample example = new TbLostExample();
+		Criteria createCriteria = example.createCriteria();
+		createCriteria.andStatusEqualTo(0);
+		int lostUnaudited1 = lostMapper.countByExample(example);
+		
+		//未审核招领启事
+		TbFoundExample example1 = new TbFoundExample();
+		com.lost.pojo.TbFoundExample.Criteria createCriteria2 = example1.createCriteria();
+		createCriteria2.andStatusEqualTo(0);
+		int foundUnaudited1 = foundMapper.countByExample(example1);
+		
+		//寻物启事总数
+		int lostAll1 = lostMapper.countByExample(null);
+		
+		//招领启事总数
+		int foundAll1 = foundMapper.countByExample(null);
+		
+		
+		//整数转换为字符串
+		String lostUnaudited = String.valueOf(lostUnaudited1);
+		String foundUnaudited = String.valueOf(foundUnaudited1);
+		String lostAll = String.valueOf(lostAll1);
+		String foundAll = String.valueOf(foundAll1);
+		
+		//将数据统计放进map中
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("lost", lostUnaudited);
+		result.put("found", foundUnaudited);
+		result.put("lostAll", lostAll);
+		result.put("foundAll", foundAll);
 		
 		return result;
 	}

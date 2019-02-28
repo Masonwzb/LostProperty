@@ -95,7 +95,7 @@ app.controller('addLostController',function($scope,$location,$timeout,$controlle
 									function(response){
 										if(response.status == 200){
 											$scope.reloadList();//刷新
-											layer.confirm('发布成功啦！', {
+											layer.confirm('发布成功啦！（待审核）', {
 												  btn: ['继续发布','返回首页'] //按钮
 												}, function(){
 													window.location = "addLost.html";

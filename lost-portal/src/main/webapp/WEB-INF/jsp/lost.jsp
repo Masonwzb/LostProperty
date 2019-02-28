@@ -18,7 +18,7 @@
 <!-- lost script end -->
 </head>
 
-<body ng-app="portalRest"  ng-controller="lSearchController">
+<body ng-app="portalRest"  ng-controller="lSearchController" ng-init="searchEntity={status:1}">
 <!-- header start-->
 <jsp:include page="commons/header.jsp"/>
 <!-- //header end-->

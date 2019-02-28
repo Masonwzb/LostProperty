@@ -5,13 +5,12 @@
 	<!-- Lost共同sql语句 -->
 	<sql id="Common_List">
 		tl.id,tc.category_name AS categoryName,
-		tu.username AS userName,
 		tl.lost_place AS lostPlace,
 		tl.rewards,tl.contacts,tl.email,
 		tl.description,tl.infoTitle,
 		tl.lost_time AS lostTime1,
-		tl.images,tl.tel,tl.QQ,tl.address,
-		tl.password,tl.updated
+		tl.images,tl.status,tl.tel,tl.QQ,tl.address,
+		tl.password,tl.created,tl.updated
 	</sql>
 	
 	<!-- 根据ID查询明细失物 -->
@@ -21,7 +20,6 @@
 		FROM
 			tb_lost AS tl
 			INNER JOIN tb_category AS tc ON tl.category_id = tc.id
-			INNER JOIN tb_users AS tu ON tl.user_id = tu.id
 		WHERE tl.id = #{id,jdbcType=BIGINT}
 	</select>	
 
@@ -32,7 +30,6 @@
 		FROM
 			tb_lost AS tl
 			INNER JOIN tb_category AS tc ON tl.category_id = tc.id
-			INNER JOIN tb_users AS tu ON tl.user_id = tu.id
 		ORDER BY tl.updated DESC
 	</select>
 	
@@ -42,7 +39,6 @@
 			<include refid="Common_List" />
 		FROM
 			tb_lost AS tl
-			INNER JOIN tb_users AS tu ON tl.user_id = tu.id
 			INNER JOIN (
 				SELECT
 					id,category_name
@@ -63,6 +59,9 @@
 			</if>
 			<if test="lostTime1 != null and lostTime2 != null">
 				AND tl.lost_time BETWEEN #{lostTime1,jdbcType=TIMESTAMP} AND #{lostTime2,jdbcType=TIMESTAMP}
+			</if>
+			<if test="status != null">
+				AND tl.status = #{status,jdbcType=INTEGER}
 			</if>
 			<if test="keyword != null">
 				AND tl.infoTitle LIKE "%"#{keyword,jdbcType=VARCHAR}"%" OR tl.description LIKE "%"#{keyword,jdbcType=VARCHAR}"%"

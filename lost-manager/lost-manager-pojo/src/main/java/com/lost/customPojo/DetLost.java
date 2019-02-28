@@ -6,7 +6,6 @@ public class DetLost {
 
 	private Long id;
 	private String categoryName;
-	private String userName;
 	private String lostPlace;
 	private String rewards;
 	private String contacts;
@@ -14,6 +13,7 @@ public class DetLost {
 	private String infoTitle;
 	private String description;
 	private String images;
+	private String status;
 	private String tel;
 	private String qq;
 	private String address;
@@ -21,6 +21,7 @@ public class DetLost {
 	private String keyword;
 	private Date lostTime1;
 	private Date lostTime2;
+	private Date created;
 	private Date updated;
 
 	public DetLost() {
@@ -42,14 +43,6 @@ public class DetLost {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getLostPlace() {
@@ -170,6 +163,22 @@ public class DetLost {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 

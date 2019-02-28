@@ -7,8 +7,6 @@ public class TbFound {
 
     private Long categoryId;
 
-    private Long userId;
-
     private String foundPlace;
 
     private Date foundTime;
@@ -16,6 +14,8 @@ public class TbFound {
     private String infotitle;
 
     private String images;
+
+    private Integer status;
 
     private String contacts;
 
@@ -51,14 +51,6 @@ public class TbFound {
         this.categoryId = categoryId;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getFoundPlace() {
         return foundPlace;
     }
@@ -89,6 +81,14 @@ public class TbFound {
 
     public void setImages(String images) {
         this.images = images == null ? null : images.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getContacts() {

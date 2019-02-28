@@ -1,4 +1,4 @@
-	//品牌服务
+	//物品服务
 		app.service("foundService",function($http){
 		
 			//查询所有物品分类
@@ -32,6 +32,11 @@
 			
 			this.search=function(page,size,searchEntity){
 				return $http.post('../found/search.do?page='+page+'&size='+size,searchEntity);
+			}
+			
+			//更改状态
+			this.updateFoundStatus=function (foundId,status) {
+				return $http.get('../found/updateStatus.do?foundId='+ foundId +'&status='+ status);
 			}
 		
 		});

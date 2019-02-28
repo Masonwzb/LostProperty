@@ -25,6 +25,7 @@ import com.lost.mapper.TbFoundMapper;
 import com.lost.mapper.TbTextinfoMapper;
 import com.lost.pojo.TbCommentExample;
 import com.lost.pojo.TbFound;
+import com.lost.pojo.TbFoundExample;
 import com.lost.pojo.TbLost;
 import com.lost.pojo.TbTextinfo;
 import com.lost.pojo.TbTextinfoExample;
@@ -77,7 +78,6 @@ public class FoundServiceImpl implements FoundService {
 	public LostResult addFound(TbFound tbFound) throws Exception{
 		// 补全招领信息
 		//设置ID
-		Long userId = (long) 2;
 		tbFound.setId(IDUtils.generateId());
 		
 		//添加添加招领详细文章信息
@@ -86,9 +86,10 @@ public class FoundServiceImpl implements FoundService {
 			throw new Exception();
 		}
 		
-		tbFound.setUserId(userId);
+		//默认状态未审核
+		tbFound.setStatus(0);
 		
-		//设置日期
+ 		//设置日期
 		tbFound.setCreated(new Date());
 		tbFound.setUpdated(new Date());
 		//添加至数据库
@@ -250,8 +251,11 @@ public class FoundServiceImpl implements FoundService {
 	 */
 	@Override
 	public LostResult getAllFound() {
-		// 获取数据库
-		List<TbFound> found = foundMapper.selectByExample(null);
+		// 获取数据库审核通过的招领启事
+		TbFoundExample example = new TbFoundExample();
+		com.lost.pojo.TbFoundExample.Criteria createCriteria = example.createCriteria();
+		createCriteria.andStatusEqualTo(1);
+		List<TbFound> found = foundMapper.selectByExample(example);
 		return LostResult.ok(found);
 	}
 

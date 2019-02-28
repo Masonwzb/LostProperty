@@ -4,12 +4,12 @@
   <resultMap id="BaseResultMap" type="com.lost.pojo.TbLost" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="category_id" property="categoryId" jdbcType="BIGINT" />
-    <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="lost_place" property="lostPlace" jdbcType="VARCHAR" />
     <result column="lost_time" property="lostTime" jdbcType="TIMESTAMP" />
     <result column="infoTitle" property="infotitle" jdbcType="VARCHAR" />
     <result column="rewards" property="rewards" jdbcType="VARCHAR" />
     <result column="images" property="images" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
     <result column="contacts" property="contacts" jdbcType="VARCHAR" />
     <result column="tel" property="tel" jdbcType="VARCHAR" />
     <result column="QQ" property="qq" jdbcType="VARCHAR" />
@@ -27,12 +27,12 @@
   <!-- 一周内失物 -->
   	<select id="selectByTime" resultMap="BaseResultMap">
   		SELECT
-  			id,category_id,user_id,
+  			id,category_id,
 	        lost_place,lost_time,infoTitle,rewards,
-			description,images,contacts,tel,
+			description,images,status,contacts,tel,
 			QQ,email,address,created,updated
   	    FROM tb_lost
-		WHERE updated BETWEEN DATE_SUB(CURDATE(),INTERVAL 7 DAY) AND SYSDATE()
+		WHERE updated BETWEEN DATE_SUB(CURDATE(),INTERVAL 7 DAY) AND SYSDATE() AND status = 1
 		ORDER BY updated DESC
   	</select>
   <!-- 自定义结束 -->
@@ -96,7 +96,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, category_id, user_id, lost_place, lost_time, infoTitle, rewards, images, contacts, 
+    id, category_id, lost_place, lost_time, infoTitle, rewards, images, status, contacts, 
     tel, QQ, email, address, password, created, updated
   </sql>
   <sql id="Blob_Column_List" >
@@ -151,15 +151,15 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.lost.pojo.TbLost" >
-    insert into tb_lost (id, category_id, user_id, 
-      lost_place, lost_time, infoTitle, 
-      rewards, images, contacts, 
+    insert into tb_lost (id, category_id, lost_place, 
+      lost_time, infoTitle, rewards, 
+      images, status, contacts, 
       tel, QQ, email, address, 
       password, created, updated, 
       description)
-    values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
-      #{lostPlace,jdbcType=VARCHAR}, #{lostTime,jdbcType=TIMESTAMP}, #{infotitle,jdbcType=VARCHAR}, 
-      #{rewards,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{lostPlace,jdbcType=VARCHAR}, 
+      #{lostTime,jdbcType=TIMESTAMP}, #{infotitle,jdbcType=VARCHAR}, #{rewards,jdbcType=VARCHAR}, 
+      #{images,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{contacts,jdbcType=VARCHAR}, 
       #{tel,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
       #{description,jdbcType=LONGVARCHAR})
@@ -172,9 +172,6 @@
       </if>
       <if test="categoryId != null" >
         category_id,
-      </if>
-      <if test="userId != null" >
-        user_id,
       </if>
       <if test="lostPlace != null" >
         lost_place,
@@ -190,6 +187,9 @@
       </if>
       <if test="images != null" >
         images,
+      </if>
+      <if test="status != null" >
+        status,
       </if>
       <if test="contacts != null" >
         contacts,
@@ -226,9 +226,6 @@
       <if test="categoryId != null" >
         #{categoryId,jdbcType=BIGINT},
       </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
-      </if>
       <if test="lostPlace != null" >
         #{lostPlace,jdbcType=VARCHAR},
       </if>
@@ -243,6 +240,9 @@
       </if>
       <if test="images != null" >
         #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
       </if>
       <if test="contacts != null" >
         #{contacts,jdbcType=VARCHAR},
@@ -288,9 +288,6 @@
       <if test="record.categoryId != null" >
         category_id = #{record.categoryId,jdbcType=BIGINT},
       </if>
-      <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=BIGINT},
-      </if>
       <if test="record.lostPlace != null" >
         lost_place = #{record.lostPlace,jdbcType=VARCHAR},
       </if>
@@ -305,6 +302,9 @@
       </if>
       <if test="record.images != null" >
         images = #{record.images,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.contacts != null" >
         contacts = #{record.contacts,jdbcType=VARCHAR},
@@ -342,12 +342,12 @@
     update tb_lost
     set id = #{record.id,jdbcType=BIGINT},
       category_id = #{record.categoryId,jdbcType=BIGINT},
-      user_id = #{record.userId,jdbcType=BIGINT},
       lost_place = #{record.lostPlace,jdbcType=VARCHAR},
       lost_time = #{record.lostTime,jdbcType=TIMESTAMP},
       infoTitle = #{record.infotitle,jdbcType=VARCHAR},
       rewards = #{record.rewards,jdbcType=VARCHAR},
       images = #{record.images,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
       contacts = #{record.contacts,jdbcType=VARCHAR},
       tel = #{record.tel,jdbcType=VARCHAR},
       QQ = #{record.qq,jdbcType=VARCHAR},
@@ -365,12 +365,12 @@
     update tb_lost
     set id = #{record.id,jdbcType=BIGINT},
       category_id = #{record.categoryId,jdbcType=BIGINT},
-      user_id = #{record.userId,jdbcType=BIGINT},
       lost_place = #{record.lostPlace,jdbcType=VARCHAR},
       lost_time = #{record.lostTime,jdbcType=TIMESTAMP},
       infoTitle = #{record.infotitle,jdbcType=VARCHAR},
       rewards = #{record.rewards,jdbcType=VARCHAR},
       images = #{record.images,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
       contacts = #{record.contacts,jdbcType=VARCHAR},
       tel = #{record.tel,jdbcType=VARCHAR},
       QQ = #{record.qq,jdbcType=VARCHAR},
@@ -389,9 +389,6 @@
       <if test="categoryId != null" >
         category_id = #{categoryId,jdbcType=BIGINT},
       </if>
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=BIGINT},
-      </if>
       <if test="lostPlace != null" >
         lost_place = #{lostPlace,jdbcType=VARCHAR},
       </if>
@@ -406,6 +403,9 @@
       </if>
       <if test="images != null" >
         images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
       </if>
       <if test="contacts != null" >
         contacts = #{contacts,jdbcType=VARCHAR},
@@ -440,12 +440,12 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lost.pojo.TbLost" >
     update tb_lost
     set category_id = #{categoryId,jdbcType=BIGINT},
-      user_id = #{userId,jdbcType=BIGINT},
       lost_place = #{lostPlace,jdbcType=VARCHAR},
       lost_time = #{lostTime,jdbcType=TIMESTAMP},
       infoTitle = #{infotitle,jdbcType=VARCHAR},
       rewards = #{rewards,jdbcType=VARCHAR},
       images = #{images,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
       contacts = #{contacts,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
       QQ = #{qq,jdbcType=VARCHAR},
@@ -460,12 +460,12 @@
   <update id="updateByPrimaryKey" parameterType="com.lost.pojo.TbLost" >
     update tb_lost
     set category_id = #{categoryId,jdbcType=BIGINT},
-      user_id = #{userId,jdbcType=BIGINT},
       lost_place = #{lostPlace,jdbcType=VARCHAR},
       lost_time = #{lostTime,jdbcType=TIMESTAMP},
       infoTitle = #{infotitle,jdbcType=VARCHAR},
       rewards = #{rewards,jdbcType=VARCHAR},
       images = #{images,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
       contacts = #{contacts,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
       QQ = #{qq,jdbcType=VARCHAR},

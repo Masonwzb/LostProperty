@@ -57,8 +57,8 @@
 <!-- collections -->
 	<div class="new-collections">
 		<div class="container">
-			<h3 class="animated wow zoomIn" data-wow-delay=".5s">最新失物招领资讯</h3>
-			<p class="est animated wow zoomIn" data-wow-delay=".5s">本页面仅显示最近一周内失物招领的信息，按发布时间排序。</p>
+			<h3 class="animated wow zoomIn" data-wow-delay=".5s">最新寻物招领资讯</h3>
+			<p class="est animated wow zoomIn" data-wow-delay=".5s">本页面仅显示最近一周内寻物招领的信息。</p>
 				
 			<div class="grid_3 grid_5 animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">

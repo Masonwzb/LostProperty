@@ -6,13 +6,13 @@ public class DetFound {
 
 	private Long id;
 	private String categoryName;
-	private String userName;
 	private String foundPlace;
 	private String contacts;
 	private String email;
 	private String infoTitle;
 	private String description;
 	private String images;
+	private String status;
 	private String tel;
 	private String qq;
 	private String address;
@@ -20,6 +20,7 @@ public class DetFound {
 	private String keyword;
 	private Date foundTime1;
 	private Date foundTime2;
+	private Date created;
 	private Date updated;
 
 	public DetFound() {
@@ -41,14 +42,6 @@ public class DetFound {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getFoundPlace() {
@@ -161,6 +154,22 @@ public class DetFound {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 }

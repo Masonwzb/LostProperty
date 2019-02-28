@@ -37,7 +37,7 @@
 <!-- index script end -->
 </head>
 	
-<body ng-app="portalRest" ng-controller="searchController" >
+<body ng-app="portalRest" ng-controller="searchController" ng-init="queryEntity={status:1}">
 <!-- header start-->
 <jsp:include page="commons/header.jsp"/>
 <!-- //header end-->

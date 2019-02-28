@@ -155,5 +155,20 @@ app.controller('lostController',function($scope,$timeout,$controller,lostService
 				);	
 			}
 			
+			//更改状态
+			$scope.updateStatus=function (lostId,status) {
+				lostService.updateStatus(lostId,status).success(
+					function (response) {
+						if(response.status == 200){
+							$scope.reloadList();//刷新
+							layer.msg('完成审核', {icon: 1,time: 1500});
+						}else{
+							alert("发生未知错误！");
+						}
+
+					}
+				)
+			}
+			
 		
 		});

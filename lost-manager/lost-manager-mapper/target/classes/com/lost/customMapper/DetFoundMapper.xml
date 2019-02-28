@@ -5,13 +5,12 @@
 	<!-- found共同sql语句 -->
 	<sql id="Common_List">
 		tf.id,tc.category_name AS categoryName,
-		tu.username AS userName,
 		tf.found_place AS foundPlace,
 		tf.contacts,tf.email,
 		tf.description,tf.infoTitle,
-		tf.found_time AS foundTime1,
+		tf.found_time AS foundTime1,tf.status,
 		tf.images,tf.QQ,tf.tel,tf.address,
-		tf.password,tf.updated
+		tf.password,tf.created,tf.updated
 	</sql>
 	
 	<!-- 根据ID查询明细招领物 -->
@@ -21,7 +20,6 @@
 		FROM
 			tb_found AS tf
 			INNER JOIN tb_category AS tc ON tf.category_id = tc.id
-			INNER JOIN tb_users AS tu ON tf.user_id = tu.id
 		WHERE tf.id = #{id,jdbcType=BIGINT}
 	</select>	
 
@@ -32,7 +30,6 @@
 		FROM
 			tb_found AS tf
 			INNER JOIN tb_category AS tc ON tf.category_id = tc.id
-			INNER JOIN tb_users AS tu ON tf.user_id = tu.id
 		ORDER BY tf.updated DESC
 	</select>
 	
@@ -42,7 +39,6 @@
 			<include refid="Common_List" />
 		FROM
 			tb_found AS tf
-			INNER JOIN tb_users AS tu ON tf.user_id = tu.id
 			INNER JOIN (
 				SELECT
 					id,category_name
@@ -63,6 +59,9 @@
 			</if>
 			<if test="foundTime1 != null and foundTime2 != null">
 					AND tf.found_time BETWEEN #{foundTime1,jdbcType=TIMESTAMP} AND #{foundTime2,jdbcType=TIMESTAMP}
+			</if>
+			<if test="status != null">
+				AND tf.status = #{status,jdbcType=INTEGER}
 			</if>
 			<if test="keyword != null">
 				AND tf.infoTitle LIKE "%"#{keyword,jdbcType=VARCHAR}"%" OR tf.description LIKE "%"#{keyword,jdbcType=VARCHAR}"%"
