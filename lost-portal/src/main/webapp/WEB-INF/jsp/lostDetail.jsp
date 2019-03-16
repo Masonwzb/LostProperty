@@ -358,7 +358,7 @@
 						<div class="modal-body">
 							<form>
 								<div class="form-group">
-									<input type="text" class="form-control" ng-model="entity.id" placeholder="输入信息编号..."/>
+									<input type="text" class="form-control" ng-model="entity.id" placeholder="输入信息编号（信息编号在本页面启事详情信息中。）..."/>
 								</div>
 								
 								<div>
