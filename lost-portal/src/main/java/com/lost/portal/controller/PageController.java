@@ -54,10 +54,23 @@ public class PageController {
 		return "searchResult";
 	}
 	
-	//映射查询结果页面
+	//映射更新结果页面
 	@RequestMapping("/updateLost")
 	public String showUpdateLost(){
 		return "updateLost";
 	}
+	
+	//映射联系我们页面
+	@RequestMapping("/mailUs")
+	public String showMailUs(){
+		return "mailUs";
+	}
+	
+	//映射关于我们页面
+	@RequestMapping("/aboutUs")
+	public String showAboutUs(){
+		return "aboutUs";
+	}
+	
 		
 }

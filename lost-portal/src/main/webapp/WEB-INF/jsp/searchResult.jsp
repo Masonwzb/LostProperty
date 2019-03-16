@@ -27,7 +27,7 @@
             left: 0;
             color: #323232;
         }
-    </style>
+</style>
 
 <!-- index script start -->
 <script type="text/javascript" src="angular_js/js/base_pagination.js"></script>
