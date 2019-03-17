@@ -35,12 +35,12 @@
 			<p class="est">如果您对我们有什么更好的建议或者有什么问题，请联系我们！</p>
 			<div class="mail-grids">
 				<div class="col-md-8 mail-grid-left animated wow slideInLeft" data-wow-delay=".5s">
-					<form>
-						<input type="text" placeholder="姓名" required="">
-						<input type="email" placeholder="邮箱" required="">
-						<input type="text" placeholder="主题" required="">
-						<textarea type="text" placeholder="内容..." required=""></textarea>
-						<input type="submit" value="提交" >
+					<form id="emailForm" onsubmit="return false;">
+						<input type="text" name="names" placeholder="姓名" required="">
+						<input type="email" name="emails" placeholder="邮箱" required="">
+						<input type="text" name="subjects" placeholder="主题" required="">
+						<textarea type="text" name="texts" placeholder="内容..." required=""></textarea>
+						<input type="submit" id="submitBtn" value="提交">
 					</form>
 				</div>
 				<div class="col-md-4 mail-grid-right animated wow slideInRight" data-wow-delay=".5s">
@@ -61,6 +61,34 @@
 		</div>
 	</div>
 <!-- //mail -->
+
+<script type="text/javascript">
+	$("#submitBtn").click(function(){
+		if($("input[name='names']").val().length > 0 && $("input[name='emails']").val().length > 0
+				&& $("input[name='subjects']").val().length > 0 && $("textarea[name='texts']").val().length > 0){
+						$.post("/mail/toUs.action",$("#emailForm").serialize(),function(response){
+							
+							if(response.status == 200){
+								layer.msg('发送成功', {icon: 1,time: 1200});
+								$("input[name='names']").val("");
+								$("input[name='emails']").val("");
+								$("input[name='subjects']").val("");
+								$("textarea[name='texts']").val("");
+								location.reload();
+							}else{
+								layer.msg('发送失败', {icon: 2,time: 1200});
+								location.reload();
+							}
+						
+						});
+						layer.msg('发送中请稍等...', {
+						  icon: 16,
+						  shade: 0.01,
+						  time: 10000
+						});
+		}
+	});
+</script>
 
 <!-- fooer start-->
 <jsp:include page="commons/footer.jsp"/>

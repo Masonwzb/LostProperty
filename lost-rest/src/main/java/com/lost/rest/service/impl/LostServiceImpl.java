@@ -217,7 +217,7 @@ public class LostServiceImpl implements LostService {
 			// String[] array = new String[]    {"sun111@163.com","sun222@sohu.com"};    
 			// mailMessage.setTo(array); bineawu@163.com
 			helper.setTo(lost.getEmail());
-			helper.setFrom("156669011@qq.com");
+			helper.setFrom("嘉园失物招领网站<156669011@qq.com>");
 			helper.setSubject("找回信息管理密码-嘉园失物招领");
 			helper.setText("<div>您好！欢迎使用嘉园失物招领平台！<br/><br/>"
 					+ "您发布的信息编码为："+ lostId +"<br/>"
