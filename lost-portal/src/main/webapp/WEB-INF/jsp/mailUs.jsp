@@ -36,10 +36,10 @@
 			<div class="mail-grids">
 				<div class="col-md-8 mail-grid-left animated wow slideInLeft" data-wow-delay=".5s">
 					<form id="emailForm" onsubmit="return false;">
-						<input type="text" name="names" placeholder="姓名" required="">
-						<input type="email" name="emails" placeholder="邮箱" required="">
-						<input type="text" name="subjects" placeholder="主题" required="">
-						<textarea type="text" name="texts" placeholder="内容..." required=""></textarea>
+						<input type="text" name="name" placeholder="姓名" required="">
+						<input type="email" name="email" placeholder="邮箱" required="">
+						<input type="text" name="subject" placeholder="主题" required="">
+						<textarea type="text" name="text" placeholder="内容..." required=""></textarea>
 						<input type="submit" id="submitBtn" value="提交">
 					</form>
 				</div>
@@ -64,16 +64,16 @@
 
 <script type="text/javascript">
 	$("#submitBtn").click(function(){
-		if($("input[name='names']").val().length > 0 && $("input[name='emails']").val().length > 0
-				&& $("input[name='subjects']").val().length > 0 && $("textarea[name='texts']").val().length > 0){
+		if($("input[name='name']").val().length > 0 && $("input[name='email']").val().length > 0
+				&& $("input[name='subject']").val().length > 0 && $("textarea[name='text']").val().length > 0){
 						$.post("/mail/toUs.action",$("#emailForm").serialize(),function(response){
 							
 							if(response.status == 200){
 								layer.msg('发送成功', {icon: 1,time: 1200});
-								$("input[name='names']").val("");
-								$("input[name='emails']").val("");
-								$("input[name='subjects']").val("");
-								$("textarea[name='texts']").val("");
+								$("input[name='name']").val("");
+								$("input[name='email']").val("");
+								$("input[name='subject']").val("");
+								$("textarea[name='text']").val("");
 								location.reload();
 							}else{
 								layer.msg('发送失败', {icon: 2,time: 1200});
