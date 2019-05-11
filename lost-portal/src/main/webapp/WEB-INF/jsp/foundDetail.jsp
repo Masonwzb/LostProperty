@@ -124,7 +124,7 @@
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="home" aria-labelledby="home-tab">
-								<p>${found.description }</p>
+								<p style='text-indent: 2em'>${found.description }</p>
 							</div>
 							<div  ng-controller="commentController"  role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="profile" aria-labelledby="profile-tab">
 								<div class="bootstrap-tab-text-grids">

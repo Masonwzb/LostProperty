@@ -101,7 +101,7 @@
 													<p><h5><b>{{entity.lostPlace | textLengthSet:true:10:'... '}} -寻物启事</b></h5></p>
 													<p class="show-limit">{{entity.description | textLengthSet:true:45:'...'}}</p>
 													<div class="new-collections-grid1-left simpleCart_shelfItem">
-														<span>{{entity.lostTime1 | date:'yyyy年MM月dd日'}}</span>
+														<span>丢失时间：{{entity.lostTime1 | date:'yyyy.MM.dd'}}</span>
 													</div>
 												</div> 
 											</div>

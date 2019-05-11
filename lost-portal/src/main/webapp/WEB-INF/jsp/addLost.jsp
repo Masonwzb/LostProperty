@@ -181,7 +181,7 @@
 	 		showRemove: false,
 	 		uploadUrl: '../pic/upload.action',
 	 		elErrorContainer: '#errorBlocks',
-	 		allowedFileExtensions: ['jpg', 'png', 'gif'],
+	 		allowedFileExtensions: ['jpg', 'png', 'gif','jpeg','webp'],
 	 		fileActionSettings:{
 	 			showRemove: true,
 			    showUpload: true,

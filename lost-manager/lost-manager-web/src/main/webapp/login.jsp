@@ -40,9 +40,6 @@
             <!-- onsubmit="return false;" 取消form表单提交响应 -->
             <form id="formlogin" method="post" action="/login">
             	<span style="color: red;">${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message }</span>
-                 <div id="msg" class="alert alert-danger" style="display: none;">
-                     	用户名或密码错误，请重新填写。
-                 </div>
                 <div class="form-group">
                     <input type="text" id="loginname" name="username" placeholder="用户名" class="form-control" required="">
                 </div>
@@ -62,6 +59,7 @@
 
 	<script type="text/javascript">
 	
+		/*
 		function login(){
 			if($("#loginname").val() != "" && $("#loginpwd").val() != ""){
 			
@@ -76,10 +74,8 @@
 				});
 					
 			}
-		}
+		}*/
 	
-		
-		
 	</script>
 
 

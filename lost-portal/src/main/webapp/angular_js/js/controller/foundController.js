@@ -211,13 +211,13 @@ app.controller('foundController',function($scope,$timeout,$controller,foundServi
 				
 				//倒计时开始
 				var InterValObj; //timer变量，控制时间
-				var count = 10; //间隔函数，1秒执行
+				var count = 60; //间隔函数，1秒执行
 				var curCount;//当前剩余秒数
 				
 			  　      curCount = count;
 			　    　//设置button效果，开始计时
 			     $("#btnSendCode").attr("disabled", "true");
-			     $("#btnSendCode").val(curCount + "秒内可收到通知");
+			     $("#btnSendCode").val(curCount + "秒后可重新发送");
 			     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 			     
 			   //timer处理函数
@@ -229,7 +229,7 @@ app.controller('foundController',function($scope,$timeout,$controller,foundServi
 	                 }
 	                 else {
 	                     curCount--;
-	                     $("#btnSendCode").val(curCount + "秒内可收到通知");
+	                     $("#btnSendCode").val(curCount + "秒后可重新发送");
 	                 }
 	             }
 			    //倒计时开始

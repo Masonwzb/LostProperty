@@ -44,7 +44,7 @@
 	 		showRemove: false,
 	 		uploadUrl: '../pic/upload.action',
 	 		elErrorContainer: '#errorBlocks',
-	 		allowedFileExtensions: ['jpg', 'png', 'gif','jpeg']
+	 		allowedFileExtensions: ['jpg', 'png', 'gif','jpeg','webp']
 	 	}).on("filebatchselected", function(event, files) {
             $(this).fileinput("upload");
         }).on('fileerror', function(event, data) {
